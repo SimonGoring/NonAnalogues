@@ -37,7 +37,7 @@ compiled.pollen$sitename <- as.character(compiled.pollen$sitename)
 compiled.pollen[is.na(compiled.pollen)] <- 0
 
 ```
-Pollen data from Neotoma was accessed on `r create_date` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across North America (Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).  To assess the presence of no-analogues we look for the 95% CI of dissimilarities for all samples within an age-range.  A sample is considered to be no-analogue if the minimum dissimilarity between it and the samples pulled from the earlier sample pool is greater than the 95% CI  for dissimilarity within the pool.
+Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across North America (Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).  To assess the presence of no-analogues we look for the 95% CI of dissimilarities for all samples within an age-range.  A sample is considered to be no-analogue if the minimum dissimilarity between it and the samples pulled from the earlier sample pool is greater than the 95% CI  for dissimilarity within the pool.
 
 ```{r Figure1Plots, message=FALSE, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4}
 library(ggplot2)
@@ -66,7 +66,7 @@ grid.arrange(points, bins, ncol=2)
 Because sample size may affect our ability to calculate the 95% CI we also use the squared-chord dissimilarity estimate reported in Gill et al. (2009) of XXX as a secondary check.  This allows us to detect no-analogues using multiple methods.
 
 
-```{r}
+```{r bootstrapAnalogues, message=FALSE, warning=FALSE, echo=FALSE}
 
 rep.frame <- data.frame(site = compiled.pollen$sitename,
                         age = compiled.pollen$age,
@@ -79,10 +79,10 @@ for(i in 1:nrow(rep.frame)){
   right.site <- compiled.pollen$sitename == rep.frame$site[i]
   site.ages <-  compiled.pollen$age[right.site]
   
-  right.age <- any((site.ages > (rep.frame$age[i] + 250)) & 
-                     (site.ages < (rep.frame$age[i] + 750)))
+  right.age <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
+                     (compiled.pollen$age < (rep.frame$age[i] + 750)))
   
-  if(any(right.age)){
+  if(any(right.age & right.site)){
     
     #  Now we know that the sample has something to compare to (that is 
     #  between 250 and 750 years older), we can create a vector for the sample.
@@ -90,45 +90,23 @@ for(i in 1:nrow(rep.frame)){
     
     arrow <- compiled.pollen[i, 7:ncol(compiled.pollen)]
     arrow <- arrow / sum(arrow)
+    arrow.mat <- as.matrix(arrow)
     
-    older <- abs((rep.frame$time[i] + 500) - compiled.pollen$age) < 500
+    calib.samples <- compiled.pollen[-i, ][right.age[-i],]
+    calib.sites <- calib.samples[,1]
     
-    calib.samples <- compiled.pollen[older, ]
-      
+    calib.samples <- calib.samples[,7:ncol(calib.samples)] / rowSums(calib.samples[,7:ncol(calib.samples)])
+    
+    dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
+    dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
+    
     for(j in 1:100){
-      if(nrow(bin.samples) > 1){
-        target <- bin.samples[sample(nrow(bin.samples), 1), ]
-      }
-      else{
-        target <- bin.samples
-      }
       
-      unique.sites <- length(unique(calib.samples))
+      resampled <- sample(nrow(calib.samples), replace=TRUE)
       
-      calib.samples <- calib.samples[order(calib.samples$sitename),]
-      site.freq <- as.numeric(table(calib.samples$sitename))
+      dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
       
-      probs <- rep(site.freq / nrow(calib.samples), site.freq)
-        
-      subsample <- sample(x = 1:nrow(calib.samples), 
-                          size = unique.sites, 
-                          replace = TRUE, 
-                          prob = probs)
-      
-      arrow <- calib.samples[subsample,]
-      
-      #  Now get the minimum distance:
-      target.vec <- as.vector(target[,6:ncol(target)])
-      target.vec <- sqrt(target.vec /sum(target.vec, na.rm=TRUE))
-      target.vec[is.na(target.vec)] <- 0
-      
-      arrow.mat <- as.matrix(arrow[,6:ncol(arrow)])
-      arrow.mat <- sqrt(arrow.mat /rowSums(arrow.mat, na.rm=TRUE))
-      arrow.mat[is.na(arrow.mat)] <- 0
-      
-      dist.vals <- sqrt(colSums(apply(arrow.mat, 1, function(x) (x - target.vec)^2), na.rm=TRUE))
-      
-      rep.frame[i, j+2] <- min(dist.vals)
+      rep.frame[i, j+2] <- min(dist.test)
       cat(i, j, '\n')
     }
   }
