@@ -28,11 +28,13 @@ if(!'data/all_sites_compiled.RData' %in% list.files('data/')){
 include <- !(is.na(compiled.pollen$age) | 
                is.na(compiled.pollen$depth) | 
                compiled.pollen$age > 22000 |
-               compiled.pollen$lat < 20 |
-               compiled.pollen$long > -40)
+               compiled.pollen$lat < 23 |
+               compiled.pollen$long > -40 |
+               compiled.pollen$long < -100)
 
 compiled.pollen <- compiled.pollen[include, ]
 compiled.pollen$sitename <- as.character(compiled.pollen$sitename)
+compiled.pollen[is.na(compiled.pollen)] <- 0
 
 ```
 Pollen data from Neotoma was accessed on `r create_date` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across North America (Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).  To assess the presence of no-analogues we look for the 95% CI of dissimilarities for all samples within an age-range.  A sample is considered to be no-analogue if the minimum dissimilarity between it and the samples pulled from the earlier sample pool is greater than the 95% CI  for dissimilarity within the pool.
@@ -40,9 +42,6 @@ Pollen data from Neotoma was accessed on `r create_date` using the `neotoma` pac
 ```{r Figure1Plots, message=FALSE, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4}
 library(ggplot2)
 library(gridExtra)
-
-#  Get rid of western sites.
-compiled.pollen <- compiled.pollen[compiled.pollen$long > -100,]
 
 indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
                           compiled.pollen[!duplicated(compiled.pollen$sitename), 4:5],
@@ -68,8 +67,6 @@ Because sample size may affect our ability to calculate the 95% CI we also use t
 
 
 ```{r}
-
-compiled.pollen[is.na(compiled.pollen)] <- 0
 
 rep.frame <- data.frame(site = compiled.pollen$sitename,
                         age = compiled.pollen$age,
