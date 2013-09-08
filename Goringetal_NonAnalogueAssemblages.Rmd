@@ -74,43 +74,45 @@ rep.frame <- data.frame(site = compiled.pollen$sitename,
 
 for(i in 1:nrow(rep.frame)){
   
-  #  For each sample in the dataset we need to find it, and then check if it
-  #  has any samples that are between 250 and 750 years older than it.
-  right.site <- compiled.pollen$sitename == rep.frame$site[i]
-  site.ages <-  compiled.pollen$age[right.site]
-  
-  right.age <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
-                     (compiled.pollen$age < (rep.frame$age[i] + 750)))
-  
-  if(any(right.age & right.site)){
+  if(any(is.na(rep.frame[i, 3:102]))){
+    #  For each sample in the dataset we need to find it, and then check if it
+    #  has any samples that are between 250 and 750 years older than it.
+    right.site <- compiled.pollen$sitename == rep.frame$site[i]
+    site.ages <-  compiled.pollen$age[right.site]
     
-    #  Now we know that the sample has something to compare to (that is 
-    #  between 250 and 750 years older), we can create a vector for the sample.
-    #  We exclude 'Other', because it's super big some times.
+    right.age <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
+                       (compiled.pollen$age < (rep.frame$age[i] + 750)))
     
-    arrow <- compiled.pollen[i, 7:ncol(compiled.pollen)]
-    arrow <- arrow / sum(arrow)
-    arrow.mat <- as.matrix(arrow)
-    
-    calib.samples <- compiled.pollen[-i, ][right.age[-i],]
-    calib.sites <- calib.samples[,1]
-    
-    calib.samples <- calib.samples[,7:ncol(calib.samples)] / rowSums(calib.samples[,7:ncol(calib.samples)])
-    
-    dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
-    dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
-    
-    for(j in 1:100){
+    if(any(right.age & right.site)){
       
-      resampled <- sample(nrow(calib.samples), replace=TRUE)
+      #  Now we know that the sample has something to compare to (that is 
+      #  between 250 and 750 years older), we can create a vector for the sample.
+      #  We exclude 'Other', because it's super big some times.
       
-      dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
+      arrow <- compiled.pollen[i, 7:ncol(compiled.pollen)]
+      arrow <- arrow / sum(arrow)
+      arrow.mat <- as.matrix(arrow)
       
-      rep.frame[i, j+2] <- min(dist.test)
-      cat(i, j, '\n')
+      calib.samples <- compiled.pollen[-i, ][right.age[-i],]
+      calib.sites <- calib.samples[,1]
+      
+      calib.samples <- calib.samples[,7:ncol(calib.samples)] / rowSums(calib.samples[,7:ncol(calib.samples)])
+      
+      dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
+      dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
+      
+      for(j in 1:100){
+        
+        resampled <- sample(nrow(calib.samples), replace=TRUE)
+        
+        dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
+        
+        rep.frame[i, j+2] <- min(dist.test)
+      }
+      plot(density(as.numeric(rep.frame[i, 3:102]), na.rm=TRUE), 
+           main = paste(as.character(rep.frame[i, 1]), rep.frame[i,2], sep=', '))
     }
   }
-  
 }
 
 ```
