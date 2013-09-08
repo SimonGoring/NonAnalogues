@@ -41,6 +41,9 @@ Pollen data from Neotoma was accessed on `r create_date` using the `neotoma` pac
 library(ggplot2)
 library(gridExtra)
 
+#  Get rid of western sites.
+compiled.pollen <- compiled.pollen[compiled.pollen$long > -100,]
+
 indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
                           compiled.pollen[!duplicated(compiled.pollen$sitename), 4:5],
                           samples = as.vector(table(compiled.pollen$sitename)))
@@ -65,7 +68,74 @@ Because sample size may affect our ability to calculate the 95% CI we also use t
 
 
 ```{r}
-data.frame(site,
-           time,
-           onehundredtrials)
+
+compiled.pollen[is.na(compiled.pollen)] <- 0
+
+rep.frame <- data.frame(site = compiled.pollen$sitename,
+                        age = compiled.pollen$age,
+                        matrix(nrow=nrow(compiled.pollen), ncol=100))
+
+for(i in 1:nrow(rep.frame)){
+  
+  #  For each sample in the dataset we need to find it, and then check if it
+  #  has any samples that are between 250 and 750 years older than it.
+  right.site <- compiled.pollen$sitename == rep.frame$site[i]
+  site.ages <-  compiled.pollen$age[right.site]
+  
+  right.age <- any((site.ages > (rep.frame$age[i] + 250)) & 
+                     (site.ages < (rep.frame$age[i] + 750)))
+  
+  if(any(right.age)){
+    
+    #  Now we know that the sample has something to compare to (that is 
+    #  between 250 and 750 years older), we can create a vector for the sample.
+    #  We exclude 'Other', because it's super big some times.
+    
+    arrow <- compiled.pollen[i, 7:ncol(compiled.pollen)]
+    arrow <- arrow / sum(arrow)
+    
+    older <- abs((rep.frame$time[i] + 500) - compiled.pollen$age) < 500
+    
+    calib.samples <- compiled.pollen[older, ]
+      
+    for(j in 1:100){
+      if(nrow(bin.samples) > 1){
+        target <- bin.samples[sample(nrow(bin.samples), 1), ]
+      }
+      else{
+        target <- bin.samples
+      }
+      
+      unique.sites <- length(unique(calib.samples))
+      
+      calib.samples <- calib.samples[order(calib.samples$sitename),]
+      site.freq <- as.numeric(table(calib.samples$sitename))
+      
+      probs <- rep(site.freq / nrow(calib.samples), site.freq)
+        
+      subsample <- sample(x = 1:nrow(calib.samples), 
+                          size = unique.sites, 
+                          replace = TRUE, 
+                          prob = probs)
+      
+      arrow <- calib.samples[subsample,]
+      
+      #  Now get the minimum distance:
+      target.vec <- as.vector(target[,6:ncol(target)])
+      target.vec <- sqrt(target.vec /sum(target.vec, na.rm=TRUE))
+      target.vec[is.na(target.vec)] <- 0
+      
+      arrow.mat <- as.matrix(arrow[,6:ncol(arrow)])
+      arrow.mat <- sqrt(arrow.mat /rowSums(arrow.mat, na.rm=TRUE))
+      arrow.mat[is.na(arrow.mat)] <- 0
+      
+      dist.vals <- sqrt(colSums(apply(arrow.mat, 1, function(x) (x - target.vec)^2), na.rm=TRUE))
+      
+      rep.frame[i, j+2] <- min(dist.vals)
+      cat(i, j, '\n')
+    }
+  }
+  
+}
+
 ```

@@ -7,12 +7,12 @@ This code is part of an ongoing research project to attempt to understand the ec
 [Simon Goring](http://downwithtime.wordpress.com) - University of Wisconsin-Madison, Department of Geography
 
 ### Currently implemented in code:
-+ README - This readme file.
-+ load_datasets.R - uses the `neotoma` package `get_download` to return all pollen cores using the Neotoma API.
++ `README` - This readme file.
++ `load_datasets.R` - uses the `neotoma` package `get_download` to return all pollen cores using the Neotoma API.
++ `all_sites_compiled.RData` - all of the pollen sites from Neotoma have been compiled into a single large table using the `load_datasets.R` file.
 
 
 ### Coming soon
 + Figures outlined in RMarkdown
 + Text to accompany figures
 + Code implementation of modern and paleo-dissimilarities.
-
