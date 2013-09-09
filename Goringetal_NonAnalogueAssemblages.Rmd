@@ -15,14 +15,14 @@ We compile records of pollen from depositional records in the Neotoma Database. 
 
 ```{r checkFileCreation, echo=FALSE, message=FALSE}
 
-if('data/all_sites_compiled.RData' %in% list.files('data/')){
-  create_date <- file.info('data/all_sites_compiled.RData')$mtime  
-  load('data/all_sites_compiled.RData')
+if('all_sites_compiled.RData' %in% list.files('data/')){
+  create_date <- file.info('data//all_sites_compiled.RData')$mtime  
+  load('data//all_sites_compiled.RData')
 }
-if(!'data/all_sites_compiled.RData' %in% list.files('data/')){
-  source('R/load_datasets.R')
+if(!'all_sites_compiled.RData' %in% list.files('data//')){
+  source('R//load_datasets.R')
   
-  create_date <- file.info('data/all_sites_compiled.RData')$mtime
+  create_date <- file.info('data//all_sites_compiled.RData')$mtime
 }
 
 include <- !(is.na(compiled.pollen$age) | 
@@ -68,53 +68,38 @@ Because sample size may affect our ability to calculate the 95% CI we also use t
 
 ```{r bootstrapAnalogues, message=FALSE, warning=FALSE, echo=FALSE}
 
-rep.frame <- data.frame(site = compiled.pollen$sitename,
-                        age = compiled.pollen$age,
-                        matrix(nrow=nrow(compiled.pollen), ncol=100))
-
-for(i in 1:nrow(rep.frame)){
-  
-  if(any(is.na(rep.frame[i, 3:102]))){
-    #  For each sample in the dataset we need to find it, and then check if it
-    #  has any samples that are between 250 and 750 years older than it.
-    right.site <- compiled.pollen$sitename == rep.frame$site[i]
-    site.ages <-  compiled.pollen$age[right.site]
-    
-    right.age <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
-                       (compiled.pollen$age < (rep.frame$age[i] + 750)))
-    
-    if(any(right.age & right.site)){
-      
-      #  Now we know that the sample has something to compare to (that is 
-      #  between 250 and 750 years older), we can create a vector for the sample.
-      #  We exclude 'Other', because it's super big some times.
-      
-      arrow <- compiled.pollen[i, 7:ncol(compiled.pollen)]
-      arrow <- arrow / sum(arrow)
-      arrow.mat <- as.matrix(arrow)
-      
-      calib.samples <- compiled.pollen[-i, ][right.age[-i],]
-      calib.sites <- calib.samples[,1]
-      
-      calib.samples <- calib.samples[,7:ncol(calib.samples)] / rowSums(calib.samples[,7:ncol(calib.samples)])
-      
-      dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
-      dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
-      
-      for(j in 1:100){
-        
-        resampled <- sample(nrow(calib.samples), replace=TRUE)
-        
-        dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
-        
-        rep.frame[i, j+2] <- min(dist.test)
-      }
-      hist(as.numeric(rep.frame[i, 3:102]), 
-           main = paste(as.character(rep.frame[i, 1]), 
-                        rep.frame[i,2], 
-                        round(i/nrow(rep.frame), 4)*100, sep=', '))
-    }
-  }
+if('rep.frame.RData' %in% list.files('data/')){
+  load('data/rep.frame.RData')
+}
+if(!'rep.frame.RData' %in% list.files('data/')){
+  source('R/calculate_turnover.R')
 }
 
 ```
+
+Results
+-------------------------
+The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are sen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
+
+
+```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE}
+
+library(mgcv)
+
+rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,3]),3:102], na.rm=TRUE), 
+                 age = rep.frame$age[!is.na(rep.frame[,3])])
+
+ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
+  geom_smooth(formula = y ~ s(x, k = 40), method='gam') +
+  scale_x_continuous(limits = c(0, 20000), expand=c(0,0)) +
+  scale_y_sqrt(limits = c(0, .5), expand=c(0,0)) +
+  theme_bw()
+
+```
+**Figure X**. *Turnover through time in the Neotoma database.*
+
+Correlations to stuff?
+
+Discussion
+---------------------------
+Turnover or analogues?  When we are looking at non-analogues it turns out that it's really the modern.
