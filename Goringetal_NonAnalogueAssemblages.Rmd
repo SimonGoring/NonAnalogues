@@ -109,8 +109,10 @@ for(i in 1:nrow(rep.frame)){
         
         rep.frame[i, j+2] <- min(dist.test)
       }
-      plot(density(as.numeric(rep.frame[i, 3:102]), na.rm=TRUE), 
-           main = paste(as.character(rep.frame[i, 1]), rep.frame[i,2], sep=', '))
+      hist(as.numeric(rep.frame[i, 3:102]), 
+           main = paste(as.character(rep.frame[i, 1]), 
+                        rep.frame[i,2], 
+                        round(i/nrow(rep.frame), 4)*100, sep=', '))
     }
   }
 }
