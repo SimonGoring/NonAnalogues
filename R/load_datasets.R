@@ -48,7 +48,7 @@ if(!'compiled.pollen.RData' %in% list.files('data/')){
     
     cat(i, '\n')
   }
-  save(compiled.pollen, file='compiled.pollen.RData')
+  save(compiled.pollen, file='data/compiled.pollen.RData')
 }
 
 if('compiled.pollen.RData' %in% list.files('data/')){
