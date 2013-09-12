@@ -20,7 +20,7 @@ if('compiled.sites.RData' %in% list.files('data/')){
 }
 if(!'compiled.sites.RData' %in% list.files('data/')){
   compiled.sites <- lapply(all.sites, function(x) compile_list(x, list.name='WS64', type = TRUE, cf=TRUE))
-  save(compiled.sites, file='../data/compiled.sites.Rdata')  
+  save(compiled.sites, file='../data/compiled.sites.RData')  
 }
 
 #  Make the dataset into one giant table with site name, lat/long, depth and age and then counts:

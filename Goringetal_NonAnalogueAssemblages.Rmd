@@ -15,15 +15,9 @@ We compile records of pollen from depositional records in the Neotoma Database. 
 
 ```{r checkFileCreation, echo=FALSE, message=FALSE}
 
-if('all_sites_compiled.RData' %in% list.files('data/')){
-  create_date <- file.info('data//all_sites_compiled.RData')$mtime  
-  load('data//all_sites_compiled.RData')
-}
-if(!'all_sites_compiled.RData' %in% list.files('data//')){
-  source('R//load_datasets.R')
-  
-  create_date <- file.info('data//all_sites_compiled.RData')$mtime
-}
+source('R/load_datasets.R')
+
+create_date <- file.info('data//compiled.pollen.RData')$mtime  
 
 include <- !(is.na(compiled.pollen$age) | 
                is.na(compiled.pollen$depth) | 
