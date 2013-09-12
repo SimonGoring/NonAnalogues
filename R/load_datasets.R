@@ -1,5 +1,6 @@
-library(neotoma)
 #  Okay, this is the code for the non-analogue analysis:
+
+library(neotoma)
 
 #  Getting all the sites from neotoma is time consuming:
 if(!'all.sites.RData' %in% list.files('data/')){
@@ -18,24 +19,29 @@ if('all.sites.RData' %in% list.files('data/')){
 if('compiled.sites.RData' %in% list.files('data/')){
   load('data/compiled.sites.RData')
 }
-if(!'compiled.sites.RData' %in% list.files('data/')){
+
+if(!('compiled.sites.RData' %in% list.files('data/'))){
   compiled.sites <- lapply(all.sites, function(x) compile_list(x, list.name='WS64', type = TRUE, cf=TRUE))
-  save(compiled.sites, file='../data/compiled.sites.RData')  
+  save(compiled.sites, file='data/compiled.sites.RData')  
 }
 
 #  Make the dataset into one giant table with site name, lat/long, depth and age and then counts:
-if(!'compiled.pollen.RData' %in% list.files('data/')){
+if(!('compiled.pollen.RData' %in% list.files('data/'))){
   for(i in 1:length(compiled.sites)){
     x <- compiled.sites[[i]]
     
     if(is.null(x$metadata$site.data$SiteName)) x$metadata$site.data$SiteName <- paste('NoName_ID', i)
     if(is.null(x$sample.meta$depths)) x$sample.meta$depths <- NA
     if(is.null(x$sample.meta$Age)) x$sample.meta$Age <- NA
+    if(is.null(x$metadata$site.data$LatitudeNorth)) x$metadata$site.data$LatitudeNorth <- NA
+    if(is.null(x$metadata$site.data$LongitudeWest)) x$metadata$site.data$LongitudeWest <- NA
     
     
     site.info <- data.frame(sitename = x$metadata$site.data$SiteName,
                             depth = x$sample.meta$depths,
-                            age = x$sample.meta$Age)
+                            age = x$sample.meta$Age,
+                            lat = x$metadata$site.data$LatitudeNorth,
+                            long = x$metadata$site.data$LongitudeWest)
     
     if(i == 1){
       compiled.pollen <- data.frame(site.info, x$counts)
