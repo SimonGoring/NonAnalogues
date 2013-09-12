@@ -11,7 +11,7 @@ if(!'all.sites.RData' %in% list.files('data/')){
   save(all.sites, file='data/all.sites/RData')
 }
 if('all.sites.RData' %in% list.files('data/')){
-  load('data/all_sites.RData')
+  load('data/all.sites.RData')
 }
 
 #  Compress the dataset taxonomies to the standard of the small Whitmore taxonomy.
@@ -19,13 +19,13 @@ if('compiled.sites.RData' %in% list.files('data/')){
   load('data/compiled.sites.RData')
 }
 if(!'compiled.sites.RData' %in% list.files('data/')){
-  compiled.sites <- lapply(all.sites, function(x) compile_list(x, list.name='WhitmoreSmall'))
+  compiled.sites <- lapply(all.sites, function(x) compile_list(x, list.name='WS64', type = TRUE, cf=TRUE))
   save(compiled.sites, file='../data/compiled.sites.Rdata')  
 }
 
 #  Make the dataset into one giant table with site name, lat/long, depth and age and then counts:
 if(!'compiled.pollen.RData' %in% list.files('data/')){
-  for(i in i:length(compiled.sites)){
+  for(i in 1:length(compiled.sites)){
     x <- compiled.sites[[i]]
     
     if(is.null(x$metadata$site.data$SiteName)) x$metadata$site.data$SiteName <- paste('NoName_ID', i)
