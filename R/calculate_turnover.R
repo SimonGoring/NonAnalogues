@@ -48,3 +48,5 @@ for(i in 1:nrow(rep.frame)){
     }
   }
 }
+
+save('data/rep.frame.RData')
