@@ -1,10 +1,14 @@
 #  Calculate the dissimilarities for all sites in the large compiled.pollen data.frame.
 
+#  This could probably be parallelized to speed everything up, 
+library(snowfall)
+sfInit(parallel = TRUE, cpus = 4)
+
 rep.frame <- data.frame(site = compiled.pollen$sitename,
                         age = compiled.pollen$age,
                         matrix(nrow=nrow(compiled.pollen), ncol=100))
 
-for(i in 1:nrow(rep.frame)){
+for(i in i:nrow(rep.frame)){
   
   if(any(is.na(rep.frame[i, 3:102]))){
     #  For each sample in the dataset we need to find it, and then check if it
@@ -33,20 +37,28 @@ for(i in 1:nrow(rep.frame)){
       dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
       dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
       
-      for(j in 1:100){
-        
+      sfExport("calib.sites")
+      sfExport("calib.samples")
+      sfExport('dist.vals')
+      
+      min.dist <- function(x){
         resampled <- sample(nrow(calib.samples), replace=TRUE)
-        
         dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
-        
-        rep.frame[i, j+2] <- min(dist.test)
+        min(dist.test)
       }
-      hist(as.numeric(rep.frame[i, 3:102]), 
-           main = paste(as.character(rep.frame[i, 1]), 
+      
+      rep.frame[i,3:102] <- unlist(sfLapply(1:100, min.dist))
+      
+      
+      cat(paste(as.character(rep.frame[i, 1]), 
                         rep.frame[i,2], 
-                        round(i/nrow(rep.frame), 4)*100, sep=', '))
+                        round(i/nrow(rep.frame), 4)*100, sep=', '), '\n')
     }
   }
 }
 
+<<<<<<< HEAD
 save('data/rep.frame.RData')
+=======
+save(rep.frame, file='data/rep.frame.RData')
+>>>>>>> cdad1c0504eb53d854ef8eb2c67fb78b9de63544
