@@ -19,19 +19,8 @@ source('R/load_datasets.R')
 
 create_date <- file.info('data//compiled.pollen.RData')$mtime  
 
-include <- !(is.na(compiled.pollen$age) | 
-               is.na(compiled.pollen$depth) | 
-               compiled.pollen$age > 22000 |
-               compiled.pollen$lat < 23 |
-               compiled.pollen$long > -40 |
-               compiled.pollen$long < -100)
-
-compiled.pollen <- compiled.pollen[include, ]
-compiled.pollen$sitename <- as.character(compiled.pollen$sitename)
-compiled.pollen[is.na(compiled.pollen)] <- 0
-
 ```
-Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across North America (Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).  To assess the presence of no-analogues we look for the 95% CI of dissimilarities for all samples within an age-range.  A sample is considered to be no-analogue if the minimum dissimilarity between it and the samples pulled from the earlier sample pool is greater than the 95% CI  for dissimilarity within the pool.
+Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across eastern North America (Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).
 
 ```{r Figure1Plots, message=FALSE, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4}
 library(ggplot2)
@@ -44,11 +33,11 @@ indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
 map <- map_data('world')
 
 map <- subset(map, map$long > -100 & map$long < -40)
-map <- subset(map, map$lat > 20 & map$lat < 83)
+map <- subset(map, map$lat > 20 & map$lat < 65)
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group=group), color='black') +
   geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha=0.5) +
-  coord_map(xlim=c(-100, -40), ylim=c(21, 83)) + theme_bw()
+  coord_map(xlim=c(-100, -40), ylim=c(21, 65)) + theme_bw()
 
 bins <- ggplot(compiled.pollen) + 
           geom_bar(aes(x = age), 
@@ -86,16 +75,28 @@ The analysis produces a somewhat surprising result.  While dissimilarity is high
 library(mgcv)
 
 rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,3]),3:102], na.rm=TRUE), 
-                 age = rep.frame$age[!is.na(rep.frame[,3])])
+                 age = rep.frame$age[!is.na(rep.frame[,3])],
+                 indiv.sites[match(rep.frame[!is.na(rep.frame[,3]),1], indiv.sites[,1]),2:3])
 
-ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
+ninefive <- sort(rf$diss)[nrow(rf)*0.975]
+
+curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
   geom_smooth(formula = y ~ s(x, k = 40), method='gam') +
   scale_x_continuous(limits = c(0, 20000), expand=c(0,0)) +
   scale_y_sqrt(limits = c(0, .5), expand=c(0,0)) +
+  geom_hline(yintercept = ninefive, linetype=2, color = 'red') +
   theme_bw()
+
+points <- ggplot(data = data.frame(map), aes(long, lat)) + 
+  geom_path(aes(group=group), color='black') +
+  geom_point(data = rf[rf$diss > ninefive, ], aes(x = long, y = lat), alpha=0.2, color = 'red') +
+  coord_map(xlim=c(-100, -40), ylim=c(21, 83)) + theme_bw()
+
 
 ```
 **Figure X**. *Turnover through time in the Neotoma database.*
+
+
 
 Correlations to stuff?
 

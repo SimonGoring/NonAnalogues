@@ -35,8 +35,7 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
     if(is.null(x$sample.meta$Age)) x$sample.meta$Age <- NA
     if(is.null(x$metadata$site.data$LatitudeNorth)) x$metadata$site.data$LatitudeNorth <- NA
     if(is.null(x$metadata$site.data$LongitudeWest)) x$metadata$site.data$LongitudeWest <- NA
-    
-    
+        
     site.info <- data.frame(sitename = x$metadata$site.data$SiteName,
                             depth = x$sample.meta$depths,
                             age = x$sample.meta$Age,
@@ -54,7 +53,22 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
     
     cat(i, '\n')
   }
+  
+  include <- !(is.na(compiled.pollen$age) | 
+                 is.na(compiled.pollen$depth) | 
+                 compiled.pollen$age > 22000 |
+                 compiled.pollen$lat < 23 |
+                 compiled.pollen$lat > 65 |
+                 compiled.pollen$long > -40 |
+                 compiled.pollen$long < -100 |
+                 compiled.pollen$sitename %in% 'Mangrove Lake')
+  
+  compiled.pollen <- compiled.pollen[include, ]
+  compiled.pollen$sitename <- as.character(compiled.pollen$sitename)
+  compiled.pollen[is.na(compiled.pollen)] <- 0
+  
   save(compiled.pollen, file='data/compiled.pollen.RData')
+
 }
 
 if('compiled.pollen.RData' %in% list.files('data/')){
