@@ -57,8 +57,4 @@ for(i in i:nrow(rep.frame)){
   }
 }
 
-<<<<<<< HEAD
-save('data/rep.frame.RData')
-=======
 save(rep.frame, file='data/rep.frame.RData')
->>>>>>> cdad1c0504eb53d854ef8eb2c67fb78b9de63544
