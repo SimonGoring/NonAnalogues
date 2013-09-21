@@ -44,7 +44,7 @@ bins <- ggplot(compiled.pollen) +
                    breaks = seq(-100, 22000, by = 500), 
                    fill='gray', color='black') +
           scale_x_continuous(expand=c(0, 0), limits=c(-100, 21000)) +
-          scale_y_continuous(expand=c(0, 0), limits=c(0, 4000))
+          scale_y_sqrt(expand=c(0, 0), limits=c(0, 4000))
 
 grid.arrange(points, bins, ncol=2)
 
@@ -81,17 +81,18 @@ rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,3]),3:102], na.rm=T
 ninefive <- sort(rf$diss)[nrow(rf)*0.975]
 
 curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
-  geom_smooth(formula = y ~ s(x, k = 40), method='gam') +
+  geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma) +
   scale_x_continuous(limits = c(0, 20000), expand=c(0,0)) +
-  scale_y_sqrt(limits = c(0, .5), expand=c(0,0)) +
+  scale_y_continuous(limits = c(0, .5), expand=c(0,0)) +
   geom_hline(yintercept = ninefive, linetype=2, color = 'red') +
   theme_bw()
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + 
   geom_path(aes(group=group), color='black') +
   geom_point(data = rf[rf$diss > ninefive, ], aes(x = long, y = lat), alpha=0.2, color = 'red') +
-  coord_map(xlim=c(-100, -40), ylim=c(21, 83)) + theme_bw()
+  coord_map(xlim=c(-100, -40), ylim=c(21, 65)) + theme_bw()
 
+grid.arrange(curve, points, nrow=2)
 
 ```
 **Figure X**. *Turnover through time in the Neotoma database.*

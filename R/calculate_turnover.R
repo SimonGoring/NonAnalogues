@@ -8,7 +8,7 @@ rep.frame <- data.frame(site = compiled.pollen$sitename,
                         age = compiled.pollen$age,
                         matrix(nrow=nrow(compiled.pollen), ncol=100))
 
-for(i in i:nrow(rep.frame)){
+for(i in 1:nrow(rep.frame)){
   
   if(any(is.na(rep.frame[i, 3:102]))){
     #  For each sample in the dataset we need to find it, and then check if it
