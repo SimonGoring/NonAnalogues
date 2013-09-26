@@ -20,7 +20,8 @@ source('R/load_datasets.R')
 create_date <- file.info('data//compiled.pollen.RData')$mtime  
 
 ```
-Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across eastern North America (Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).
+
+Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across eastern North America (east of 100^o W; Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).
 
 ```{r Figure1Plots, message=FALSE, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4}
 library(ggplot2)
@@ -53,6 +54,7 @@ grid.arrange(points, bins, ncol=2)
 
 Because sample size may affect our ability to calculate the 95% CI we also use the squared-chord dissimilarity estimate reported in Gill et al. (2009) of XXX as a secondary check.  This allows us to detect no-analogues using multiple methods.
 
+To determine dissimilarity ofver time we estimate dissimilarity from the data using a bootstrap approach for which a sample is compared against a 'landscape' of sites that are between 250 and 750 years older than the sample in question.  For any sample we first test whether a sample fom the site exists between 250 - 750 prior to the sample of interest.  This will prevent anomalously high analogue distances for sites that have never previously been sampled, particularly when they represent new ecoregions.  For each acceptable site we sample one assemblage from each site with samples in the previous 250 - 750 years.  This produces a single sample from each site in the previous time window from which we estimate the minimum suqared chord dissimilarity.  Since some sites have multiple samples in each 500 year time window we re-sample (with replacement) 100 times for each focal site, producing a sample of 100 minimum (squared-chord) dissimilarity values for each pollen assemblage at each site, for which there is a prior sample.
 
 ```{r bootstrapAnalogues, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -65,8 +67,12 @@ if(!'rep.frame.RData' %in% list.files('data/')){
 
 ```
 
+
 Results
 -------------------------
+Pollen samples:
+Of the `r length(unique(compiled.pollen$sitename))` pollen sites obtained from Neotoma for this analysis, `r length(unique(compiled.pollen$sitename[!is.na(rep.frame[,3])]))` sites had assemblages that met our criteria.  For these sites there were 18850 unique assemblages spanning the last 21kyr, approximately 90% of the total assemblages for the sites that met our criteria.  Samples excluded from analysis occur throughout the record
+
 The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are sen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
 
 
