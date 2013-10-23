@@ -40,7 +40,8 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
                             depth = x$sample.meta$depths,
                             age = x$sample.meta$Age,
                             lat = x$metadata$site.data$LatitudeNorth,
-                            long = x$metadata$site.data$LongitudeWest)
+                            long = x$metadata$site.data$LongitudeWest,
+                            dataset = x$metadata$dataset$dataset.id)
     
     if(i == 1){
       compiled.pollen <- data.frame(site.info, x$counts)

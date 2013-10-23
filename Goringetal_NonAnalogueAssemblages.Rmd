@@ -80,14 +80,16 @@ The analysis produces a somewhat surprising result.  While dissimilarity is high
 
 library(mgcv)
 
-rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,3]),3:102], na.rm=TRUE), 
-                 age = rep.frame$age[!is.na(rep.frame[,3])],
-                 indiv.sites[match(rep.frame[!is.na(rep.frame[,3]),1], indiv.sites[,1]),2:3])
+rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,4]),4:103], na.rm=TRUE), 
+                 age = rep.frame$age[!is.na(rep.frame[,4])],
+                 indiv.sites[match(rep.frame[!is.na(rep.frame[,4]),1], indiv.sites[,1]),2:3],
+                 site = rep.frame$site[!is.na(rep.frame[,4])],
+                 dataset = rep.frame$dataset[!is.na(rep.frame[,4])])
 
 ninefive <- sort(rf$diss)[nrow(rf)*0.975]
 
 curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
-  geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma) +
+  geom_smooth(formula = y ~ s(x), method='gam', family = Gamma) +
   scale_x_continuous(limits = c(0, 20000), expand=c(0,0)) +
   scale_y_continuous(limits = c(0, .5), expand=c(0,0)) +
   geom_hline(yintercept = ninefive, linetype=2, color = 'red') +
@@ -102,7 +104,6 @@ grid.arrange(curve, points, nrow=2)
 
 ```
 **Figure X**. *Turnover through time in the Neotoma database.*
-
 
 
 Correlations to stuff?
