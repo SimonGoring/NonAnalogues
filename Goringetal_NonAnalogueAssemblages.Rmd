@@ -53,7 +53,7 @@ bins <- ggplot(compiled.pollen) +
 grid.arrange(points, bins, ncol=2)
 
 ```
-**Figure 1**. *Sample plot locations and bin sizes for each age class*.
+**Figure 2**. *Sample plot locations and bin sizes for each age class*.
 
 Because sample size may affect our ability to calculate the 95% CI we also use the squared-chord dissimilarity estimate reported in Gill et al. (2009) of XXX as a secondary check.  This allows us to detect no-analogues using multiple methods.
 
@@ -76,27 +76,35 @@ Results
 Pollen samples:
 Of the `r length(unique(compiled.pollen$sitename))` pollen sites obtained from Neotoma for this analysis, `r length(unique(compiled.pollen$sitename[!is.na(rep.frame[,3])]))` sites had assemblages that met our criteria.  For these sites there were 18850 unique assemblages spanning the last 21kyr, approximately 90% of the total assemblages for the sites that met our criteria.  Samples excluded from analysis occur throughout the record
 
-The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are sen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
+The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are seen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
 
 
 ```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE}
 
 library(mgcv)
 
-rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,4]),4:103], na.rm=TRUE), 
-                 age = rep.frame$age[!is.na(rep.frame[,4])],
-                 indiv.sites[match(rep.frame[!is.na(rep.frame[,4]),1], indiv.sites[,1]),2:3],
-                 site = rep.frame$site[!is.na(rep.frame[,4])],
-                 dataset = rep.frame$dataset[!is.na(rep.frame[,4])])
+rf <- data.frame(age = rep.frame$age,
+                 lat = compiled.pollen$lat,
+                 long = compiled.pollen$long,
+                 site = rep.frame$site,
+                 dataset = rep.frame$dataset,
+                 diss = rowMeans(rep.frame[ ,8:ncol(rep.frame)], na.rm=TRUE),
+                 self = rep.frame$self.min,
+                 min = rep.frame$min.dist,
+                 size = rep.frame$sample.size)
 
 ninefive <- sort(rf$diss)[nrow(rf)*0.975]
 
-curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
-  geom_smooth(formula = y ~ s(x), method='gam', family = Gamma) +
-  scale_x_continuous(limits = c(0, 20000), expand=c(0,0)) +
+curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.1) +
+  geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma, size = 2) +
+  scale_x_continuous(limits = c(0, 15000), expand=c(0,0)) +
   scale_y_continuous(limits = c(0, .5), expand=c(0,0)) +
   geom_hline(yintercept = ninefive, linetype=2, color = 'red') +
-  theme_bw()
+  theme_bw() +
+  theme(axis.title = element_text(family='serif', face='bold.italic', size=20),
+        axis.text = element_text(family='serif', size=16)) +
+  xlab('Years Before Present') +
+  ylab('Landscape Dissimilarity')
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + 
   geom_path(aes(group=group), color='black') +
@@ -106,7 +114,7 @@ points <- ggplot(data = data.frame(map), aes(long, lat)) +
 grid.arrange(curve, points)
 
 ```
-**Figure X**. *Turnover through time in the Neotoma database.*
+**Figure 3**. *Turnover through time in the Neotoma database.*
 
 
 Correlations to stuff?
