@@ -1,6 +1,8 @@
 Community dissassembly: Looking for rapid regional turnover in the pollen record and the development of non-analogue vegetation.
 ========
 
+**[Paper in progress](https://github.com/SimonGoring/NonAnalogues/blob/master/Goringetal_NonAnalogueAssemblages.md)**
+
 This code is part of an ongoing research project to attempt to understand the ecological and climatic associates of non-analogue vegetation.  Traditionally researchers have looked at non-analogue associations with regards to modern pollen assemblages.  This paper uses the `neotoma` package (hosted [here](https://github.com/ropensci/neotoma)) to download records from the [Neotoma Paleoecological Database](http://www.neotomadb.org/) and then to check for the presence of non-analogue pollen assembages between 500 year time periods.  The modern data will be used to establish cut-offs or quantiles for dissimilarity measures, but the real measures will be within samples between time periods.
 
 ### Development by

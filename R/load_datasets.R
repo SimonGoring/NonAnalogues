@@ -68,6 +68,8 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
   compiled.pollen$sitename <- as.character(compiled.pollen$sitename)
   compiled.pollen[is.na(compiled.pollen)] <- 0
   
+  compiled.pollen <- compiled.pollen[cp.pct$Other < 0.10, ]
+  
   save(compiled.pollen, file='data/compiled.pollen.RData')
 
 }
@@ -75,3 +77,4 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
 if('compiled.pollen.RData' %in% list.files('data/')){
   load('data/compiled.pollen.RData')
 }
+

@@ -13,17 +13,21 @@ pol.types <- c('Other', unique(as.character(pollen.equiv$WhitmoreSmall)))
 pol.types <- colnames(compiled.pollen)[colnames(compiled.pollen)%in%pol.types[!is.na(pol.types)]]
 
 cp.pct <- compiled.pollen[,pol.types]/rowSums(compiled.pollen[,pol.types])
-compiled.pollen <- compiled.pollen[cp.pct$Other < 0.10, ]
-cp.pct <- round(cp.pct[cp.pct$Other < 0.10, -1], 4)
+
+no.others <- cp.pct$Other > 0.10
 
 rep.frame <- data.frame(site = compiled.pollen$sitename,
                         dataset = compiled.pollen$dataset,
                         age = compiled.pollen$age,
+                        min.dist =  rep(NA, nrow(compiled.pollen)),
+                        self.min = rep(NA, nrow(compiled.pollen)),
+                        sample.size = rep(NA, nrow(compiled.pollen)),
+                        self.size = rep(NA, nrow(compiled.pollen)),
                         matrix(nrow=nrow(compiled.pollen), ncol=100))
 
 for(i in 1:nrow(rep.frame)){
   
-  if(any(is.na(rep.frame[i, 4:103]))){
+  if(any(is.na(rep.frame[i, 4:103])) & no.others[i] == FALSE){
     #  For each sample in the dataset we need to find it, and then check if it
     #  has any samples that are between 250 and 750 years older than it.
     right.site <- compiled.pollen$sitename == rep.frame$site[i]
@@ -44,6 +48,11 @@ for(i in 1:nrow(rep.frame)){
       calib.samples <- cp.pct[-i, ][right.age[-i],]
       calib.sites <- compiled.pollen[-i, ][right.age[-i],][,1]
       
+      self.samples <- cp.pct[-i, ][right.age[-i] & right.site[-i],]
+      
+      self.minus <- apply(self.samples, 1, function(x) (arrow.mat - x)^2)
+      self.vals  <- min(c(1000, sqrt(colSums(self.minus, na.rm=TRUE))))
+      
       dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
       dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
       
@@ -51,13 +60,21 @@ for(i in 1:nrow(rep.frame)){
       sfExport("calib.samples")
       sfExport('dist.vals')
       
+      if(sum(right.age & right.site) == 1){
+        
+      }
+      
       min.dist <- function(x){
         resampled <- sample(nrow(calib.samples), replace=TRUE)
         dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
         min(dist.test)
       }
       
-      rep.frame[i,4:103] <- unlist(sfLapply(1:100, min.dist))
+      rep.frame[i,8:ncol(rep.frame)] <- unlist(sfLapply(1:100, min.dist))
+      rep.frame$self.min[i] <- self.vals
+      rep.frame$min.dist[i] <- dist.vals
+      rep.frame$self.size[i] <- sum(right.age & right.site)
+      rep.frame$sample.size[i] <- length(dist.vals)
       
       cat(paste(as.character(rep.frame[i, 1]), 
                         rep.frame[i,2], 
