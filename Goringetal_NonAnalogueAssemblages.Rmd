@@ -16,7 +16,7 @@ Methods
 ------------------------
 We compile records of pollen from depositional records in the Neotoma Database.  To assess whether pollen assemblages are 'non-analogue' we estimate squared-chord distance from pollen samples to a reference set that includes (1) all samples in the Neotoma Database that are between 250 and 750 calibrated years older than the sample, and (2) includes samples from the reference site.
 
-```{r checkFileCreation, echo=FALSE, message=FALSE}
+```{r checkFileCreation, echo=FALSE, warning=FALSE, message=FALSE}
 
 source('R/load_datasets.R')
 
@@ -26,7 +26,7 @@ create_date <- file.info('data//compiled.pollen.RData')$mtime
 
 Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across eastern North America (east of 100^o W; Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).
 
-```{r Figure1Plots, message=FALSE, echo=FALSE, warning=FALSE, fig.width=6, fig.height=4}
+```{r Figure1Plots, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
 library(ggplot2)
 library(gridExtra)
 
@@ -48,7 +48,7 @@ bins <- ggplot(compiled.pollen) +
                    breaks = seq(-100, 22000, by = 500), 
                    fill='gray', color='black') +
           scale_x_continuous(expand=c(0, 0), limits=c(-100, 21000)) +
-          scale_y_sqrt(expand=c(0, 0), limits=c(0, 4000))
+          scale_y_sqrt(expand=c(0, 0), limits=c(0, 4000)) + theme_bw()
 
 grid.arrange(points, bins, ncol=2)
 
@@ -59,7 +59,7 @@ Because sample size may affect our ability to calculate the 95% CI we also use t
 
 To determine dissimilarity ofver time we estimate dissimilarity from the data using a bootstrap approach for which a sample is compared against a 'landscape' of sites that are between 250 and 750 years older than the sample in question.  For any sample we first test whether a sample fom the site exists between 250 - 750 prior to the sample of interest.  This will prevent anomalously high analogue distances for sites that have never previously been sampled, particularly when they represent new ecoregions.  For each acceptable site we sample one assemblage from each site with samples in the previous 250 - 750 years.  This produces a single sample from each site in the previous time window from which we estimate the minimum suqared chord dissimilarity.  Since some sites have multiple samples in each 500 year time window we re-sample (with replacement) 100 times for each focal site, producing a sample of 100 minimum (squared-chord) dissimilarity values for each pollen assemblage at each site, for which there is a prior sample.
 
-```{r bootstrapAnalogues, message=FALSE, warning=FALSE, echo=FALSE}
+```{r bootstrapAnalogues, echo=FALSE, message=FALSE, warning=FALSE}
 
 if('rep.frame.RData' %in% list.files('data/')){
   load('data/rep.frame.RData')
@@ -91,19 +91,31 @@ rf <- data.frame(age = rep.frame$age,
                  diss = rowMeans(rep.frame[ ,8:ncol(rep.frame)], na.rm=TRUE),
                  self = rep.frame$self.min,
                  min = rep.frame$min.dist,
-                 size = rep.frame$sample.size)
+                 size = rep.frame$sample.size,
+                 nf = 'black',
+                 stringsAsFactors = FALSE)
 
-ninefive <- sort(rf$diss)[nrow(rf)*0.975]
+rf <- rf[!is.na(rf$diss),]
 
-curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.1) +
+for(i in 1:15000){
+  age.class <- rf$age %in% i:(i+200)
+  aa <- sort(rf$diss[age.class])[sum(age.class)*0.975]
+  rf$nf[age.class & rf$diss > aa] <- 'red'
+}
+
+curve <- ggplot(aes(x = age, y = diss), data = rf) + 
+  geom_point(aes(alpha = nf, color = nf)) +
+  scale_color_identity() +
   geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma, size = 2) +
+  geom_smooth(formula = y ~ s(x, k = 40), 
+              method='gam', family = Gamma, size = 1, color = 'black', linetype = 2) +
   scale_x_continuous(limits = c(0, 15000), expand=c(0,0)) +
-  scale_y_continuous(limits = c(0, .5), expand=c(0,0)) +
-  geom_hline(yintercept = ninefive, linetype=2, color = 'red') +
-  theme_bw() +
-  theme(axis.title = element_text(family='serif', face='bold.italic', size=20),
-        axis.text = element_text(family='serif', size=16)) +
-  xlab('Years Before Present') +
+  scale_y_sqrt(limits = c(0, .5), expand=c(0,0)) +
+  theme_bw() + 
+  theme(axis.title = element_text(family='serif', face='italic', size=20),
+        axis.text = element_text(family='serif', size=16),
+        legend.position = 'none') +
+  xlab('Radiocarbon Years Before Present') +
   ylab('Landscape Dissimilarity')
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + 
