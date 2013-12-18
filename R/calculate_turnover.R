@@ -57,4 +57,41 @@ for(i in i:nrow(rep.frame)){
   }
 }
 
+#  Within site dissimilarity:
+self.frame <- data.frame(site = compiled.pollen$sitename,
+                         age = compiled.pollen$age,
+                         matrix(nrow=nrow(compiled.pollen), ncol=100))
+ 
+
+for(i in i:nrow(self.frame)){
+  
+  if(any(is.na(self.frame[i, 3:102]))){
+    #  For each sample in the dataset we need to find it, and then check if it
+    #  has any samples that are between 250 and 750 years older than it.
+    right.site <- compiled.pollen$sitename == self.frame$site[i]
+    site.ages <-  compiled.pollen$age[right.site]
+    
+    right.age <- ((compiled.pollen$age > (self.frame$age[i] + 250)) & 
+                    (compiled.pollen$age < (self.frame$age[i] + 750)))
+    
+    if(any(right.age & right.site)){
+      pol.set <- rbind(compiled.pollen[i, 7:ncol(compiled.pollen)],
+                       compiled.pollen[right.age & right.site, 
+                                       7:ncol(compiled.pollen)])
+      
+      pol.set <- pol.set / rowSums(pol.set, na.rm=TRUE)
+      
+      distances <- as.matrix(dist(pol.set))[-1,1]
+      
+      self.frame[i,3:102] <- sample(distances, 100, replace = TRUE)
+      
+      
+      cat(paste(as.character(self.frame[i, 1]), 
+                self.frame[i,2], 
+                round(i/nrow(self.frame), 4)*100, sep=', '), '\n')
+    }
+  }
+}
+
 save(rep.frame, file='data/rep.frame.RData')
+save(self.frame, file='data/self.frame.RData')

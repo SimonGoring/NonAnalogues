@@ -6,7 +6,7 @@ Abstract
 
 Introduction
 ------------------------
-Our investigation of non-analogues, both in the past and in the future is tied to differences from modern pollen data.  THe concern with a future of no-analogues is tied to our lack of understanding, both in how the process of change will unfold, and in how ecosystem services are provided by these vegetation communities for which we have no analogue.
+Our investigation of non-analogues, both in the past and in the future is tied to differences from modern pollen data.  The use of modern analogues is prevelant int the literature, and key to our understanding of the past.  The concern with a future of no-analogues is tied to our lack of understanding, both in how the process of change will unfold, and in how ecosystem services are provided by these vegetation communities for which we have no analogue.
 To assist in this endevour, we examine pollen records from the Neotoma Database, searching through the past, from the late-glacial to the modern to examine in which cases pollen assemblages appear to be non-analogue from the previous time period.
 
 Methods
@@ -26,9 +26,22 @@ Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` us
 library(ggplot2)
 library(gridExtra)
 
+#  Downloaded from: 
+#  http://www.fs.fed.us/rm/ecoregions/products/map-ecoregions-north-america/
+library(rgdal)
+ecoregions <- spTransform(readOGR('data/Ecoregions_NA/na_regns.shp', 'na_regns'),
+                          CRSobj=CRS('+proj=longlat +ellps=WGS84'))
+
 indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
                           compiled.pollen[!duplicated(compiled.pollen$sitename), 4:5],
                           samples = as.vector(table(compiled.pollen$sitename)))
+
+extract.eco <- over(SpatialPoints(indiv.sites[,3:2], proj4string=CRS(proj4string(ecoregions))), ecoregions)
+
+indiv.sites$domain <- as.character(extract.eco$DOMAIN)
+indiv.sites$division <- as.character(extract.eco$DIVISION)
+indiv.sites$province <- as.character(extract.eco$PROVINCE)
+
 
 map <- map_data('world')
 
@@ -58,6 +71,7 @@ Because sample size may affect our ability to calculate the 95% CI we also use t
 
 if('rep.frame.RData' %in% list.files('data/')){
   load('data/rep.frame.RData')
+  load('data/self.frame.RData')
 }
 if(!'rep.frame.RData' %in% list.files('data/')){
   source('R/calculate_turnover.R')
@@ -70,20 +84,30 @@ Results
 The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are sen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
 
 
-```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE}
+```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE, fig.width = 10, fig.height=6}
 
 library(mgcv)
 
-rf <- data.frame(diss = rowMeans(rep.frame[!is.na(rep.frame[,3]),3:102], na.rm=TRUE), 
-                 age = rep.frame$age[!is.na(rep.frame[,3])],
+rf <- data.frame(diss = c(rowMeans(rep.frame[!is.na(rep.frame[,3]),3:102], 
+                                   na.rm=TRUE), 
+                          rowMeans(self.frame[!is.na(rep.frame[,3]),3:102], 
+                                   na.rm=TRUE)),
+                 age = rep(rep.frame$age[!is.na(rep.frame[,3])], 2),
+                 class = rep(c('landscape', 'self'), 
+                             each = sum(!is.na(rep.frame[,3]))),
+                 domain = indiv.sites$domain[match(rep.frame[!is.na(rep.frame[,3]),1], indiv.sites[,1])],
+                 division = indiv.sites$division[match(rep.frame[!is.na(rep.frame[,3]),1], indiv.sites[,1])],
                  indiv.sites[match(rep.frame[!is.na(rep.frame[,3]),1], indiv.sites[,1]),2:3])
+
 
 ninefive <- sort(rf$diss)[nrow(rf)*0.975]
 
-curve <- ggplot(aes(x = age, y = diss), data = rf) + geom_point(alpha = 0.25) +
+curve <- ggplot(aes(x = age, y = diss), data = rf) + 
+  geom_point(alpha = 0.25, aes(color = domain)) +
   geom_smooth(formula = y ~ s(x, k = 40), method='gam') +
+  facet_wrap(~class) +
   scale_x_continuous(limits = c(0, 20000), expand=c(0,0)) +
-  scale_y_sqrt(limits = c(0, .5), expand=c(0,0)) +
+  scale_y_sqrt(limits = c(0, 1), expand=c(0,0)) +
   geom_hline(yintercept = ninefive, linetype=2, color = 'red') +
   theme_bw()
 
@@ -92,6 +116,7 @@ points <- ggplot(data = data.frame(map), aes(long, lat)) +
   geom_point(data = rf[rf$diss > ninefive, ], aes(x = long, y = lat), alpha=0.2, color = 'red') +
   coord_map(xlim=c(-100, -40), ylim=c(21, 83)) + theme_bw()
 
+curve
 
 ```
 **Figure X**. *Turnover through time in the Neotoma database.*
