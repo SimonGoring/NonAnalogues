@@ -40,7 +40,8 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
                             depth = x$sample.meta$depths,
                             age = x$sample.meta$Age,
                             lat = x$metadata$site.data$LatitudeNorth,
-                            long = x$metadata$site.data$LongitudeWest)
+                            long = x$metadata$site.data$LongitudeWest,
+                            dataset = x$metadata$dataset$dataset.id)
     
     if(i == 1){
       compiled.pollen <- data.frame(site.info, x$counts)
@@ -67,6 +68,8 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
   compiled.pollen$sitename <- as.character(compiled.pollen$sitename)
   compiled.pollen[is.na(compiled.pollen)] <- 0
   
+  compiled.pollen <- compiled.pollen[cp.pct$Other < 0.10, ]
+  
   save(compiled.pollen, file='data/compiled.pollen.RData')
 
 }
@@ -74,3 +77,4 @@ if(!('compiled.pollen.RData' %in% list.files('data/'))){
 if('compiled.pollen.RData' %in% list.files('data/')){
   load('data/compiled.pollen.RData')
 }
+
