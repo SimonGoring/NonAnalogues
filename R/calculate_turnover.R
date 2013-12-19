@@ -27,7 +27,7 @@ rep.frame <- data.frame(site = compiled.pollen$sitename,
 
 for(i in 1:nrow(rep.frame)){
   
-  if(any(is.na(rep.frame[i, 4:103])) & no.others[i] == FALSE){
+  if(any(is.na(rep.frame[i, 4:103])) & (no.others[i] == FALSE)){
     #  For each sample in the dataset we need to find it, and then check if it
     #  has any samples that are between 250 and 750 years older than it.
     right.site <- compiled.pollen$sitename == rep.frame$site[i]
@@ -60,10 +60,6 @@ for(i in 1:nrow(rep.frame)){
       sfExport("calib.samples")
       sfExport('dist.vals')
       
-      if(sum(right.age & right.site) == 1){
-        
-      }
-      
       min.dist <- function(x){
         resampled <- sample(nrow(calib.samples), replace=TRUE)
         dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
@@ -72,7 +68,7 @@ for(i in 1:nrow(rep.frame)){
       
       rep.frame[i,8:ncol(rep.frame)] <- unlist(sfLapply(1:100, min.dist))
       rep.frame$self.min[i] <- self.vals
-      rep.frame$min.dist[i] <- dist.vals
+      rep.frame$min.dist[i] <- min(dist.vals)
       rep.frame$self.size[i] <- sum(right.age & right.site)
       rep.frame$sample.size[i] <- length(dist.vals)
       

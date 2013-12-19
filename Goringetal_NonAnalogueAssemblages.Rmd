@@ -27,7 +27,7 @@ create_date <- file.info('data//compiled.pollen.RData')$mtime
 
 Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across eastern North America (east of 100^o W; Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).
 
-```{r Figure1Plots, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4}
+```{r Figure1Plots, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=3, results='hide'}
 library(ggplot2)
 library(gridExtra)
 
@@ -77,7 +77,6 @@ To determine dissimilarity ofver time we estimate dissimilarity from the data us
 
 if('rep.frame.RData' %in% list.files('data/')){
   load('data/rep.frame.RData')
-  load('data/self.frame.RData')
 }
 if(!'rep.frame.RData' %in% list.files('data/')){
   source('R/calculate_turnover.R')
@@ -143,8 +142,6 @@ grid.arrange(curve, points)
 ```
 **Figure 3**. *Turnover through time in the Neotoma database.*
 
-
-Correlations to stuff?
 
 Discussion
 ---------------------------
