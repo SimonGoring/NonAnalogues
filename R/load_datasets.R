@@ -16,11 +16,11 @@ if('all.sites.RData' %in% list.files('data/')){
 }
 
 #  Compress the dataset taxonomies to the standard of the small Whitmore taxonomy.
-if('compiled.sites.RData' %in% list.files('data/')){
+if('compiled.sites.Rdata' %in% list.files('data/')){
   load('data/compiled.sites.RData')
 }
 
-if(!('compiled.sites.RData' %in% list.files('data/'))){
+if(!('compiled.sites.Rdata' %in% list.files('data/'))){
   compiled.sites <- lapply(all.sites, function(x) compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE))
   save(compiled.sites, file='data/compiled.sites.RData')  
 }

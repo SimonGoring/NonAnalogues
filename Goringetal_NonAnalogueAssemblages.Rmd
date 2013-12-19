@@ -93,9 +93,11 @@ Of the `r length(unique(compiled.pollen$sitename))` pollen sites obtained from N
 The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are seen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
 
 
-```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE, fig.width = 10, fig.height=6}
+```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE, fig.width = 10, fig.height=9}
 
 library(mgcv)
+
+compiled.to.indiv <- match(compiled.pollen$sitename, indiv.sites$site)
 
 rf <- data.frame(age = rep.frame$age,
                  lat = compiled.pollen$lat,
@@ -107,6 +109,9 @@ rf <- data.frame(age = rep.frame$age,
                  min = rep.frame$min.dist,
                  size = rep.frame$sample.size,
                  nf = 'black',
+                 domain = indiv.sites$domain[compiled.to.indiv],
+                 division = indiv.sites$division[compiled.to.indiv],
+                 province = indiv.sites$province[compiled.to.indiv],
                  stringsAsFactors = FALSE)
 
 rf <- rf[!is.na(rf$diss),]
@@ -130,7 +135,8 @@ curve <- ggplot(aes(x = age, y = diss), data = rf) +
         axis.text = element_text(family='serif', size=16),
         legend.position = 'none') +
   xlab('Radiocarbon Years Before Present') +
-  ylab('Landscape Dissimilarity')
+  ylab('Landscape Dissimilarity') +
+  facet_wrap(~domain, ncol = 2)
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + 
   geom_path(aes(group=group), color='black') +
