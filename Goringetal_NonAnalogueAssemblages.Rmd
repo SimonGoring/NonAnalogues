@@ -8,10 +8,9 @@ Introduction
 ------------------------
 Our investigation of non-analogues, both in the past and in the future is tied to differences from modern pollen data.  THe concern with a future of no-analogues is tied to our lack of understanding, both in how the process of change will unfold, and in how ecosystem services are provided by these vegetation communities for which we have no analogue.
 
-To assist in this endevour, we examine pollen records from the Neotoma Database, searching through the past, from the late-glacial to the modern to examine in which cases pollen assemblages appear to be non-analogue from the previous time period.  The conceptual framework suggests that we were looking at landscape level turnover, not site turnover.  While site-level turnover is a commonly used metric in paleoecological analysis, it is hampered by its sensitivity to stochastic effects.  Large scale changes in vegetation at a signle site might not reflect the kinds of broad scale community change we expect to see under conditions of future climate change.  As such, comparing dissimilarity at a site to changes at a number of sites across the continent provides a better metric of landscape-scale dissimilarity.
+To assist in this endevour, we examine pollen records from the Neotoma Database, searching through the past, from the late-glacial to the modern to examine in which cases pollen assemblages appear to be non-analogue from the previous time period.  The conceptual framework suggests that we were looking at landscape level turnover, not site turnover.  While site-level turnover is a commonly used metric in paleoecological analysis, it is hampered by its sensitivity to stochastic effects.  Large scale changes in vegetation at a single site might not reflect the kinds of broad scale community change we expect to see under conditions of future climate change.  As such, comparing dissimilarity at a site to changes at a number of sites across the continent provides a better metric of landscape-scale dissimilarity.
 
 **Figure 1**. *Some sort of figure showing the conceptual difference between change at the site vs. change at the landscape.*
-
 
 Methods
 ------------------------
@@ -37,6 +36,8 @@ library(rgdal)
 ecoregions <- spTransform(readOGR('data/Ecoregions_NA/na_regns.shp', 'na_regns'),
                           CRSobj=CRS('+proj=longlat +ellps=WGS84'))
 
+ecoregions <- ecoregions[!ecoregions@data$DIVISION == 'Lake',]
+
 indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
                           compiled.pollen[!duplicated(compiled.pollen$sitename), 4:5],
                           samples = as.vector(table(compiled.pollen$sitename)))
@@ -47,11 +48,10 @@ indiv.sites$domain <- as.character(extract.eco$DOMAIN)
 indiv.sites$division <- as.character(extract.eco$DIVISION)
 indiv.sites$province <- as.character(extract.eco$PROVINCE)
 
-
 map <- map_data('world')
 
-map <- subset(map, map$long > -100 & map$long < -40)
-map <- subset(map, map$lat > 20 & map$lat < 65)
+map <- subset(map, map$long > -100 & map$long < -59)
+map <- subset(map, map$lat > 20 & map$lat < 50)
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group=group), color='black') +
   geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha=0.5) +
@@ -112,38 +112,46 @@ rf <- data.frame(age = rep.frame$age,
                  domain = indiv.sites$domain[compiled.to.indiv],
                  division = indiv.sites$division[compiled.to.indiv],
                  province = indiv.sites$province[compiled.to.indiv],
+                 was.na = FALSE,
                  stringsAsFactors = FALSE)
 
 rf <- rf[!is.na(rf$diss),]
 
-for(i in 1:15000){
-  age.class <- rf$age %in% i:(i+200)
-  aa <- sort(rf$diss[age.class])[sum(age.class)*0.975]
+#  This re-assigns ecozones for points:
+source('R/data_cleaning.R')
+
+for(i in 1:1500){
+  #  This loop basically pulls out the 95% CI samples.
+  age.class <- rf$age %in% (i*10):((i*10)+500)
+  aa <- quantile(rf$diss, probs=0.95)
   rf$nf[age.class & rf$diss > aa] <- 'red'
 }
 
-curve <- ggplot(aes(x = age, y = diss), data = rf) + 
+what <- rf$domain %in% c('HUMID TEMPERATE DOMAIN')
+
+curve <- ggplot(aes(x = age, y = diss), data = rf[what,]) + 
   geom_point(aes(alpha = nf, color = nf)) +
   scale_color_identity() +
   geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma, size = 2) +
   geom_smooth(formula = y ~ s(x, k = 40), 
               method='gam', family = Gamma, size = 1, color = 'black', linetype = 2) +
   scale_x_continuous(limits = c(0, 15000), expand=c(0,0)) +
-  scale_y_sqrt(limits = c(0, .5), expand=c(0,0)) +
+  scale_y_continuous(limits = c(0, .5), expand=c(0,0)) +
   theme_bw() + 
   theme(axis.title = element_text(family='serif', face='italic', size=20),
         axis.text = element_text(family='serif', size=16),
         legend.position = 'none') +
   xlab('Radiocarbon Years Before Present') +
-  ylab('Landscape Dissimilarity') +
-  facet_wrap(~domain, ncol = 2)
+  ylab('Landscape Dissimilarity') #+
+  #facet_wrap(~domain, ncol = 2)
 
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + 
   geom_path(aes(group=group), color='black') +
-  geom_point(data = rf[rf$diss > quantile(rf$diss, 0.95), ], 
-             aes(x = long, y = lat), alpha=0.2, color = 'red') +
-  coord_map(xlim=c(-100, -40), ylim=c(21, 65)) + theme_bw()
+  geom_point(data = rf[rf$diss > quantile(rf$diss, 0.95) & what, ], 
+             aes(x = long, y = lat, size = diss*10), alpha=0.2, color = 'red') +
+  scale_size_identity() +
+  coord_map(xlim=c(-100, -59), ylim=c(21, 50)) + theme_bw()
 
 curve
 

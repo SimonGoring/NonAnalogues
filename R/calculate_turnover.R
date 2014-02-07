@@ -21,6 +21,7 @@ rep.frame <- data.frame(site = compiled.pollen$sitename,
                         age = compiled.pollen$age,
                         min.dist =  rep(NA, nrow(compiled.pollen)),
                         self.min = rep(NA, nrow(compiled.pollen)),
+                        landscape.min = rep(NA, nrow(compiled.pollen)),
                         sample.size = rep(NA, nrow(compiled.pollen)),
                         self.size = rep(NA, nrow(compiled.pollen)),
                         matrix(nrow=nrow(compiled.pollen), ncol=100))
@@ -47,27 +48,30 @@ for(i in 1:nrow(rep.frame)){
       
       calib.samples <- cp.pct[-i, ][right.age[-i],]
       calib.sites <- compiled.pollen[-i, ][right.age[-i],][,1]
+      calib.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
+      calib.vals <- sqrt(colSums(calib.minus, na.rm=TRUE))
       
-      self.samples <- cp.pct[-i, ][right.age[-i] & right.site[-i],]
+      landscape.samples <- cp.pct[-i, ][right.age[-i] & !right.site[-i],]
+      landscape.minus <- apply(landscape.samples, 1, function(x) (arrow.mat - x)^2)
+      landscape.vals  <- min(c(1000, sqrt(colSums(landscape.minus, na.rm=TRUE))))
       
+      self.samples <- cp.pct[-i, ][right.age[-i] & right.site[-i],]      
       self.minus <- apply(self.samples, 1, function(x) (arrow.mat - x)^2)
       self.vals  <- min(c(1000, sqrt(colSums(self.minus, na.rm=TRUE))))
       
-      dist.minus <- apply(calib.samples, 1, function(x) (arrow.mat - x)^2)
-      dist.vals <- sqrt(colSums(dist.minus, na.rm=TRUE))
-      
       sfExport("calib.sites")
       sfExport("calib.samples")
-      sfExport('dist.vals')
+      sfExport('calib.vals')
       
       min.dist <- function(x){
         resampled <- sample(nrow(calib.samples), replace=TRUE)
-        dist.test <- dist.vals[resampled][!duplicated(calib.sites[resampled])]
+        dist.test <- calib.vals[resampled][!duplicated(calib.sites[resampled])]
         min(dist.test)
       }
       
       rep.frame[i,8:ncol(rep.frame)] <- unlist(sfLapply(1:100, min.dist))
       rep.frame$self.min[i] <- self.vals
+      rep.frame$landscape.min[i] <- landscape.vals
       rep.frame$min.dist[i] <- min(dist.vals)
       rep.frame$self.size[i] <- sum(right.age & right.site)
       rep.frame$sample.size[i] <- length(dist.vals)

@@ -9,7 +9,7 @@ if(!'all.sites.RData' %in% list.files('data/')){
 
   #  Return all pollen sites in neotoma:
   all.sites <- get_download(data.ids)
-  save(all.sites, file='data/all.sites/RData')
+  save(all.sites, file='data/all.sites.RData')
 }
 if('all.sites.RData' %in% list.files('data/')){
   load('data/all.sites.RData')
