@@ -37,7 +37,7 @@ for(i in 1:nrow(rep.frame)){
     right.age <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
                     (compiled.pollen$age < (rep.frame$age[i] + 750)))
     
-    if(any(right.age & right.site)){
+    if(any(right.age & right.site) & sum(right.age) > 5){
       
       #  Now we know that the sample has something to compare to (that is 
       #  between 250 and 750 years older), we can create a vector for the sample.
@@ -69,12 +69,12 @@ for(i in 1:nrow(rep.frame)){
         min(dist.test)
       }
       
-      rep.frame[i,8:ncol(rep.frame)] <- unlist(sfLapply(1:100, min.dist))
+      rep.frame[i,9:ncol(rep.frame)] <- unlist(sfLapply(1:100, min.dist))
       rep.frame$self.min[i] <- self.vals
       rep.frame$landscape.min[i] <- landscape.vals
-      rep.frame$min.dist[i] <- min(dist.vals)
+      rep.frame$min.dist[i] <- min(calib.vals)
       rep.frame$self.size[i] <- sum(right.age & right.site)
-      rep.frame$sample.size[i] <- length(dist.vals)
+      rep.frame$sample.size[i] <- length(calib.vals)
       
       cat(paste(as.character(rep.frame[i, 1]), 
                         rep.frame[i,2], 
