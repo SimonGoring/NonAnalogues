@@ -1,0 +1,12 @@
+<project name="PaperMap" version="docear 1.0" ID="1440D00F04BAIWURCCSJW2RN560OPUA7NIQX">
+<folder type="library" name="Library">
+<link type="literature_annotations" name="Literature &amp; Annotations" path="project://1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/_data/1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/default_files/literature_and_annotations.mm"/>
+<link type="file" name="Temp" path="project://1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/_data/1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/default_files/temp.mm" system="true"/>
+<link type="file" name="Trash" path="project://1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/_data/1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/default_files/trash.mm" system="true"/>
+</folder>
+<folder type="physical" name="My drafts" path="project://1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/_data/1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/My%20Drafts/"/>
+<folder type="literature_repository" name="Literature repository" system="true">
+<folder type="repository_path" name="default" path="file:/C:/Users/Simon%20Goring/Documents/GitHub/NonAnalogues/MindMap/literature_repository"/>
+</folder>
+<link type="references" name="References" path="project://1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/_data/1440D00F04BAIWURCCSJW2RN560OPUA7NIQX/default_files/PaperMap.bib" system="true"/>
+</project>
