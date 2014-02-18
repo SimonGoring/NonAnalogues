@@ -1,4 +1,8 @@
 #  Calculate the dissimilarities for all sites in the large compiled.pollen data.frame.
+#  We want to calculate several metrics in two directions, forward and backwards,
+#  and we ideally want to keep track of where the closest landscape points are.
+#  Landscape similarity gives us a sense of how close a site is to an ecosystem that
+#  has previously existed on the landscape.  We also look forward to see
 
 library(snowfall)
 sfInit(parallel = TRUE, cpus = 4)
@@ -19,9 +23,12 @@ no.others <- cp.pct$Other > 0.10
 rep.frame <- data.frame(site = compiled.pollen$sitename,
                         dataset = compiled.pollen$dataset,
                         age = compiled.pollen$age,
-                        min.dist =  rep(NA, nrow(compiled.pollen)),
-                        self.min = rep(NA, nrow(compiled.pollen)),
-                        landscape.min = rep(NA, nrow(compiled.pollen)),
+                        self.min.past = rep(NA, nrow(compiled.pollen)),
+                        self.min.futu = rep(NA, nrow(compiled.pollen)),
+                        land.min.past = rep(NA, nrow(compiled.pollen)),
+                        land.min.futu = rep(NA, nrow(compiled.pollen)),
+                        land.pts.past = rep(NA, nrow(compiled.pollen)),
+                        land.pts.futu = rep(NA, nrow(compiled.pollen)),
                         sample.size = rep(NA, nrow(compiled.pollen)),
                         self.size = rep(NA, nrow(compiled.pollen)),
                         matrix(nrow=nrow(compiled.pollen), ncol=100))
@@ -34,10 +41,13 @@ for(i in 1:nrow(rep.frame)){
     right.site <- compiled.pollen$sitename == rep.frame$site[i]
     site.ages <-  compiled.pollen$age[right.site]
     
-    right.age <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
+    right.age.past <- ((compiled.pollen$age > (rep.frame$age[i] + 250)) & 
                     (compiled.pollen$age < (rep.frame$age[i] + 750)))
-    
-    if(any(right.age & right.site) & sum(right.age) > 5){
+    right.age.futu <- ((compiled.pollen$age > (rep.frame$age[i] - 250)) & 
+                     (compiled.pollen$age < (rep.frame$age[i] - 750)))
+                
+    if(any((right.age.past & right.site) & sum(right.age.past) > 5) &
+       any((right.age.futu & right.site) & sum(right.age.futu) > 5)){
       
       #  Now we know that the sample has something to compare to (that is 
       #  between 250 and 750 years older), we can create a vector for the sample.

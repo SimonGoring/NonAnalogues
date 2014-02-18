@@ -17,3 +17,4 @@ for(i in 1:nrow(rf)){
   }
 }
 
+rf <- rf[!rf$domain == 'HUMID TROPICAL DOMAIN',]
