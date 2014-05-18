@@ -111,10 +111,10 @@ To determine dissimilarity ofver time we estimate dissimilarity from the data us
 
 ```{r bootstrapAnalogues, echo=FALSE, message=FALSE, warning=FALSE}
 
-if('rep.frame.RData' %in% list.files('data/')){
-  load('data/rep.frame.RData')
+if('rep.frame.RData' %in% list.files('data/output')){
+  load('data/output/rep.frame.RData')
 }
-if(!'rep.frame.RData' %in% list.files('data/')){
+if(!'rep.frame.RData' %in% list.files('data/output')){
   source('R/calculate_turnover.R')
 }
 
@@ -187,7 +187,7 @@ source('R/data_cleaning.R')
 for(i in 1:1500){
   #  This loop basically pulls out the 95% CI samples.
   age.class <- rf$age %in% (i*10):((i*10)+500)
-  aa <- quantile(rf$diss, probs=0.95)
+  aa <- quantile(rf$diss[age.class], probs=0.90, na.rm=TRUE)
   rf$nf[age.class & rf$diss > aa] <- 'red'
 }
 
@@ -206,7 +206,7 @@ curve <- ggplot(aes(x = age, y = diss), data = rf[what,]) +
         axis.text = element_text(family='serif', size=16),
         legend.position = 'none') +
   xlab('Radiocarbon Years Before Present') +
-  ylab('Landscape Dissimilarity') +
+  ylab('Landscape Dissimilarity')# +
   facet_wrap(~domain, ncol = 2)
 
 
