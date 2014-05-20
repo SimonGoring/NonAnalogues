@@ -23,9 +23,8 @@ if('compiled.sites.Rdata' %in% list.files('data/output')){
 
 if(!('compiled.sites.Rdata' %in% list.files('data/output'))){
   compiled.sites <- list()
-  for(i in 1:length(all.sites)){
-    lapply(all.sites, function(x) try(compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE)),
-                          )
+  compiled.sites <- lapply(all.sites, function(x) try(compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE)))
+  
   save(compiled.sites, file='data/compiled.sites.RData')  
 }
 
