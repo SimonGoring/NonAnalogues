@@ -3,25 +3,29 @@
 library(neotoma)
 
 #  Getting all the sites from neotoma is time consuming:
-if(!'all.sites.RData' %in% list.files('data/')){
+if(!'all.sites.RData' %in% list.files('data/output')){
   all.datasets <- get_datasets(datasettype = 'pollen')
   data.ids <- sapply(all.datasets, function(x)x$DatasetID)
 
   #  Return all pollen sites in neotoma:
-  all.sites <- get_download(data.ids)
-  save(all.sites, file='data/all.sites.RData')
+  all.sites <- llply(data.ids, .fun = function(x)try(get_download(x)))
+  
+  save(all.sites, file='data/output/all.sites.RData')
 }
-if('all.sites.RData' %in% list.files('data/')){
+if('all.sites.RData' %in% list.files('data/output')){
   load('data/all.sites.RData')
 }
 
 #  Compress the dataset taxonomies to the standard of the small Whitmore taxonomy.
-if('compiled.sites.Rdata' %in% list.files('data/')){
-  load('data/compiled.sites.RData')
+if('compiled.sites.Rdata' %in% list.files('data/output')){
+  load('data/output/compiled.sites.RData')
 }
 
-if(!('compiled.sites.Rdata' %in% list.files('data/'))){
-  compiled.sites <- lapply(all.sites, function(x) compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE))
+if(!('compiled.sites.Rdata' %in% list.files('data/output'))){
+  compiled.sites <- list()
+  for(i in 1:length(all.sites)){
+    lapply(all.sites, function(x) try(compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE)),
+                          )
   save(compiled.sites, file='data/compiled.sites.RData')  
 }
 

@@ -75,20 +75,3 @@ find.analogues <- function(x, compiled.data){
   
   data.frame(min.pt, min, sample.size, delta.age, mean.delt)
 }
-
-climate.frame <- set.frame(compiled.climate)
-pollen.frame <- set.frame(compiled.pollen)
-
-poll.in.compiled <- colnames(compiled.pollen) %in% c('Other', as.character(pollen.equiv$WhitmoreSmall))
-
-compiled.pollen[,poll.in.compiled] <- compiled.pollen[,poll.in.compiled] / rowSums(compiled.pollen[,poll.in.compiled])
-
-climate.fill <- ddply(climate.frame, .(uniqueID), .parallel=TRUE, 
-                      .fun = find.analogues,
-                      compiled.data = compiled.climate,
-                      .progress = 'text')
-
-pollen.fill <- ddply(pollen.frame, .(uniqueID), .parallel=TRUE, 
-                      .fun = find.analogues,
-                      compiled.data = compiled.pollen,
-                      .progress = 'text')
