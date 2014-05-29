@@ -46,7 +46,7 @@ find.analogues <- function(x, compiled.data){
   
   if(sum(right.age & !xor(right.site, x$self) & good.samp) > threshold){
     
-    drop.cols <- !colnames(compiled.data) %in% c('sitename', 'depth', 'age', 'lat', 'long', 'dataset', 'uID')
+    drop.cols <- !colnames(compiled.data) %in% c('sitename', 'depth', 'age', 'lat', 'long', 'dataset', 'uIDs', 'date.type')
     
     #  This is the assemblage/climate we're interested in.
     arrow <- as.matrix(compiled.data[x$index, drop.cols])

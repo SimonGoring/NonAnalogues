@@ -11,7 +11,7 @@ sfInit(parallel = TRUE, cpus = 4)
 #  to exclude the sample.  This excludes fully a quarter of the sites in the dataset!
 #  n = 5441 of 21397
 
-source('analogue_function.R')
+source('R/analogue_function.R')
 
 if('pollen.frame' %in% list.files('data/output/')){
   load('data/output/pollen.frame.RData')
@@ -24,7 +24,7 @@ if(!'pollen.frame' %in% list.files('data/output/')){
   
   #  We use the percents here, straight up.
   compiled.pollen[,poll.in.compiled] <- compiled.pollen[,poll.in.compiled] / rowSums(compiled.pollen[,poll.in.compiled])
-  no.others <- cp.pct$Other > 0.10
+  no.others <- compiled.pollen$Other > 0.10
   
   #  A simple way to stop these samples from being considered in analysis.  If 'Other' is greater than 10% than
   #  we discard the sample.
@@ -33,7 +33,7 @@ if(!'pollen.frame' %in% list.files('data/output/')){
   
   
   #  This fills the dataset produced as climate.frame or pollen.frame 
-  pollen.fill <- ddply(pollen.frame, .(uniqueID), .parallel=TRUE, 
+  pollen.fill <- ddply(pollen.frame, .(uniqueID), .parallel=TRUE,
                        .fun = find.analogues,
                        compiled.data = compiled.pollen,
                        .progress = 'text')
