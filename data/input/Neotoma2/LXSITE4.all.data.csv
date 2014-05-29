@@ -1,0 +1,9 @@
+"sample.depths","sample.ages","Picea.mariana.type","Picea.undiff.","Pinus.banksiana.type","Pinus.strobus","Pinus.undiff.","Larix.laricina","Juniperus.communis.Thuja.occidentalis.type","Betula","Salix","Alnus.viridis.subsp..crispa.type","Alnus.incana.type","Ericaceae","Cyperaceae","Poaceae","Artemisia","Ambrosia.type","Asteraceae.subf..Asteroideae.undiff.","Chenopodiaceae","Rosaceae.undiff.","Thalictrum","Ranunculaceae.undiff.","Onagraceae","Potentilla.palustris.type","Menyanthes.trifoliata","Unknown","Potamogeton.Triglochin","Lycopodium.annotinum","Lycopodium.clavatum","Spore..monolete.","Spore..trilete.","Sphagnum","Sample.volume..ml.","Eucalyptus.spike..number.counted.","Eucalyptus.suspension..volume.added..ml.","Eucalyptus.suspension..concentration..grains.ml."
+0,-45,5,1,0,0,0,0,0,561,0,63,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,15,0,198100
+5,202,61,17,6,0,1,23,0,16,0,8,0,3,180,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,3,8,1,461,0,198100
+10,450,68,7,5,0,1,6,0,12,2,14,1,4,231,3,3,1,0,0,1,0,0,0,0,2,0,0,0,0,0,14,12,1,262,0,198100
+20,945,52,5,14,1,2,7,2,23,0,10,3,4,290,3,1,0,2,1,0,0,0,0,0,1,0,0,1,1,0,1,10,1,326,0,198100
+30,1439,106,9,11,0,0,24,1,18,0,6,0,2,166,4,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,3,4,1,319,0,198100
+40,2130,101,31,4,0,1,0,0,27,0,10,0,12,111,2,0,1,1,0,0,11,1,0,0,0,0,1,1,0,0,3,4,1,419,0,198100
+50,2820,49,13,1,0,0,0,0,78,3,26,0,0,134,4,0,0,1,0,2,1,0,1,10,0,1,0,2,0,0,46,6,1,128,0,198100
+60,3511,73,11,2,0,0,2,0,13,0,17,0,0,180,4,2,1,0,0,0,0,0,0,0,5,0,0,0,0,1,89,36,1,285,0,198100

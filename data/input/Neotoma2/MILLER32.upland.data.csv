@@ -1,0 +1,10 @@
+"sample.depths","sample.ages","upland.sum","Acer.rubrum","Acer.saccharinum","Acer.saccharum","Alnus","Ambrosia","Artemisia","Betula","Ostrya.Carpinus","Carya","Caryophyllaceae","Celtis","Cephalanthus","Chenopodiaceae.Amaranthaceae","Asteraceae.subf..Cichorioideae","Asteraceae.subf..Asteroideae.undiff.","Corylus","Cyperaceae","Fagus","Fraxinus.americana","Fraxinus.nigra","Poaceae","Juglans.cinerea","Juglans.nigra","Lamiaceae","Liquidambar","Morus","Nyssa","Pinus.banksiana.P..resinosa","Pinus.strobus","Pinus.undiff.","Plantago","Platanus","Polygonum.lapathifolium","Populus","Quercus","Rosaceae","Rumex","Salix","Thalictrum","Juniperus.Thuja","Tilia","Tsuga","Ulmus","Apiaceae","Viburnum"
+5,47,564,0,0,3,0,72,8,5,4,3,0,1,0,6,0,3,0,38,5,2,0,183,2,3,2,0,1,2,1,3,19,0,3,0,2,174,1,3,3,0,0,0,0,11,1,0
+15,208,579,0,0,2,1,68,6,7,1,12,0,1,0,5,0,4,0,78,4,3,0,175,1,2,0,0,1,0,6,3,20,0,6,0,1,154,0,1,4,0,0,0,3,9,1,0
+35,529,425,0,0,3,1,100,8,3,3,0,0,1,1,12,1,3,0,21,0,5,0,73,0,0,0,1,2,0,1,0,5,3,1,1,2,156,0,3,10,0,0,0,0,5,0,0
+45,689,644,1,2,5,0,90,7,10,4,12,1,2,2,6,0,4,1,48,4,4,0,189,1,2,0,0,0,0,8,0,18,0,2,0,1,196,0,0,11,0,0,0,1,12,0,0
+55,850,537,0,0,4,3,72,4,4,5,3,0,1,0,3,0,6,0,56,7,3,1,148,0,1,0,0,0,0,6,3,14,0,3,0,1,167,1,3,5,0,0,0,0,13,0,0
+70,1091,561,0,0,3,3,69,4,0,0,11,0,0,1,3,0,4,1,99,5,0,0,120,1,1,0,1,0,0,11,3,48,0,0,0,1,157,0,0,1,1,0,0,0,13,0,0
+100,1572,547,1,0,3,1,6,4,6,3,6,0,0,1,0,1,6,1,25,9,3,0,181,0,1,1,3,0,0,15,11,75,0,7,1,4,152,0,0,2,2,0,0,1,14,0,1
+120,1893,437,0,0,3,1,4,5,4,3,6,0,0,0,0,0,2,1,13,12,3,0,97,2,3,1,1,0,0,27,6,68,0,5,0,1,147,0,0,2,0,0,1,2,16,1,0
+137.5,NA,418,1,0,8,2,3,3,0,6,10,0,0,0,1,0,1,0,12,5,9,0,65,1,0,1,2,0,0,47,6,71,0,4,0,6,141,0,0,1,2,2,1,2,5,0,0
