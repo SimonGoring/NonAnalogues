@@ -111,10 +111,10 @@ To determine dissimilarity ofver time we estimate dissimilarity from the data us
 
 ```{r bootstrapAnalogues, echo=FALSE, message=FALSE, warning=FALSE}
 
-if('rep.frame.RData' %in% list.files('data/output')){
-  load('data/output/rep.frame.RData')
+if('pollen.frame.RData' %in% list.files('data/output')){
+  load('data/output/pollen.frame.RData')
 }
-if(!'rep.frame.RData' %in% list.files('data/output')){
+if(!'pollen.frame.RData' %in% list.files('data/output')){
   source('R/calculate_turnover.R')
 }
 

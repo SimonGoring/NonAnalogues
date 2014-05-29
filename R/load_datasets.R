@@ -11,6 +11,8 @@ if(!'all.sites.RData' %in% list.files('data/output')){
   #  Return all pollen sites in neotoma:
   all.sites <- llply(data.ids, .fun = function(x)try(get_download(x)))
   
+  rm(data.ids, all.datasets)
+  
   save(all.sites, file='data/output/all.sites.RData')
 }
 if('all.sites.RData' %in% list.files('data/output')){
@@ -28,23 +30,27 @@ if(!('compiled.sites.Rdata' %in% list.files('data/output'))){
                           .fun = function(x) try(compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE)),
                           .progress = 'text')
   
+
+  #  Pull in age models from Blois et al.
+  blois.models <- list.files('data/input/Neotoma2/')
+  dataset.handles <- sapply(compiled.sites, function(x)try(x$metadata$dataset$collection.handle))
+  site.handle <- unique(substr(blois.models, 1, regexpr('.', blois.models, fixed=TRUE) - 1))
+  
+  blois.match <- match(dataset.handles, site.handle)
+  
+  for(i in 1:length(compiled.sites)){
+    if(!is.na(blois.match[i])){
+      age <- read.csv(paste0('data/input/Neotoma2/', site.handle[blois.match[i]], '.age.model.csv'))
+      compiled.sites[[i]]$sample.meta$Age <- age$best.age
+      compiled.sites[[i]]$sample.meta$AgeType <- 'Calibrated radiocarbon years BP (Blois)'
+    }
+  }
+  
+  rm(age, blois.models, dataset.handles, blois.match)
+  
   save(compiled.sites, file='data/compiled.sites.RData')  
 }
 
-#  Pull in age models from Blois et al.
-blois.models <- list.files('data/input/Neotoma2/')
-dataset.handles <- sapply(compiled.sites, function(x)try(x$metadata$dataset$collection.handle))
-site.handle <- unique(substr(blois.models, 1, regexpr('.', blois.models, fixed=TRUE) - 1))
-
-blois.match <- match(dataset.handles, site.handle)
-
-for(i in 1:length(compiled.sites)){
-  if(!is.na(blois.match[i])){
-    age <- read.csv(paste0('data/input/Neotoma2/', site.handle[blois.match[i]], '.age.model.csv'))
-    compiled.sites[[i]]$sample.meta$Age <- age$best.age
-    compiled.sites[[i]]$sample.meta$AgeType <- 'Calibrated radiocarbon years BP'
-  }
-}
 
 #  Make the dataset into one giant table with site name, lat/long, depth and age and then counts:
 if(!('compiled.pollen.RData' %in% list.files('data/output'))){
@@ -75,6 +81,8 @@ if(!('compiled.pollen.RData' %in% list.files('data/output'))){
   compiled.pollen <- compiled.pollen[pol.pct$Other < 0.10 & !is.na(pol.pct$Other), ]
   
   save(compiled.pollen, file='data/output/compiled.pollen.RData')
+  
+  rm(include, non.pol, pol.pct)
 
 }
 

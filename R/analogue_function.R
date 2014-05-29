@@ -1,5 +1,5 @@
 
-set.frame <- function(x){
+set_frame <- function(x){
   data.frame(site        = rep(x$sitename, 4),
              dataset     = rep(x$dataset, 4),
              age         = rep(x$age, 4),
@@ -15,7 +15,7 @@ set.frame <- function(x){
 }
 
 
-find.analogues <- function(x, compiled.data){
+find_analogues <- function(x, compiled.data){
   #  To parallelize we need to pass in the rows of 'output.frame' one by one.
   
   #  For each sample in the dataset:
