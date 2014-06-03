@@ -1,7 +1,7 @@
 
 set_frame <- function(x){
   data.frame(site        = rep(x$sitename, 4),
-             dataset     = rep(x$dataset, 4),
+             dataset     = rep(x$sitename, 4),
              age         = rep(x$age, 4),
              index       = rep(1:nrow(x), 4),
              self        = rep(c(TRUE, FALSE), each = nrow(x)*2),
@@ -15,7 +15,7 @@ set_frame <- function(x){
 }
 
 
-find_analogues <- function(x, compiled.data){
+find_analogues <- function(x, compiled.data, plot.out = FALSE){
   #  To parallelize we need to pass in the rows of 'output.frame' one by one.
   
   #  For each sample in the dataset:
@@ -64,6 +64,37 @@ find_analogues <- function(x, compiled.data){
     min    <- min(calib.vals)
     delta.age <- calib.samples$age[which.min(calib.vals)] - x$age
     mean.delt <- mean(calib.samples$age - x$age)
+    
+    if(plot.out){
+      filename <- paste0('data/output/New folder/', x$site, x$age, x$self, x$direction, '.png')
+      
+      if(!filename %in% list.files(recursive=TRUE)){
+        model.data <- rbind(arrow, calib.samples[,drop.cols])
+        
+        model.data <- model.data[,colSums(model.data)>0]
+        
+        require(vegan)
+        
+        aa <- (metaMDS(sqrt(model.data)))
+        aa.points <- as.data.frame(aa$points)
+        aa.points$site <- c('red', rep('black', nrow(aa$points)-1))
+        
+        aa.spec <- as.data.frame(aa$species)
+        aa.spec$label <- tolower(rownames(aa.spec))
+        
+        plotit <- ggplot() +
+          geom_point(data = aa.points, aes(x = MDS1, y = MDS2, color = site), size = 5) + 
+          geom_text(data = aa.spec, aes(x = MDS1, y = MDS2, label = label), size = 3) +
+          theme_bw() +
+          xlim(range(c(aa.points$MDS1, aa.spec$MDS1))) +
+          ylim(range(c(aa.points$MDS2, aa.spec$MDS2)))
+        
+        filename <- paste0('data/output/New folder/', x$site, x$age, x$self, x$direction, '.png')
+        
+        try(ggsave(plot = plotit, filename=filename))
+      }
+    }
+    
   }
   else{
     min.pt     <- NA

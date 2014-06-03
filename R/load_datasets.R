@@ -1,7 +1,10 @@
 #  Okay, this is the code for the non-analogue analysis:
 
+library(ggplot2)
+library(gridExtra)
 library(neotoma)
 library(plyr)
+library(rgdal)
 
 #  Getting all the sites from neotoma is time consuming:
 if(!'all.sites.RData' %in% list.files('data/output')){
@@ -46,9 +49,9 @@ if(!('compiled.sites.Rdata' %in% list.files('data/output'))){
     }
   }
   
-  rm(age, blois.models, dataset.handles, blois.match)
+  rm(age, blois.models, dataset.handles, blois.match, site.handle, i)
   
-  save(compiled.sites, file='data/compiled.sites.RData')  
+  save(compiled.sites, file='data/output/compiled.sites.RData')  
 }
 
 

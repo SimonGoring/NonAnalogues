@@ -6,17 +6,17 @@ Abstract
 
 * Most past modern-analog analyses look for novelty relative to present day.
 
-* But now we are concerned about novelty during 21st century.  Both equilibrial and disequilibrial.
+* But we are concerned about novelty during 21st century.  Both equilibrial and disequilibrial.
 
 * General paradigm that species respond individualistically to climate change.  But this isn’t necessarily always the case.  Under what conditions do we see new communities arise?  When do communities persist?
 
 Introduction
 ------------------------
-Our investigation of non-analogue vegetation, both in the past and in the future is tied to differences from modern conditions (Williams and Jackson, 2007).  A major concern with no-analogue climate in the future is the development of forest communities for which we have no modern analogues as tree species respond individualistically to changing climatic conditions. No-analogues provide a challenge for ecologists, land managers and conservationists, tied to our lack of understanding, both in how the process of change will unfold, and in how ecosystem services are provided by these vegetation communities for which we have no analogue.
+Our investigation of non-analogue vegetation, both in the past and in the future is tied to differences from modern conditions (Williams and Jackson, 2007).  A major concern with no-analogue climate in the future (ref) is the development of forest communities for which we have no modern analogues as tree species respond individualistically to changing climatic conditions. Non-analogue conditions provide a challenge for ecologists, land managers and conservationists, tied to our lack of understanding, both in how the process of change will unfold, and in how ecosystem services are provided by these vegetation communities for which we have no analogue.
 
 Estimates of dissimilarity and turnover in paleoecological records have been used to give us an indication of the novelty of ecosystems with respect to modern vegetation, or to provide information about how much change occurs through time within a record (Williams et al., 2001), often relating these changes to climate.  The challenge in this case is that, as with modern ecosystems, changes in pollen composition at one location may represent points along a successional trajectory, where each time point represents significant compositional turnover, but, relative to the surrounding, heterogeneous landscape, very little change in forest composition occurs.  Thus turnover as a single metric can provide results that are not uniquely tied to overall, landscape scale, changes in vegetation.
 
-In a similar way, dissimilarity of past pollen assemblages with respect to modern pollen ($d_{m}$) cannot indicate changes from one community type to another through time, only dissimilarity from modern ecosystems.  While broad scale spatial changes may be visible, a site that transitions from prairie to forest can retain a similarly low $d_{m}$> value, provided near analogues exist in the modern pollen data.  A significant challenge is the fact that in many cases modern pollen reflects an anthropogenic alteration of the landscape relative to fossil assemblages.  The presence of taxa such as Artemisa point to significant opening of woodland canopies for example [REF].
+In a similar way, dissimilarity of past pollen assemblages with respect to modern pollen ($d_{m}$) cannot indicate changes from one community type to another through time, only dissimilarity from modern ecosystems.  While broad scale spatial changes may be visible, a site that transitions from prairie to forest can retain a similarly low $d_{m}$> value, provided near analogues exist in the modern pollen data.  A significant challenge is the fact that in many cases modern pollen reflects an anthropogenic alteration of the landscape relative to fossil assemblages.  The presence of taxa such as Ambrosia point to significant opening of woodland canopies in North America for example [REF].
 
 **Table**. *Definitions for dissimilarity measures tested in this paper.*
 Dissimilarity Type | Definition
@@ -30,11 +30,11 @@ A fuller understanding of vegetation change, and of successional processes may b
 2.  Turnover with an individual core.
 3.  Turnover with respect to the surrounding landscape.
 
-Dissimilarity from modern has been widely used in the paleoecological literature, it represent a measure of how different past ecosystems were to modern.  High dissimilarities are most common in North America at ~14kyr, when it is presumed that a combination of climatic and biotic factors gave rise to new vegetation communities, communities that have no modern analogue.
+Dissimilarity from modern has been widely used in the paleoecological literature, it represent a measure of how different past ecosystems were to modern.  High dissimilarities are most common in North America at ~14kyr, when it is presumed that a combination of climatic and biotic factors gave rise to new vegetation communities, communities that have no modern analogue.  Dissimilarity $d_m$ is commonly measured as the squared chord distance between a pollen assemblage and 
 
-Turnover within a core just tells you how different one time period is to the next.
+Turnover within a core just tells you how different vegetation at a single site is from one time period is to the next, however it may be deceptively high, in regions where there is high spatial heterogeneity, or large shifts between pioneer and climax vegetation associations it might be possible to see large shifts in turnover, but little regional change.
 
-Landscape turnover has not been previously used.  It is a measure of how different an assemblage at one time period is to all pollen assemblages within a previous time period.  In this sense, it is an estimate of how novel an ecosystem is with respect to all ecosystems that previously occupied the landscape.  In a sense it is d<sub>m</sub> turned on its head.
+Landscape turnover has not been previously used as a metric of dissimilarity.  It is a measure of how different an assemblage at one time period is to all pollen assemblages within a previous time period.  In this sense, it is an estimate of how novel an ecosystem is with respect to all ecosystems that previously occupied the landscape.  In a sense it is $d_m$ turned on its head.
 
 To assist in this endevour, we examine pollen records from the Neotoma Database, searching through the past, from the late-glacial to the modern to examine in which cases pollen assemblages appear to be non-analogue from the previous time period.  The conceptual framework suggests that we were looking at landscape level turnover, not site turnover.  While site-level turnover is a commonly used metric in paleoecological analysis, it is hampered by its sensitivity to stochastic effects.  Large scale changes in vegetation at a single site might not reflect the kinds of broad scale community change we expect to see under conditions of future climate change.  As such, comparing dissimilarity at a site to changes at a number of sites across the continent provides a better metric of landscape-scale dissimilarity.
 
@@ -102,6 +102,7 @@ bins <- ggplot(compiled.pollen) +
 
 grid.arrange(points, bins, ncol=2)
 
+rm(points, bins, ecoregions, map)
 ```
 **Figure 2**. *Sample plot locations and bin sizes for each age class*.
 
@@ -140,25 +141,28 @@ colnames(cross.plot)[4:5] <- c('self', 'land')
 
 cor.est <- cor.test(cross.plot$self, cross.plot$land, use = 'pairwise.complete.obs', method='spearman')
 
-ggplot(cross.plot, aes(x = land, y = self,color = direction)) + 
+ggplot(cross.plot, aes(x = land, y = self)) + 
   geom_point(alpha = 0.1) + 
-  stat_smooth(method='lm') +
-  scale_x_log10(expand=c(0,0)) + 
-  scale_y_log10(expand=c(0,0)) + 
+  stat_smooth(method='lm', size = 1.5, linetype = 2, color = 'black') +
+  scale_x_sqrt(expand=c(0,0), limits = c(0.01, 1)) + 
+  scale_y_sqrt(expand=c(0,0), limits = c(0.01, 1)) + 
   geom_abline() + 
   coord_fixed(ratio=1) +
   xlab('Landscape Dissimilarity') +
   ylab('Site Turnover') +
   theme_bw() +
   theme(axis.text = element_text(size = 12, family = 'serif'),
-        axis.title = element_text(size = 16, family = 'serif', face = 'bold'))
+        axis.title = element_text(size = 18, family = 'serif', face = 'bold'))
+
+effectofdir<-anova(lm(land~self*direction, data = cross.plot), lm(land~self, data = cross.plot), test='F')
+
+cross.self <- dcast(cross.plot, site + age ~ direction, value.var = 'self', fun.aggregate=sum)
+cross.land <- dcast(cross.plot, site + age ~ direction, value.var = 'land', fun.aggregate=sum)
 
 ```
-**Figure X**. *Turnover and dissimilarity for individual pollen records from the Neotoma database, shows a relationship between the two variables, but also considerable noise.*
+**Figure X**. *Turnover and dissimilarity for individual pollen records from the Neotoma database, shows a relationship between the two variables, but also considerable noise.  There is no significant difference in the releationship when dissimilarities are calculated in the past or the future.  The best fit (dashed line) accounts for little variability ($r^2$ = 0.11).*
 
-Turnover within the core is correlated to landscape dissimilarity ($r_{s}$ = `r p(cor.est$estimate)`, p < 0.001), but shows a great deal of variability around the 1:1 line (Figure X).  
-The analysis produces a somewhat surprising result.  While dissimilarity is high at the beginning of the Holocene, the most rapid rise in turnover occurs in the modern era, even though the density of sites is higher at this time.  High turnovers are seen at 10kyr, between 6 and 7 kyr and then again in the modern period.  While the no-analogue period of the late-glacial has high dissimilarity in relation to modern time, the actual turnover is not significantly higher than during the Holocene transition.
-
+Turnover within the core is correlated to landscape dissimilarity ($r_{s}$ = `r p(cor.est$estimate)`, p < 0.001), but shows a great deal of variability around the 1:1 line (Figure X).  There is no significant difference between this relationship for past dissimilarities and future dissimilarities ($F_{2}$=`p(effectofdir$F[2])`, p = `p(effectofdir$'Pr(>F)'[2])`).
 
 ```{r dissVsAge, message=FALSE, warning=FALSE, echo=FALSE, fig.width = 10, fig.height=9}
 
@@ -187,7 +191,7 @@ pollen.frame <- pollen.frame[!is.na(pollen.frame$min),]
 
 source('R/data_cleaning.R')
 
-#  The Humid Tropical Domain
+#  The Humid Temperate Domain
 
 for(i in 1:1500){
   #  This loop pulls out the 95% CI samples within 500 year time steps at 10 year intervals.
@@ -202,12 +206,14 @@ for(i in 1:1500){
 what <- pollen.frame$domain %in% c('HUMID TEMPERATE DOMAIN') &
   !pollen.frame$age.model %in% c('Radiocarbon years BP')
 
+pollen.frame$self <- factor(pollen.frame$self, levels= c('Turnover', 'Transient Novelty'))
+
 curve <- ggplot(aes(x = age, y = min), data = pollen.frame[what,]) + 
   geom_point(aes(color = nf)) +
   #scale_color_identity() +
-  geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma, size = 2) +
-  geom_smooth(formula = y ~ s(x, k = 40), 
-              method='gam', family = Gamma, size = 1, color = 'black', linetype = 2) +
+  #geom_smooth(formula = y ~ s(x, k = 40), method='gam', family = Gamma, size = 2) +
+  #geom_smooth(formula = y ~ s(x, k = 40), 
+  #            method='gam', family = Gamma, size = 1, color = 'black', linetype = 2) +
   scale_x_continuous(limits = c(0, 15000), expand=c(0,0)) +
   scale_y_continuous(limits = c(0, .5), expand=c(0,0)) +
   theme_bw() + 
@@ -216,7 +222,7 @@ curve <- ggplot(aes(x = age, y = min), data = pollen.frame[what,]) +
         legend.position = 'none') +
   xlab('Radiocarbon Years Before Present') +
   ylab('Landscape Dissimilarity') +
-  facet_wrap(~self, ncol = 2)
+  facet_wrap(~division + self, ncol = 2)
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + 
   geom_path(aes(group=group), color='black') +

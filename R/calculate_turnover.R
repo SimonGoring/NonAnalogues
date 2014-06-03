@@ -17,8 +17,8 @@ if('pollen.frame' %in% list.files('data/output/')){
   load('data/output/pollen.frame.RData')
 }
 if(!'pollen.frame' %in% list.files('data/output/')){
-  #  Sets the empty dataframe for use in the ddply statement.  set.frame is declared in 'analogue_function.R'.
-  pollen.frame <- set.frame(compiled.pollen)
+  #  Sets the empty dataframe for use in the ddply statement.  set_frame is declared in 'analogue_function.R'.
+  pollen.frame <- set_frame(compiled.pollen)
   
   poll.in.compiled <- colnames(compiled.pollen) %in% c('Other', as.character(pollen.equiv$WhitmoreSmall))
   
@@ -31,11 +31,16 @@ if(!'pollen.frame' %in% list.files('data/output/')){
   
   compiled.pollen$Other[no.others] <- NA
   
+  drop.cols <- !colnames(compiled.pollen) %in% c('LARREA', 'TSUGMERT', 'DODECATH', 'TSUGHETE','CHRYSOLEP',
+                                   'PROSOPIS', 'ARMERIA', 'CACTACEAE', 'SXFRAGAX', 'SCROPHUL',
+                                   'ELAEAGNX', 'ANACARDI', 'MALVACEAE', 'DRYAS', 'CAMPANULACEAE',
+                                   'BORAGINACEAE', 'EUPHORB', 'EQUISETU', 'SPHAGNUM', 'CYPERACE',
+                                   'POLYPOD', 'PTERIDIUM', 'LYCOPODX')
   
   #  This fills the dataset produced as climate.frame or pollen.frame 
   pollen.fill <- ddply(pollen.frame, .(uniqueID), .parallel=TRUE,
-                       .fun = find.analogues,
-                       compiled.data = compiled.pollen,
+                       .fun = find_analogues,
+                       compiled.data = compiled.pollen[,drop.cols],
                        .progress = 'text')
   
   pollen.frame[,colnames(pollen.fill)] <- pollen.fill
@@ -47,12 +52,16 @@ if('climate.frame' %in% list.files('data/output/')){
   load('data/output/climate.frame.RData')
 }
 if(!'climate.frame' %in% list.files('data/output/')){
-  #  Sets the empty dataframe for use in the ddply statement.  set.frame is declared in 'analogue_function.R'.
-  climate.frame <- set.frame(compiled.climate)
+  
+  load('data/input/compiled.climate.RData')
+  
+  #  Sets the empty dataframe for use in the ddply statement.  set_frame is declared in 'analogue_function.R'.
+  
+  climate.frame <- set_frame(compiled.climate)
   
   #  This fills the dataset produced as climate.frame or pollen.frame 
-  climate.fill <- ddply(climate.frame, .(uniqueID), .parallel=TRUE, 
-                        .fun = find.analogues,
+  climate.fill <- dlply(climate.frame, .(uniqueID),
+                        .fun = find_analogues,
                         compiled.data = compiled.climate,
                         .progress = 'text')
   
