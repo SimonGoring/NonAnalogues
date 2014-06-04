@@ -1,5 +1,6 @@
 #  Okay, this is the code for the non-analogue analysis:
 
+library(reshape2)
 library(ggplot2)
 library(gridExtra)
 library(neotoma)
@@ -27,7 +28,7 @@ if('compiled.sites.Rdata' %in% list.files('data/output/')){
   load('data/output/compiled.sites.RData')
 }
 
-if(!('compiled.sites.Rdata' %in% list.files('data/output'))){
+if(!('compiled.sites.RData' %in% list.files('data/output/'))){
   
   compiled.sites <- llply(all.sites, 
                           .fun = function(x) try(compile_list(x, list.name='WhitmoreSmall', type = TRUE, cf=TRUE)),
