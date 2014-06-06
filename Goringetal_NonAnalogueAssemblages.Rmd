@@ -67,25 +67,7 @@ Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` us
 #  Downloaded from: 
 #  http://www.fs.fed.us/rm/ecoregions/products/map-ecoregions-north-america/
 
-ecoregions <- spTransform(readOGR('data/Ecoregions_NA/na_regns.shp', 'na_regns'),
-                          CRSobj=CRS('+proj=longlat +ellps=WGS84'))
-
-ecoregions <- ecoregions[!ecoregions@data$DIVISION == 'Lake',]
-
-indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
-                          compiled.pollen[!duplicated(compiled.pollen$sitename), c('lat', 'long')],
-                          samples = as.vector(table(compiled.pollen$sitename)))
-
-extract.eco <- over(SpatialPoints(indiv.sites[,3:2], proj4string=CRS(proj4string(ecoregions))), ecoregions)
-
-indiv.sites$domain <- as.character(extract.eco$DOMAIN)
-indiv.sites$division <- as.character(extract.eco$DIVISION)
-indiv.sites$province <- as.character(extract.eco$PROVINCE)
-
-map <- map_data('world')
-
-map <- subset(map, map$long > -100 & map$long < -45)
-map <- subset(map, map$lat > 20 & map$lat < 65)
+source('R/load_spatial.R')
 
 points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group=group), color='black') +
   geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha=0.5) +
@@ -108,11 +90,17 @@ Because sample size may affect our ability to calculate the 95% CI we also use t
 
 To determine dissimilarity ofver time we estimate dissimilarity from the data using a bootstrap approach for which a sample is compared against a 'landscape' of sites that are between 250 and 750 years older than the sample in question.  For any sample we first test whether a sample fom the site exists between 250 - 750 prior to the sample of interest.  This will prevent anomalously high analogue distances for sites that have never previously been sampled, particularly when they represent new ecoregions.  For each acceptable site we sample one assemblage from each site with samples in the previous 250 - 750 years.  This produces a single sample from each site in the previous time window from which we estimate the minimum suqared chord dissimilarity.  Since some sites have multiple samples in each 500 year time window we re-sample (with replacement) 100 times for each focal site, producing a sample of 100 minimum (squared-chord) dissimilarity values for each pollen assemblage at each site, for which there is a prior sample.
 
+
 ```{r bootstrapAnalogues, echo=FALSE, message=FALSE, warning=FALSE}
 
 if('pollen.frame.RData' %in% list.files('data/output')){
   load('data/output/pollen.frame.RData')
 }
+
+if('climate.frame.RData' %in% list.files('data/output')){
+  load('data/output/climate.frame.RData')
+}
+
 if(!'pollen.frame.RData' %in% list.files('data/output')){
   source('R/calculate_turnover.R')
 }
@@ -167,17 +155,20 @@ library(mgcv)
 compiled.to.indiv <- match(pollen.frame$site, indiv.sites$site)
 compiled.to.compiled <- match(pollen.frame$site, compiled.pollen$sitename)
 
-pollen.frame <- data.frame(pollen.frame,
-                           lat = compiled.pollen$lat[compiled.to.indiv],
-                           long = compiled.pollen$long[compiled.to.indiv],
-                           age.model = compiled.pollen$date.type[compiled.to.compiled],
-                           domain = indiv.sites$domain[compiled.to.indiv],
-                           division = indiv.sites$division[compiled.to.indiv],
-                           province = indiv.sites$province[compiled.to.indiv],
+clim.in.pol <- pollen.frame$uniqueID[pollen.frame$uniqueID %in% climate.frame$uniqueID]
+
+full.frame <- data.frame(rbind(pollen.frame, climate.frame[clim.in.pol,]),
+                           lat = rep(compiled.pollen$lat[compiled.to.indiv], 2),
+                           long = rep(compiled.pollen$long[compiled.to.indiv], 2),
+                           age.model = rep(compiled.pollen$date.type[compiled.to.compiled], 2),
+                           domain = rep(indiv.sites$domain[compiled.to.indiv], 2),
+                           division = rep(indiv.sites$division[compiled.to.indiv], 2),
+                           province = rep(indiv.sites$province[compiled.to.indiv], 2),
                            was.na = FALSE,
+                           variable = rep(c('pollen', 'climate'), each = nrow(pollen.frame)),
                            stringsAsFactors = FALSE)
 
-pollen.frame <- pollen.frame[!is.na(pollen.frame$min),]
+full.frame <- full.frame[!is.na(full.frame$min),]
 
 #  A number of sites have either Lake assignments (they are in the Great Lakes) or 
 #  NA assignments (they are on the coastline, and don't fall within the ecozone
@@ -232,25 +223,46 @@ curve
 ```
 **Figure 3**. *Turnover through time in the Neotoma database.*
 
+```{r}
+
+cross.plot <- dcast(full.frame, 
+                    list(.(site, age), .(variable)),
+                    value.var = 'min', 
+                    fun.aggregate = function(x)mean(x, na.rm=TRUE))
+
+ggplot(cross.plot, aes(x = climate, y = pollen)) + 
+  geom_point(alpha=0.1) + scale_x_sqrt() + scale_y_sqrt()
+
+
+```
+
 ```{r SignifModels}
 
 #  This is some basic hypothesis testing.  We're interested in knowing how much these change.
-model0 <- gam(log(dis,10) ~ 1, family = gaussian, 
-              data = rf[pollen.frame$age < 15000 & pollen.frame$age > -50, ])
-model1 <- gam(log(self,10) ~ s(age), family = gaussian, 
-              data = rf[pollen.frame$age < 15000 & pollen.frame$age > -50, ])
+inclusion <- full.frame$age < 15000 & full.frame$age > -50 &
+  full.frame$min > 0
+
+full.frame$byVal <- factor(paste(full.frame$self, full.frame$variable))
+
+model0 <- gam(log(min,10) ~ 1, family = gaussian, 
+              data = full.frame[inclusion, ])
+
+model1 <- gam(log(min,10) ~ s(age, by = byVal), family = gaussian, 
+              data = full.frame[inclusion, ])
+
 model1.500 <- gam(log(self,10) ~ s(age, k = 40), family = gaussian, 
-                  data = rf[pollen.frame$age < 15000 & pollen.frame$age > -50, ])
+                  data = full.frame[inclusion, ])
 
 model2.500 <- gam(log(self,10) ~ s(age, k = 40, by = factor(domain)), family = gaussian, 
-                  data = rf[pollen.frame$age < 15000 & pollen.frame$age > -50, ])
+                  data = full.frame[inclusion, ])
 
 model3.500 <- gam(log(self,10) ~ s(age, k = 40, by = factor(division)), 
                   family = gaussian, 
-                  data = rf[pollen.frame$age < 15000 & pollen.frame$age > -50, ])
+                  data = full.frame[inclusion, ])
 
 ```
 
 Discussion
 ---------------------------
 Turnover or analogues?  When we are looking at non-analogues it turns out that it's really the modern.
+

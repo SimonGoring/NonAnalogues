@@ -60,7 +60,7 @@ if(!'climate.frame' %in% list.files('data/output/')){
   climate.frame <- set_frame(compiled.climate)
   
   #  This fills the dataset produced as climate.frame or pollen.frame 
-  climate.fill <- dlply(climate.frame, .(uniqueID),
+  climate.fill <- ddply(climate.frame, .(uniqueID),
                         .fun = find_analogues,
                         compiled.data = compiled.climate,
                         .progress = 'text')
