@@ -4,11 +4,9 @@ No-Analogues in North American Pollen Space
 Abstract
 ------------------------
 
-* Most past modern-analog analyses look for novelty relative to present day.
+* Most studies of novelty look for novelty relative to present day, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).
 
-* But we are concerned about novelty during 21st century.  Both equilibrial and disequilibrial.
-
-* General paradigm that species respond individualistically to climate change.  But this isn’t necessarily always the case.  Under what conditions do we see new communities arise?  When do communities persist?
+General paradigm that species respond individualistically to climate change.  But this isn’t necessarily always the case.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?
 
 Introduction
 ------------------------
@@ -16,7 +14,12 @@ Our investigation of non-analogue vegetation, both in the past and in the future
 
 Estimates of dissimilarity and turnover in paleoecological records have been used to give us an indication of the novelty of ecosystems with respect to modern vegetation, or to provide information about how much change occurs through time within a record (Williams et al., 2001), often relating these changes to climate.  The challenge in this case is that, as with modern ecosystems, changes in pollen composition at one location may represent points along a successional trajectory, where each time point represents significant compositional turnover, but, relative to the surrounding, heterogeneous landscape, very little change in forest composition occurs.  Thus turnover as a single metric can provide results that are not uniquely tied to overall, landscape scale, changes in vegetation.
 
-In a similar way, dissimilarity of past pollen assemblages with respect to modern pollen ($d_{m}$) cannot indicate changes from one community type to another through time, only dissimilarity from modern ecosystems.  While broad scale spatial changes may be visible, a site that transitions from prairie to forest can retain a similarly low $d_{m}$> value, provided near analogues exist in the modern pollen data.  A significant challenge is the fact that in many cases modern pollen reflects an anthropogenic alteration of the landscape relative to fossil assemblages.  The presence of taxa such as Ambrosia point to significant opening of woodland canopies in North America for example [REF].
+In paleoecological analysis the use of squared chord dissimilarity is a common measure of dissimilarity between two pollen assemblages.  Each pollen assemblage represents regional and local vegetation surrounding the sample site, filtered through taphonomic processes (Jackson 2012?).  We can describe this dissimilarity from modern as the distance to the closest modern sample, $d_{mt}$.  Using $d_{m}$ we may then define 'non-analogue' communities as those which pass a certain threshold of minimum dissimilarity, here we use the 95 percentile of minimum distances.  A significant challenge to the use of modern dissimilarity measures is the fact that in many cases modern pollen reflects an anthropogenic alteration of the landscape relative to fossil assemblages.  The presence of taxa such as Ambrosia point to significant opening of woodland canopies in North America for example [REF].  This effect can impact our interpretations of the relationships between pollen and various other factors such as climate (St. Jacques, the new chinese one).
+
+A limitation of the use of dissimilarity from modern is that the dissimilarity of past pollen assemblages with respect to modern pollen cannot indicate changes from one community type to another through time, only dissimilarity from modern ecosystems.  While broad scale spatial changes may be visible, a site that transitions from prairie to forest can retain a similarly low $d_{mt}$ value, provided near analogues exist in the modern pollen data.  To correct for this, we can examine measures of turnover with a single pollen record through time $d_{st}$, or site dissimilarity at time $t$.  This measures dissimilarity from one sample in a pollen record to the next, more modern sample, with high values for $d_{t}$ indicating much higher rates of vegetation turnover within cores.  Schuman et al. (ref) showed patterns of high within-core turnover, but there is a further element of turnover or change that has not been explored.  Ladnscape turnover $d_{lt}$ represents the novelty of a community on the observable landscape at some timepoint $t$.  This landscape turnover estimate allows us to capture the movement of communities or broadly based vegetation types across the landscape.  We can imagine times in the past where site turnover may be high, but landscape turnover may be low, for example, the movement of boreal type ecosystems across North America following deglaciation may result in high site turnover, but low landscape turnover.
+
+In the same way we can examine vegetation dissimilarity we can make use of transient climate models to use the same measures of dissimilarity for climate, here $c_{m}$, $c_{s}$ and $c_{l}$.
+
 
 **Table**. *Definitions for dissimilarity measures tested in this paper.*
 Dissimilarity Type | Definition
@@ -26,6 +29,7 @@ Site turnover      | The dissimilarity measure between a pollen assemblage and a
 Persistence        | The dissimilarity measure between a pollen assemblage and future assemblages, between 250 and 750 years younger.
 
 A fuller understanding of vegetation change, and of successional processes may be derived from the use of multiple metrics for vegetation change using pollen data. Three dissimilarity measures can be used to help us understand changes through time:
+
 1.  Dissimilarity from modern.
 2.  Turnover with an individual core.
 3.  Turnover with respect to the surrounding landscape.
@@ -106,7 +110,6 @@ if(!'pollen.frame.RData' %in% list.files('data/output')){
 }
 
 ```
-
 
 Results
 -------------------------
