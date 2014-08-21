@@ -17,4 +17,6 @@ for(i in 1:nrow(full.frame)){
   }
 }
 
+
+
 full.frame <- full.frame[!full.frame$domain == 'HUMID TROPICAL DOMAIN',]
