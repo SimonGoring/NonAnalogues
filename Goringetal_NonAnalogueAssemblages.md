@@ -4,9 +4,9 @@ No-Analogues in North American Pollen Space
 Abstract
 ------------------------
 
-* Most studies of novelty look for novelty relative to present day, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).
+Most studies of novelty look for novelty relative to present day ecosystems, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).
 
-General paradigm that species respond individualistically to climate change.  But this isnt necessarily always the case.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?
+The general (Gleasonian) paradigm is that species respond individualistically to climate change,  but in practice, those individualistic responses often result in the movement of entire communities across the landscape.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?
 
 Introduction
 ------------------------
@@ -18,11 +18,11 @@ In paleoecological analysis the use of squared chord dissimilarity (Overpeck, 19
 
 A limitation of the use of dissimilarity from modern is that the dissimilarity of past pollen assemblages with respect to modern pollen cannot indicate changes from one community type to another through time, only dissimilarity from modern ecosystems.  While broad scale spatial changes may be visible, a site that transitions from prairie to forest can retain a similarly low $d_{mt}$ value, provided near analogues exist in the modern pollen data.  To correct for this, we can examine measures of turnover with a single pollen record through time $d_{st}$, or site dissimilarity at time $t$.  This measures dissimilarity from one sample in a pollen record to the next, more modern sample, with high values for $d_{t}$ indicating much higher rates of vegetation turnover within cores.  Schuman et al. (ref) showed patterns of high within-core turnover, but there is a further element of turnover or change that has not been explored.  Ladnscape turnover $d_{lt}$ represents the novelty of a community on the observable landscape at some timepoint $t$.  This landscape turnover estimate allows us to capture the movement of communities or broadly based vegetation types across the landscape.  We can imagine times in the past where site turnover may be high, but landscape turnover may be low, for example, the movement of boreal type ecosystems across North America following deglaciation may result in high site turnover, but low landscape turnover.
 
-We can then imagine a set of scenarios, illustrated by plotting the various combinations of 
+We can then imagine a set of scenarios, illustrated by plotting the various combinations of landscape and site level similarities.
 
 ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) 
 
-**Figure X.**  *Models for understanding turnover and dissimilarity in the pollen record.  Community stability is represented by sites with low turnover relative to past assemblages at the site, and across the landscape.  Community migration occurs when a site is highly siddimilar to past assemblages at the site, but has close analogues in the past landscape.  Transient refugia occur when a site has low turnover, but becomes highly dissimilar from the past landscape.  Ecological novelty occurs when a site is dissimilar from both the landscape and its own past assemblages.*
+**Figure 1.**  *Models for understanding turnover and dissimilarity in the pollen record.  Community stability is represented by sites with low turnover relative to past assemblages at the site, and across the landscape.  Community migration occurs when a site is highly siddimilar to past assemblages at the site, but has close analogues in the past landscape.  Transient refugia occur when a site has low turnover, but becomes highly dissimilar from the past landscape.  Ecological novelty occurs when a site is dissimilar from both the landscape and its own past assemblages.*
 
 In the same way we can examine vegetation dissimilarity we can make use of transient climate models to use the same measures of dissimilarity for climate, here $c_{m}$ (dissimilarity from modern), $c_{s}$ (change at a site) and $c_{l}$ (change relative to landscape).
 
@@ -42,7 +42,7 @@ To assist in this endevour, we examine pollen records from the Neotoma Database,
 
 ![Alt text](/HandMadeFigures/ConceptualPlot.png)
 
-**Figure 1**. *Turnover estimates for time t_i are measured as the minimum within site dissimilarity from the prior timestep (d_si) or the minimum dissimilarity from the landscape of pollen assemblages at the earlier timestep (d_li).  In all cases the earlier timestep is defined as a time preiod between 250 and 750 years prior to the sample of interest.  These two values then form a continuum of possibilities.  High ds and low dl indicate disturbance events within a stable, heterogeneous landscape, high dl & high ds indicate broad-scale, rapid landscape turnover, high dl, low ds is relatively infrequent, but may indicate local refugia within a shifting landscape*
+**Figure 2**. *Turnover estimates for time t_i are measured as the minimum within site dissimilarity from the prior timestep (d_si) or the minimum dissimilarity from the landscape of pollen assemblages at the earlier timestep (d_li).  In all cases the earlier timestep is defined as a time preiod between 250 and 750 years prior to the sample of interest.  These two values then form a continuum of possibilities.  High ds and low dl indicate disturbance events within a stable, heterogeneous landscape, high dl & high ds indicate broad-scale, rapid landscape turnover, high dl, low ds is relatively infrequent, but may indicate local refugia within a shifting landscape*
 
 We expect that ecosystems will show patterns of change that can be explained through the multivariate use of these dissimilarity measures.  For example, rapid species migration during the late-Pleistocene/eraly-Holocene transition should be apparent as high local turnover partnered with relatively low landscape change if entire communities are migrating northward.  Strongly individualistic species responses would be visible as paired high site and landscape turnovers.  Modern successional changes should be visible as sets of high self, low landscape changes.  Low landscape and low self changes should be static ecosystems.
 
@@ -74,11 +74,22 @@ Of the 557 pollen sites obtained from Neotoma for this analysis, 435 sites had a
 
 ![plot of chunk test](figure/test.png) 
 
-**Figure X**. *Turnover and dissimilarity for individual sites from the Neotoma database for both climate and vegetation, showing a relationship between the two variables, but also considerable noise.  There is no significant difference in the relationship when dissimilarities are calculated in the past or the future.  In particular it appears evident that site-level turnover is more closely related to landscape level turnover in the pollen data, wheras there is less of a relationship in the climate data.*
+**Figure X**. *Turnover and dissimilarity for individual sites from the Neotoma database for both climate and vegetation, showing a relationship between the two variables, but also considerable noise.*
 
-Turnover within the core is correlated to landscape dissimilarity ($r_{s}$ = 0.405, p < 0.001), but shows a great deal of variability around the 1:1 line (Figure X).  If the direction of the search changes There is no significant difference between this relationship for past dissimilarities and future dissimilarities ($F_{2}$=1.7, p = 0.183).
+Turnover within the core (change within the core from one time period to another) is correlated to landscape dissimilarity ($r_{s}$ = 0.213, p < 0.001), but shows a great deal of variability around the 1:1 line (Figure X).  The same plot, for climate in this case, shows a similar pattern ($r_{s}$ = 0.2, p < 0.001), although the scale of dissimilarity values is much higher for the climate data due to the difference in base units for the two measures (percentages vs. scaled climate values).  The central region of dissimilarity is generally shifted toward the regions we identify as 'Persistence', indicating that throughout the late-Glacial and Holocene (in particular) low turnover at both the site and landscape level was the rule.
 
-![plot of chunk dissVsAge](figure/dissVsAge.png) 
+![plot of chunk TurnoverClassesInTime](figure/TurnoverClassesInTime.png) 
+**Figure X**. *Proportion of sites within each time window showing turnover rates representing novelty, mighration, persistence or refugium.*
+
+
+
+```
+## Error: object 'age.class' not found
+```
+
+```
+## Error: object 'nf' not found
+```
 
 **Figure 3**. *Turnover through time in the Neotoma database.*
 
