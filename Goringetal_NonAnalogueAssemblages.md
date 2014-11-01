@@ -4,9 +4,9 @@ No-Analogues in North American Pollen Space
 Abstract
 ------------------------
 
-Most studies of novelty look for novelty relative to present day ecosystems, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).
+*Most studies of novelty look for novelty relative to present day ecosystems, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).*
 
-The general (Gleasonian) paradigm is that species respond individualistically to climate change,  but in practice, those individualistic responses often result in the movement of entire communities across the landscape.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?
+*The general (Gleasonian) paradigm is that species respond individualistically to climate change,  but in practice, those individualistic responses often result in the movement of entire communities across the landscape.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?*
 
 Introduction
 ------------------------
@@ -74,6 +74,10 @@ Of the 557 pollen sites obtained from Neotoma for this analysis, 435 sites had a
 
 ![plot of chunk test](figure/test.png) 
 
+```
+## Error: object 'data/output/pollen.site.table.csv' not found
+```
+
 **Figure X**. *Turnover and dissimilarity for individual sites from the Neotoma database for both climate and vegetation, showing a relationship between the two variables, but also considerable noise.*
 
 Turnover within the core (change within the core from one time period to another) is correlated to landscape dissimilarity ($r_{s}$ = 0.213, p < 0.001), but shows a great deal of variability around the 1:1 line (Figure X).  The same plot, for climate in this case, shows a similar pattern ($r_{s}$ = 0.2, p < 0.001), although the scale of dissimilarity values is much higher for the climate data due to the difference in base units for the two measures (percentages vs. scaled climate values).  The central region of dissimilarity is generally shifted toward the regions we identify as 'Persistence', indicating that throughout the late-Glacial and Holocene (in particular) low turnover at both the site and landscape level was the rule.
@@ -81,23 +85,19 @@ Turnover within the core (change within the core from one time period to another
 ![plot of chunk TurnoverClassesInTime](figure/TurnoverClassesInTime.png) 
 **Figure X**. *Proportion of sites within each time window showing turnover rates representing novelty, mighration, persistence or refugium.*
 
+When we examine the relative proportions of sites that appear to show migration, novelty, persistence and refugium we see that both climate and vegetation turnover are fairly well correlated ($r_{mantel}$ =  0.693, p = 0.001), but differences between the records are clear (Figure X).  
 
+Constrained clustering (using `chclust` in `rioja`) shows five main groupings the pollen and climate data, however, cut points differ between the two.  The earliest Pollen Zone, P1, occurs only from 14500 - 15000 cal. yr BP, where Novelty represents the dominant class, with a smaller component of Migration and few sites with Mid-Quantile turnover levels.  Pollen zone P2 extends from 12100 - 14400 cal yr BP, with Novelty again dominant, but declining as the Mid-Quantile class increases, indicating progressively lower landscape and site level changes. Increases in the Refugium class may occur as site level change slows in more southern regions relative to higher landscape level turnover across the domain.
 
-```
-## Error: object 'age.class' not found
-```
+Pollen Zone 3, from 9700 - 12000 continues the pattern of overall declining turnover rates, as evidenced by the increase in Mid-Quantile points.  At this point the Refugium class reaches its maximum (20% of all records) and the Persistence class, sites with very low landscape and site level turnover begin to appear in the record.  This is evidence for a slowing of ecological reorganization across eastern North America, supported by other paleoecological studies.
 
-```
-## Error: object 'nf' not found
-```
+Pollen Zone 4 (P4) shows relative stability.  The Mid-Quantile records account for, on average 65% of all records.  A short peak in Novelty occurs at ca. 5000 cal yr BP and persists for approximately 500 years.  Many studies have proposed the formation of modern ecosystems in North America occured approximately 6000 cal yr BP.  At this point most major climate systems were in place following the collapse of the Laurentide Ice Sheet ca. 8.2 cal kyr, and migration had largely slowed (Ordonez?).  Pollen Zone 4 terminates approximately 200 cal. years BP, with a rapid increase in Novelty.
 
-**Figure 3**. *Turnover through time in the Neotoma database.*
+Pollen Zone 5 represents the post-EuroAmerican Settlement era.  Here we see a rapid rise in Novelty as communities re-organize, and as disturbance-related taxa such as Ambrosia are released.  This rapid increase in Novelty is not seen in studies such as Shuman since the baseline for these studies is the modern era, and as such they are unable to capture the rapid increase in Novelty.  It is shocking to see that the increase in Novelty (to 50% in the last time bin) is at last as high as turnover following deglaciation 12000 - 14000 cal yr. BP, during the 'Non-Analogue' era in the southern Great Lakes Region (sensu Gill et al.).  This indicates that the extent of anthropogenic change in modern ecological communities in North America is much higher than we might have expected, and, given the length of time over which communities continued to re-organize following rapid climate turnover in the paleo record, this re-organization may persist for much longer than anticipated.
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+Climate data can be divided into five zones as well.  These zones do not correspond well to the pollen data, in part due to higher variability for some of the dissimilarity classes (Fig X), but also because of different overall patterns, in particular, patterns of Novelty.  Zone C1 (15000 - 13600 cal yr BP) maintains high Novelty values, but ends rapidly as Novelty declines and then recovers during Zone C2 (13500 - 12800 cal yr BP).  Zone C2 is a short lived period with highly variable Novelty and Mid-Quantile values, as well as higher values for the Migration class, indicating climate was changing systematically in places across the region, perhaps in response to regional scale warming.  Zone C3 (12800 - 11300 cal yr BP) shows another decline in Novelty, largely in response to a rapid increase in Mid-Quantile values, indicating a stabilization of regional climate change over that period.  A spike in Novelty at the end of Zone C3 is associated with a decline in Migration, Mid-Quantile and Refugium classes, likely associated with rapid Younger Dryas cooling.
 
-**Figure X.** *Relationship between landscape and self turnover appears to show little relationship between climate and vegetation turnover.*
-
-
+Zone C4 (11300 - 6000 cal yr BP) is the first zone where Persistence becomes a feature of the dissimilarity space, indicating broader regions where climate changes little over time are appearing on the landscape.  At the same time Novelty has declined rapidly, and continues to decline to 6000 cal yr BP, while the Refugium class increases initially, and then remains relatively stable until the present, although values remain low, between 8 - 10%.  The final zone (Zone C5) continues the pattern of C4, maintaining relative stability for each of the turnover classes.  Migration classes hit short lived maxima at 1800 and 2700 cal yr BP.  The high for Migration at 1800 cal yr BP is also a high for Refugium and a local maxima for Novelty, indicating the potential for a regional-scale climatic event at this time.
 
 Discussion
 ---------------------------

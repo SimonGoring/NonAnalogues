@@ -4,9 +4,9 @@ No-Analogues in North American Pollen Space
 Abstract
 ------------------------
 
-Most studies of novelty look for novelty relative to present day ecosystems, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).
+*Most studies of novelty look for novelty relative to present day ecosystems, whether looking for novelty in the past or potential novelty in the future.  But we are concerned about novelty during 21st century, where modern communities dis-aggregate, and we are challenged to understand which of these novel communities will be stable (equilibrial novelty) in the future, and which will remain in a state of transition (disequilibrial).*
 
-The general (Gleasonian) paradigm is that species respond individualistically to climate change,  but in practice, those individualistic responses often result in the movement of entire communities across the landscape.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?
+*The general (Gleasonian) paradigm is that species respond individualistically to climate change,  but in practice, those individualistic responses often result in the movement of entire communities across the landscape.  At some time scales whole communities appear to move, while in others clear individualistic responses are visible.  Under what conditions do we see new communities arise?  When do communities persist?*
 
 Introduction
 ------------------------
@@ -21,7 +21,7 @@ A limitation of the use of dissimilarity from modern is that the dissimilarity o
 We can then imagine a set of scenarios, illustrated by plotting the various combinations of landscape and site level similarities.
 
 ```{r fig.width=6, message=FALSE, echo=FALSE, warning=FALSE}
-
+library(vegan)
 library(ggplot2)
 library(MASS)
 
