@@ -35,7 +35,7 @@ plot.set <- function(x, direct, val, res, time){
     theme_bw() +
     xlab('Calibrated Years Before Present') +
     ylab(paste0(val, ' Dissimilarity')) +
-    scale_x_continuous(expand=c(0,0)) +
+    scale_x_continuous(expand=c(0,0), limits = c(0, 15000)) +
     scale_y_sqrt(expand=c(0,0)) +
     theme(axis.title.x = element_text(family = 'serif', 
                                       face = 'bold.italic', size = 18),
