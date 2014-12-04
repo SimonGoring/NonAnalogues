@@ -1,593 +1,443 @@
-"","Migration","Nothing","Novelty","Persistence","Refugium"
-"Adeline Lake",0,4,0,17,1
-"Aino Pond",5,21,3,3,3
-"Albert Lea Lake",0,0,0,0,0
-"Alexander Lake",1,0,0,5,0
-"Alexis Lake",0,0,0,0,0
-"Aliuk Pond",0,0,0,0,0
-"Almora Lake",0,2,3,2,0
-"Anderson Lake",0,0,0,0,1
-"Anderson Pond",1,3,3,0,0
-"Andree Bog",2,3,1,0,0
-"Andrus Lake",0,0,0,0,0
-"Arrington Marsh",0,0,0,0,0
-"Axe Lake",0,8,1,8,2
-"Bad Medicine Lake",0,0,0,0,0
-"Baie du Diana",6,7,1,0,0
-"Barchampe Lake",0,6,1,28,0
-"Barry Lake",2,14,4,11,6
-"Baseball Bog",0,2,0,14,2
-"Basin Pond",3,7,10,15,0
-"Basswood Road Lake/Splan Pond",2,3,20,0,0
-"Battaglia Bog",0,0,0,0,0
-"Bear Bog",0,0,0,7,2
-"Beckman Lake",0,1,5,0,0
-"Belmont Bog",0,1,0,0,0
-"Bereziuk",0,0,0,1,2
-"Berry Pond",3,9,4,0,2
-"Big John Pond",0,0,1,1,0
-"Big Pond",0,1,3,0,0
-"Billy's Lake",2,32,10,6,5
-"Bishops Falls",0,2,0,0,2
-"BL-Tombigbee",1,4,3,0,0
-"Black Bass Lake",0,3,1,0,1
-"Black Pond",7,6,7,1,0
-"Blackhoof Site",0,2,5,0,0
-"Blandin Pond",0,1,0,1,4
-"Blomford Lake",1,3,1,2,0
-"Blue Mounds Creek",5,4,9,3,1
-"Bob Black Pond",0,0,0,0,0
-"Bob Lake",0,1,0,2,1
-"Bog D",0,15,13,0,3
-"Border Beacon",0,7,1,5,8
-"Boriack Bog",3,5,31,0,0
-"Bossuot Lake",0,1,2,0,1
-"Boundary Lake",2,9,6,22,7
-"Boundary Pond",1,12,4,25,3
-"Brandreth Bog",1,19,10,6,6
-"Brisay 2",0,1,1,0,2
-"Brophy Ditch",1,0,1,0,0
-"Brown's Bay, Lake Minnetonka",0,0,0,0,0
-"Brown Lake (US:Ohio)",0,1,4,0,0
-"Brown Lake (US:Wisconsin)",0,0,0,0,0
-"Browns Pond",0,0,0,0,0
-"Buck Lake",1,1,2,0,0
-"Bucyrus Bog",0,4,2,0,0
-"Burden Lake",6,10,2,3,1
-"Burntside Lake",0,0,0,10,0
-"Cahaba Pond",11,11,19,0,0
-"Camel Lake",10,8,9,2,0
-"Camp 11 Lake",0,2,0,16,0
-"Camp 12 Lake",0,0,0,0,0
-"Camp Lake",0,0,0,0,2
-"Campbell Lake",0,0,3,0,1
-"Canyon Lake",0,5,0,24,7
-"Carbuncle Pond",0,6,1,4,2
-"Caribou Bog",0,0,0,0,0
-"Caribou Hill",1,9,1,15,7
-"Carter Site",0,0,0,0,0
-"Cedar Bog Lake",3,9,11,0,4
-"Chase Pond",2,3,12,0,0
-"Chatsworth Bog",13,26,9,2,1
-"Chesapeake Bay, Parker Creek",0,10,2,8,3
-"Chesapeake Bay, Patuxent River (2-P-5)",0,21,0,18,9
-"Chesapeake Bay, Potomac River",2,13,0,37,12
-"Chesapeake Bay, Rhode River",4,14,3,45,9
-"Cheyenne Bottoms",0,0,0,0,0
-"Chippewa Bog",11,25,15,1,1
-"Chism 1",0,0,0,0,0
-"Chism 2",1,5,0,1,0
-"Chub Lake",0,2,1,0,0
-"Cindy Pond",0,0,0,3,1
-"Clear Lake",1,14,5,9,3
-"Clear Lake (US:Iowa)",6,20,5,3,1
-"Clear Pond (US:New York)",2,19,4,13,2
-"Clear Pond (US:South Carolina)",8,13,4,29,2
-"Colo Marsh",0,3,3,0,1
-"Comb Lake",0,0,0,0,0
-"Compass Pond",15,17,8,3,5
-"Conklin Quarry",0,0,0,0,0
-"Conroy Lake",8,21,7,6,0
-"Cottonwood Lake",0,0,0,0,0
-"Cottonwood Lake (US:Minnesota)",0,0,0,0,0
-"Cottonwood Lake (US:South Dakota)",0,1,2,0,0
-"Cranberry Glades",1,0,3,0,0
-"Cranberry Lake",4,37,11,8,17
-"Crates Lake",15,17,11,1,1
-"Crawford Lake",13,22,48,0,0
-"Crazy Pond",0,1,4,0,0
-"Creditview Wetland",3,6,7,1,2
-"Crider's Pond",1,3,9,0,0
-"Cristal Lake",0,0,0,0,0
-"Cub Lake",6,20,4,12,5
-"Cummins Pond",1,5,13,8,7
-"Cupola Pond",4,8,10,0,1
-"Dalton Lake",0,0,0,0,0
-"Dark Lake",0,3,2,7,4
-"Daumont",1,0,1,2,0
-"Dead Frog Pond",10,4,0,0,0
-"Decoy Lake",3,17,10,42,9
-"Deer Lake Bog",0,1,0,0,0
-"Delorme 1",0,0,0,0,0
-"Delorme 2",0,3,2,2,3
-"Demont Lake",6,13,36,2,3
-"Denton Lake",0,0,0,0,0
-"Devils Lake (US:North Dakota)",1,14,4,3,0
-"Devils Lake (US:Wisconsin)",3,3,8,0,0
-"Diana 375",0,0,0,0,0
-"Dismal Swamp (91)",0,0,0,0,0
-"Disterhaft Farm Bog",13,38,8,7,9
-"Dogfish Lake",0,0,0,0,0
-"Donut Pond Bog",0,1,8,0,1
-"Dosquet",0,1,0,1,0
-"Duck Pond",4,3,1,0,0
-"Dunnigan Lake",0,0,0,1,0
-"E Lake",15,7,3,0,1
-"Eagle Lake",1,0,0,2,0
-"Eagle Lake Bog",0,0,0,1,0
-"East Baltic Bog",1,8,9,0,0
-"East Twin Lake (US:Minnesota)",0,3,0,2,1
-"East Twin Lake (US:Ohio)",5,8,4,6,3
-"Edward Lake",5,25,17,5,7
-"Eggert Lake",0,1,1,0,2
-"Ely Lake",1,16,9,1,6
-"Ernst Brother's Pit",0,0,0,0,0
-"Everhart Lake",0,1,0,0,0
-"Faith Pond",0,0,0,0,0
-"Farquar Lake",0,1,3,2,1
-"Fawn Lake",0,4,1,1,3
-"Fawn Lake (CA:Ontario)",0,0,0,0,0
-"Ferndale Bog",8,13,40,0,0
-"First Pond",0,0,0,0,0
-"Forge Pond",0,0,0,0,0
-"Found Lake",0,19,4,15,8
-"Fox Pond",0,2,0,0,0
-"Frains Lake",0,3,2,1,0
-"French Lake",4,6,1,6,1
-"Frenchmens Bay",0,5,3,1,2
-"Fresh Pond",2,3,4,0,0
-"Frovold Lake",0,0,0,0,0
-"Fudger Lake",4,15,8,9,3
-"Furnival Lake",0,1,0,3,4
-"Gass Lake",2,14,5,1,5
-"Gause Bog",3,5,7,0,0
-"George Lake",0,1,0,0,3
-"Georgian Bay, Lake Huron (1)",0,1,0,0,0
-"Georgian Bay, Lake Huron (2)",9,13,12,12,1
-"Giles Lake",0,1,0,0,0
-"Goldsmith Lake",0,1,0,4,1
-"Goose Lake",0,0,0,0,0
-"Goshen Springs",0,0,0,0,0
-"Gould's Bog",3,4,4,0,0
-"Gould Pond",3,13,7,12,12
-"Graham Lake",0,55,8,116,25
-"Grand Rapids",1,4,8,0,0
-"Gravel Ridge",0,4,2,21,6
-"Green Lake",3,10,7,2,2
-"Green Point Pond",0,0,0,0,0
-"Green Pond (US:New Jersey)",0,2,3,0,0
-"Grenadier Pond",5,27,24,3,5
-"Grice Pond",0,1,0,2,1
-"Hack Pond",0,2,2,0,0
-"Hams Lake",11,31,10,16,10
-"Hanson Marsh",0,2,3,0,0
-"Harrie Lake",1,4,0,3,1
-"Hawley Bog Pond-1",0,1,3,0,0
-"Hayes Lake",1,10,1,29,1
-"Heart Lake",0,6,1,6,2
-"Hebron Lake",0,0,0,0,0
-"Hell's Kitchen Lake",1,15,1,35,4
-"Helmetta Bog",0,0,0,0,0
-"Hemlock Hollow",13,20,9,3,2
-"Hemo Pond",0,0,0,0,0
-"Hershop Bog",0,0,0,0,0
-"High Lake",54,69,7,48,3
-"Horse Pond",0,0,0,0,0
-"Horseshoe Lake",1,12,4,5,1
-"Hostage Lake",0,0,1,1,0
-"Houghton Bog",2,2,1,4,0
-"Howes Prairie Marsh",1,1,4,0,1
-"Hudson Lake",3,16,10,18,6
-"Hug Lake",1,5,0,4,1
-"Humber Pond 3",0,4,16,0,1
-"Humber Pond 5",1,12,5,0,3
-"Humber Pond 7",1,2,13,0,3
-"Hustler Lake",0,0,0,0,0
-"Hynes Brook Salt Marsh",0,0,5,0,0
-"Icehouse Bottom [40MR23]",0,0,0,0,0
-"Indian Lake",1,4,3,8,2
-"Inglesby Lake",0,0,0,0,0
-"Iola Bog",2,16,1,3,2
-"Irvin Lake",1,7,9,7,9
-"Irwin Smith Bog",48,49,46,17,7
-"Jack Lake",0,12,0,16,3
-"Jackson Pond",5,4,8,0,0
-"Jacobson Lake",0,23,5,40,7
-"James Bay",0,2,14,0,0
-"Jewell Site",0,0,0,0,0
-"Joes Pond",11,11,8,0,0
-"Jones Lake (US:Minnesota)",0,3,0,0,0
-"Jones Lake [Glenboro site]",12,19,25,2,3
-"Kanaaupscow",0,0,0,0,0
-"Kegan Lake",0,0,0,0,0
-"Kellners Lake",5,18,8,4,1
-"Kellys Hollow",0,7,15,2,10
-"Kennys Pond",0,1,0,0,0
-"Kimble Pond",17,100,77,15,8
-"Kinsman Pond",0,1,0,1,0
-"Kirchner Marsh",13,39,25,18,9
-"Kitchner Lake",0,6,0,1,1
-"Kotiranta Lake",1,15,10,18,5
-"Kryzewinski Lake",0,1,0,1,0
-"Kylen Lake",0,0,0,1,0
-"L'Anse aux Meadows Road Cut Bog",0,0,7,0,0
-"L'Anse aux Meadows Site",0,8,57,0,1
-"Lac à l'Ange",0,0,0,0,0
-"Lac à la Busque",0,0,0,0,0
-"Lac à la Fourche",0,0,0,0,0
-"Lac à la Tortue",0,5,1,1,2
-"Lac à Léonard",1,3,0,3,1
-"Lac à Magie",0,0,8,0,0
-"Lac à Robin",0,0,0,0,0
-"Lac à Sam",0,8,0,10,9
-"Lac à St-Germain",0,0,0,7,1
-"Lac au Sable",0,2,1,0,0
-"Lac aux Quenouilles",0,4,1,6,3
-"Lac Bastien",0,17,2,31,14
-"Lac Boucané",0,1,0,2,0
-"Lac Côté",0,0,0,0,0
-"Lac Caribou",2,2,0,1,1
-"Lac Castor",1,6,1,14,7
-"Lac Colin",0,9,4,15,1
-"Lac des Atocas",1,13,5,3,5
-"Lac des Roches Moutonnées",3,7,6,1,3
-"Lac du Diable",0,0,0,0,0
-"Lac Dufresne",0,1,1,4,0
-"Lac Faribault",0,0,0,0,0
-"Lac Geai",0,10,3,2,19
-"Lac Gras",0,0,0,0,0
-"Lac Hamard",0,1,6,0,1
-"Lac Harriman",0,0,0,0,0
-"Lac Kénogami",0,12,8,0,6
-"Lac Louis",0,15,4,21,11
-"Lac Manitou",0,4,0,5,3
-"Lac Marcotte",0,1,1,0,0
-"Lac Martyne",0,4,3,9,8
-"Lac Mimi",0,0,6,0,0
-"Lac Montagnais",2,3,1,0,0
-"Lac Ouellet",0,0,0,0,0
-"Lac Patricia",0,6,0,24,3
-"Lac Petel",0,0,0,0,0
-"Lac Pluvieux",1,4,1,3,2
-"Lac Romer",1,2,0,0,1
-"Lac Turcotte",0,0,0,0,0
-"Lac Yelle",2,3,1,1,1
-"Ladd Lake",3,20,6,3,5
-"Lake 27",3,13,1,0,1
-"Lake Allie",0,5,0,2,0
-"Lake Ann",0,4,4,0,2
-"Lake Annie",22,7,6,6,0
-"Lake BI2",26,10,4,0,0
-"Lake BN7",0,7,1,10,3
-"Lake Carlson",4,11,23,10,11
-"Lake CH2",48,18,12,3,0
-"Lake EC1",0,4,0,18,4
-"Lake EC2",5,15,1,9,5
-"Lake Emily",0,0,0,0,0
-"Lake Erie",0,2,0,0,0
-"Lake GB1",0,4,1,15,1
-"Lake GB2",0,5,2,41,6
-"Lake Hope Simpson",0,5,10,8,1
-"Lake Lacawac",4,2,1,1,0
-"Lake LB1",1,6,1,6,0
-"Lake Louise",2,5,3,6,0
-"Lake LR1",0,0,0,0,0
-"Lake LR3",0,1,0,2,0
-"Lake LT1",1,1,0,0,0
-"Lake Mabel",0,0,0,0,0
-"Lake Mary",0,1,0,0,1
-"Lake Mendota",1,13,3,4,3
-"Lake Minnie",3,26,2,24,4
-"Lake of the Clouds (US:Minnesota)",0,4,4,41,2
-"Lake Onamia",0,0,0,14,0
-"Lake Ontario, Mississauga Basin",0,2,3,1,1
-"Lake Ontario, Rochester Basin",1,9,1,1,1
-"Lake QC",0,0,0,1,2
-"Lake Rachel",0,8,2,4,1
-"Lake Six",2,14,0,10,1
-"Lake Sixteen",0,7,0,2,0
-"Lake Tulane",28,20,15,5,2
-"Lake West Okoboji",1,20,15,0,1
-"Langdale Pond",0,0,0,1,0
-"Last Lake",0,1,1,4,4
-"LD Lake",11,15,2,2,3
-"Leading Tickles",0,3,0,0,0
-"Lewis Lake",0,0,1,0,1
-"Lily Lake (US:Minnesota)",0,5,0,0,2
-"Little Bass Lake",0,11,2,8,2
-"Little Dollar Lake",0,0,0,0,0
-"Little Dyke Lake",0,0,0,0,0
-"Little Lake (CA:New Brunswick)",0,4,8,10,7
-"Little Lake (CA:Nova Scotia)",0,0,0,0,0
-"Little Pine Lake",0,3,0,2,5
-"Little Round Lake",0,0,0,0,0
-"Lockport Gulf Section",0,3,2,0,0
-"Lonesome Lake",0,0,0,0,0
-"Longswamp",0,0,6,0,0
-"Loon Pond",1,4,14,4,10
-"Lost Lake (US:Michigan)",0,3,0,13,2
-"Lost Pond",0,1,2,1,0
-"Loxahatchee National Wildlife Refuge Site 1 (EPA Site 7)",0,0,0,0,0
-"Lybeck Lake",0,0,0,0,0
-"Main-à-Dieu",5,8,16,0,0
-"Mansell Pond",6,18,8,40,14
-"Maplehurst Lake",3,18,9,6,5
-"Marais de Keswick",3,7,12,0,0
-"Martin Pond",3,9,7,6,2
-"Mashapaug Pond",0,6,2,17,0
-"Mayflower Lake",0,0,6,0,0
-"McCarston's Lake",2,19,9,0,2
-"McCraney Pond",0,0,0,0,0
-"McLaughlan Lake",0,2,2,4,2
-"McNearny Lake",0,0,1,0,3
-"Medicine Lake",0,13,35,1,3
-"Mermaid Bog",0,0,2,0,0
-"Mirror Pool",1,0,0,0,0
-"Mohawk Pond",2,8,1,1,2
-"Monhegan Island Meadow",2,3,13,0,1
-"Monson Lake",0,0,0,0,0
-"Mont Shefford",0,11,3,2,6
-"Moon Lake",10,70,49,10,6
-"Moraine Lake",0,0,0,0,0
-"Mordsger Lake",0,3,5,1,3
-"Moulton Pond",0,2,1,0,1
-"Mud Creek Site 1",0,6,9,0,6
-"Mud Lake",0,1,4,0,0
-"Mud Lake (US:Florida)",6,2,0,0,0
-"Mud Lake (US:Minnesota:Blue Earth)",0,0,1,0,0
-"Mud Lake (US:Minnesota:Hubbard)",0,2,1,0,1
-"Murphy Lake",0,0,3,0,0
-"Muscotah Marsh",7,6,13,0,0
-"Myrtle Lake",4,13,2,16,5
-"Natural Lake",2,3,3,0,0
-"Nedlouc",1,0,0,0,0
-"Nels Lake",0,0,0,0,0
-"Nelson Pond",0,7,7,1,0
-"Neville Marsh",0,2,0,0,3
-"Nichols Brook Site",5,19,12,7,2
-"Nina Lake",0,12,5,31,2
-"No Bottom Pond",7,4,6,0,0
-"Nonconnah Creek [TN-1]",0,0,0,0,0
-"North Pond",5,7,9,6,6
-"Northwest River Pond",14,6,2,1,0
-"Nutt Lake",0,22,2,39,13
-"Oak Glen Lake",0,0,0,0,0
-"Ocheda Lake",0,0,0,0,0
-"Old Field",7,1,2,0,0
-"Oliver Pond",0,7,9,0,1
-"Olson Lake",1,0,0,0,0
-"Ondris Pond",0,5,5,3,0
-"Otto Mielke Lake",0,0,0,0,1
-"Palace Pier Section",0,2,1,0,0
-"Panther Run Pond",1,0,0,0,0
-"Paradise Lake",0,0,0,0,0
-"Parkhill Creek",1,4,3,1,3
-"Parrott's Pond",0,4,5,0,0
-"Pasacaco Pond",1,7,3,12,1
-"Pass Lake",3,12,2,3,3
-"Patschke Bog",0,0,4,0,0
-"Paynter Marsh",0,1,0,0,0
-"Peatsah Section",0,0,0,0,0
-"Peggy Lake",0,10,0,17,1
-"Pennington Lake",0,1,0,0,1
-"Perch Lake",1,22,0,26,6
-"Peterson Slough",0,2,0,2,0
-"Petit Lac Terrien",0,2,1,0,0
-"Pickerel Lake (US:South Dakota)",10,29,19,1,0
-"Pilot Mound Site",0,0,0,0,0
-"Pinckneyville Creek Site 21",0,0,0,0,0
-"Pink Lake",0,5,4,9,1
-"Pitcher Bog",3,5,1,0,0
-"Pleasant Lake (US:Minnesota)",0,6,0,6,2
-"Pogonia Bog Pond",4,16,9,6,14
-"Point Escuminac",6,10,82,0,2
-"Poland Spring Pond",0,26,8,1,2
-"Pond Mills Pond",4,13,10,0,1
-"Porqui Pond",2,11,1,0,9
-"Portage Bog",11,17,30,4,1
-"Portage Lake",3,17,9,12,9
-"Portage Marsh",0,0,0,0,0
-"Potts Mountain Pond",0,1,1,0,0
-"Powers Fort Swale",0,1,4,0,0
-"Pretty Lake",3,18,6,11,5
-"Princeville",0,0,0,0,2
-"Protection Bog",3,2,2,1,0
-"Pyle Site",0,4,5,2,1
-"Quarles Pond",0,0,0,0,0
-"Quicksand Pond",0,0,0,0,0
-"Quillin Site",0,0,1,0,0
-"R Lake",16,13,2,1,0
-"Radtke Lake",1,17,6,3,2
-"Ramsay Lake",0,16,18,14,13
-"Rattle Lake",0,7,3,5,6
-"Rayburn's Dome",0,0,0,0,0
-"Reichow",0,4,1,0,1
-"Reidel Lake",1,2,1,0,2
-"Rholl Lake",0,2,0,0,4
-"Rhule Fen",0,1,8,0,1
-"Rice Lake",9,15,6,8,2
-"Rivière-aux-Feuilles 1",0,0,0,0,0
-"Rivière-aux-Feuilles 2",0,0,0,0,0
-"Robinson's Pond",9,10,10,0,0
-"Rockyhock Bay",0,0,1,0,0
-"Rogers Lake",13,24,11,10,5
-"Rose Lake",2,1,5,0,0
-"Rose Swamp",0,3,1,3,0
-"Ross Pond",8,19,3,6,3
-"Rossburg Bog",0,2,4,0,0
-"Rostock Mammoth Site",3,0,4,0,0
-"Round Grove Lake",0,0,0,0,0
-"Ruby Lake",0,3,0,5,5
-"Rutz Lake",0,8,1,13,2
-"Ryerse Lake",0,4,1,7,1
-"Saint-Calixte",0,1,0,2,4
-"Saint-Francois de Sales",0,0,0,2,1
-"Saint-Gabriel",0,13,3,11,10
-"Saint-Jean Ile d'Orléans",1,3,8,0,1
-"Saint-Raymond",0,4,7,3,9
-"Saint John Island Pond",0,0,0,0,0
-"Sandy Cove Pond",2,5,4,0,1
-"Sarnia Elk Site Section",3,5,20,0,0
-"Scott Lake",0,4,1,7,2
-"Second Lake",2,23,12,1,1
-"Sedivy Lake",0,0,0,0,0
-"Seidel",2,29,23,4,10
-"Seminary Site",0,0,0,0,0
-"Sewell Lake",15,26,29,0,0
-"Shady Valley Bog",0,0,0,0,0
-"Shagawa Lake",0,1,0,11,0
-"Sharkey Lake",13,69,35,25,2
-"Shaws Bog",0,6,12,0,2
-"Sheley Pond",0,1,0,1,0
-"Shouldice Lake",4,26,7,4,8
-"Silver Lake (CA:Nova Scotia)",2,10,8,3,3
-"Silver Lake (US:Minnesota)",0,0,0,0,0
-"Silver Lake (US:Ohio)",0,7,2,4,0
-"Silver Lake (US:Pennsylvania)",1,3,0,3,0
-"Sinkhole Pond",1,2,4,1,2
-"Sioux Pond",0,13,1,3,2
-"Siseebakwet South",0,0,0,3,2
-"Smoot Lake Bog",0,0,0,0,0
-"Snow Lake",0,0,0,3,1
-"Solum Lake",0,0,0,0,0
-"South Heron Lake",0,0,0,0,0
-"South Soefje Bog",3,5,29,0,0
-"South Stanchfield Lake",0,0,0,0,0
-"Spectacle Lake",1,0,2,0,0
-"Spirit Lake (US:Michigan)",0,9,2,12,3
-"Spiritwood Lake",4,41,15,2,6
-"Spring Lake (US:Pennsylvania)",0,12,3,0,3
-"Spruce Pond",4,34,8,95,6
-"St. Catherines Lake",0,0,0,0,0
-"Stage's Pond",0,0,0,0,0
-"Stewart's Dark Lake",2,12,6,0,2
-"Stockbridge Bowl",0,0,0,0,0
-"Stone Lake",0,3,1,0,3
-"Stone Lake Tamarack Swamp",1,5,7,1,1
-"Stotzel-Leis Site",6,6,5,0,2
-"Sud du Lac du Noyer",0,4,1,3,4
-"Sunfish Lake",0,3,2,1,2
-"Sutherland Pond",10,45,19,67,9
-"Swartswood Lake",0,0,2,0,0
-"Szabo Pond",0,1,0,0,0
-"Tamarack Creek",14,3,11,0,0
-"Tannersville Bog",2,38,10,10,10
-"Taupawshas Bog",0,0,0,0,0
-"Taylor Creek Site 2",0,0,0,0,0
-"Taylor Slough Site 15",0,0,1,0,1
-"Taylor Slough Site 7",1,0,1,0,0
-"Terhell Pond",7,25,10,1,2
-"Third Lake",10,13,27,9,2
-"Thompson",1,11,9,4,1
-"Three Pines Bog",1,9,0,15,6
-"Titicut Swamp",4,8,1,2,4
-"Toenjes Lake",0,0,3,0,0
-"Tom Swamp",1,8,10,0,11
-"Tonawa Lake",0,17,3,7,5
-"Tourbière Caribou",0,0,1,0,1
-"Tourbière de Farnham",0,2,0,0,0
-"Tourbière de la Rivière-aux-Feuilles",1,0,1,0,1
-"Tourbière de Lanoraie COTEAU JAUNE",0,1,1,0,0
-"Tourbière de Lanoraie HENRI",1,0,5,0,0
-"Tourbière de Lanoraie JOSEPH",1,2,0,0,0
-"Tourbière de Lanoraie STJEAN",0,6,14,4,4
-"Tourbière du lac Joncas",0,3,3,1,3
-"Tourbière du lac Malbaie",0,0,0,1,0
-"Tunica Bayou Site 22",0,0,0,0,0
-"Tunturi Lake",0,0,0,2,0
-"Tuskegee Pond",2,1,2,2,0
-"Twin Lakes",0,1,0,0,0
-"Union Lake",0,10,1,1,1
-"Unknown Pond",0,5,1,21,1
-"Upper Gillies Lake",4,9,11,4,3
-"Upper Graven Lake",0,0,1,0,1
-"Upper Mallot Lake",0,7,2,9,5
-"Upper South Branch Pond",0,12,1,6,2
-"Upper Wallface Pond",0,0,0,1,0
-"Valhalla Hollow",0,4,0,1,2
-"Vallée de l'Albion",0,1,0,5,1
-"Van Nostrand Lake",5,22,9,3,4
-"Vestaburg Bog",1,11,6,2,1
-"Volo Bog",2,15,5,9,3
-"Wapizagonke",0,4,2,1,2
-"Water Conservation Area 2A, Site 2 (Site F1)",0,0,0,0,0
-"Water Conservation Area 2A, Site 3 (Site U3)",0,0,0,0,0
-"Water Conservation Area 3A, Site 4 (CA315 (AAS))",0,0,0,0,0
-"Water Conservation Area 3B, Gumbo Limbo Dry Head",0,0,0,0,0
-"Water Conservation Area 3B, Gumbo Limbo Far Tail",0,0,0,0,0
-"Water Conservation Area 3B, Gumbo Limbo Marsh",0,0,0,0,0
-"Water Conservation Area 3B, Gumbo Limbo Near Tail",0,0,0,0,0
-"Water Conservation Area 3B, Gumbo Limbo Wet Head",1,0,1,0,1
-"Water Conservation Area 3B, Nuthouse Far Tail",0,0,0,0,0
-"Water Conservation Area 3B, Nuthouse Head",0,0,0,0,0
-"Waubashene Nippissing Transgression Site",0,15,7,0,0
-"Weber Lake",0,9,8,6,1
-"Wells Mastodon Site",2,0,3,0,1
-"Wentzel's Pond",2,2,1,0,0
-"Weslemkoon Lake",1,8,4,27,2
-"West Olaf Lake",2,45,14,2,9
-"West Sand Lake Peat Bog",0,5,1,1,1
-"White Lily Lake",0,1,0,1,1
-"White Pond",0,0,0,0,0
-"Whitney's Gulch",0,0,0,0,0
-"Williams Street Bog",2,5,6,1,3
-"Willow River Pond",5,14,2,10,0
-"Winneconnet Pond",0,3,1,0,1
-"Winter Gulf Site",0,0,0,0,0
-"Wintergreen Lake",3,11,6,7,7
-"Wolf Creek",4,14,5,10,0
-"Wolsfeld Lake",1,16,7,10,9
-"Wolverine Lake",0,1,1,21,2
-"Wood Lake",0,14,2,6,3
-"Woodcliff Lake",0,0,0,0,0
-"Woodworth Pond",0,0,0,0,0
-"Wylde Bog",1,11,26,0,4
-"Wylde Lake",2,10,5,3,6
-"Yellow Dog Pond",0,2,2,14,1
-"Ziebell Lake",0,3,3,0,1
-"Zuehl Farm Site",4,0,2,0,0
-"""LD"" Lake",0,0,0,0,0
-"Bondi Section",0,0,0,0,0
-"Boney Spring",0,0,0,0,0
-"Coghill Lake",0,0,0,0,0
-"Greenwater Pond",0,0,0,0,0
-"Grey Islands",0,0,0,0,0
-"Hawke Hills Kettle",0,0,0,0,0
-"Lake Site South Burin Peninsula",0,0,0,0,0
-"Pinckneyville Creek Site 19",0,0,0,0,0
-"Pinckneyville Creek Site 20",0,0,0,0,0
-"Pittsburg Basin",0,0,0,0,0
-"Roberts Creek AB21",0,0,0,0,0
-"Roberts Creek AB22A",0,0,0,0,0
-"Roberts Creek AB30",0,0,0,0,0
-"Roberts Creek AB32",0,0,0,0,0
-"Roberts Creek AB33",0,0,0,0,0
-"Roberts Creek AB34",0,0,0,0,0
-"Roberts Creek AB35",0,0,0,0,0
-"Roberts Creek AB35LH",0,0,0,0,0
-"Roberts Creek AB44",0,0,0,0,0
-"Roberts Creek AB51",0,0,0,0,0
-"Roberts Creek CCEH-1",0,0,0,0,0
-"Roberts Creek CCEH-1A",0,0,0,0,0
-"Roberts Creek CCEH-2(2)B",0,0,0,0,0
-"Roberts Creek CCLG-1A",0,0,0,0,0
-"Roberts Creek CCLH-2",0,0,0,0,0
-"Roberts Creek DPS-2LH",0,0,0,0,0
-"Roberts Creek DPS-8",0,0,0,0,0
-"Roberts Creek DPS-9",0,0,0,0,0
-"Roberts Creek F-45",0,0,0,0,0
-"Roberts Creek F-45A",0,0,0,0,0
-"Roberts Creek RCBS",0,0,0,0,0
-"Sugarloaf Pond",0,0,0,0,0
-"Tunica Bayou Site 23",0,0,0,0,0
-"Windsor Pond",0,0,0,0,0
+,Migration,Nothing,Novelty,Persistence,Refugium,,
+Belmont Bog,0,1,0,0,0,,0.750
+Deer Lake Bog,0,1,0,0,0,,0.750
+Everhart Lake,0,1,0,0,0,,0.750
+"Georgian Bay, Lake Huron (1)",0,1,0,0,0,,0.750
+Giles Lake,0,1,0,0,0,,0.750
+Kennys Pond,0,1,0,0,0,,0.750
+Paynter Marsh,0,1,0,0,0,,0.750
+Szabo Pond,0,1,0,0,0,,0.750
+Twin Lakes,0,1,0,0,0,,0.750
+Mud Lake (US:Minnesota:Blue Earth),0,0,1,0,0,,0.500
+Quillin Site,0,0,1,0,0,,0.500
+Rockyhock Bay,0,0,1,0,0,,0.500
+Dunnigan Lake,0,0,0,1,0,,0.498
+Eagle Lake Bog,0,0,0,1,0,,0.498
+Kylen Lake,0,0,0,1,0,,0.498
+Langdale Pond,0,0,0,1,0,,0.498
+Tourbière du lac Malbaie,0,0,0,1,0,,0.498
+Upper Wallface Pond,0,0,0,1,0,,0.498
+Lac Marcotte,0,1,1,0,0,,0.369
+Potts Mountain Pond,0,1,1,0,0,,0.369
+Tourbière de Lanoraie COTEAU JAUNE,0,1,1,0,0,,0.369
+Dosquet,0,1,0,1,0,,0.368
+Kinsman Pond,0,1,0,1,0,,0.368
+Kryzewinski Lake,0,1,0,1,0,,0.368
+Sheley Pond,0,1,0,1,0,,0.368
+Big John Pond,0,0,1,1,0,,0.220
+Hostage Lake,0,0,1,1,0,,0.220
+Fox Pond,0,2,0,0,0,,0.069
+Lake Erie,0,2,0,0,0,,0.069
+Tourbière de Farnham,0,2,0,0,0,,0.069
+Mirror Pool,1,0,0,0,0,,0.066
+Nedlouc,1,0,0,0,0,,0.066
+Olson Lake,1,0,0,0,0,,0.066
+Panther Run Pond,1,0,0,0,0,,0.066
+Anderson Lake,0,0,0,0,1,,0.055
+Otto Mielke Lake,0,0,0,0,1,,0.055
+Lake LT1,1,1,0,0,0,,0.045
+Lake Mary,0,1,0,0,1,,0.038
+Pennington Lake,0,1,0,0,1,,0.038
+Chub Lake,0,2,1,0,0,,0.026
+Lac au Sable,0,2,1,0,0,,0.026
+Palace Pier Section,0,2,1,0,0,,0.026
+Petit Lac Terrien,0,2,1,0,0,,0.026
+Brophy Ditch,1,0,1,0,0,,0.025
+Taylor Slough Site 7,1,0,1,0,0,,0.025
+Lewis Lake,0,0,1,0,1,,0.021
+Taylor Slough Site 15,0,0,1,0,1,,0.021
+Tourbière Caribou,0,0,1,0,1,,0.021
+Upper Graven Lake,0,0,1,0,1,,0.021
+White Lily Lake,0,1,0,1,1,,0.014
+Mermaid Bog,0,0,2,0,0,,0.006
+Swartswood Lake,0,0,2,0,0,,0.006
+Tunturi Lake,0,0,0,2,0,,0.006
+Cottonwood Lake (US:South Dakota),0,1,2,0,0,,0.004
+Lac Boucané,0,1,0,2,0,,0.004
+Lake LR3,0,1,0,2,0,,0.004
+Tourbière de Lanoraie JOSEPH,1,2,0,0,0,,0.002
+Lost Pond,0,1,2,1,0,,0.001
+Moulton Pond,0,2,1,0,1,,0.001
+Mud Lake (US:Minnesota:Hubbard),0,2,1,0,1,,0.001
+Tourbière de la Rivière-aux-Feuilles,1,0,1,0,1,,0.001
+"Water Conservation Area 3B, Gumbo Limbo Wet Head",1,0,1,0,1,,0.001
+Jones Lake (US:Minnesota),0,3,0,0,0,,0.000
+Leading Tickles,0,3,0,0,0,,0.000
+Hack Pond,0,2,2,0,0,,0.000
+Peterson Slough,0,2,0,2,0,,0.000
+Spectacle Lake,1,0,2,0,0,,0.000
+Eagle Lake,1,0,0,2,0,,0.000
+Saint-Francois de Sales,0,0,0,2,1,,0.000
+Buck Lake,1,1,2,0,0,,0.000
+Bossuot Lake,0,1,2,0,1,,0.000
+Bob Lake,0,1,0,2,1,,0.000
+Grice Pond,0,1,0,2,1,,0.000
+Daumont,1,0,1,2,0,,0.000
+Lac Romer,1,2,0,0,1,,0.000
+Black Bass Lake,0,3,1,0,1,,0.000
+Winneconnet Pond,0,3,1,0,1,,0.000
+Murphy Lake,0,0,3,0,0,,0.000
+Toenjes Lake,0,0,3,0,0,,0.000
+Lockport Gulf Section,0,3,2,0,0,,0.000
+Big Pond,0,1,3,0,0,,0.000
+Hawley Bog Pond-1,0,1,3,0,0,,0.000
+Frains Lake,0,3,2,1,0,,0.000
+Camp Lake,0,0,0,0,2,,0.000
+Princeville,0,0,0,0,2,,0.000
+Bereziuk,0,0,0,1,2,,0.000
+Lake QC,0,0,0,1,2,,0.000
+Brisay 2,0,1,1,0,2,,0.000
+Eggert Lake,0,1,1,0,2,,0.000
+Green Pond (US:New Jersey),0,2,3,0,0,,0.000
+Hanson Marsh,0,2,3,0,0,,0.000
+Cranberry Glades,1,0,3,0,0,,0.000
+Campbell Lake,0,0,3,0,1,,0.000
+Cindy Pond,0,0,0,3,1,,0.000
+Snow Lake,0,0,0,3,1,,0.000
+East Twin Lake (US:Minnesota),0,3,0,2,1,,0.000
+Blomford Lake,1,3,1,2,0,,0.000
+Bishops Falls,0,2,0,0,2,,0.000
+Wentzel's Pond,2,2,1,0,0,,0.000
+Reichow,0,4,1,0,1,,0.000
+"Lake Ontario, Mississauga Basin",0,2,3,1,1,,0.000
+Bucyrus Bog,0,4,2,0,0,,0.000
+Lac Caribou,2,2,0,1,1,,0.000
+Almora Lake,0,2,3,2,0,,0.000
+Reidel Lake,1,2,1,0,2,,0.000
+Farquar Lake,0,1,3,2,1,,0.000
+Rose Swamp,0,3,1,3,0,,0.000
+Andree Bog,2,3,1,0,0,,0.000
+Lac Montagnais,2,3,1,0,0,,0.000
+Anderson Pond,1,3,3,0,0,,0.000
+Silver Lake (US:Pennsylvania),1,3,0,3,0,,0.000
+Patschke Bog,0,0,4,0,0,,0.000
+Colo Marsh,0,3,3,0,1,,0.000
+Ziebell Lake,0,3,3,0,1,,0.000
+Brown Lake (US:Ohio),0,1,4,0,0,,0.000
+Crazy Pond,0,1,4,0,0,,0.000
+Mud Lake,0,1,4,0,0,,0.000
+Powers Fort Swale,0,1,4,0,0,,0.000
+Tuskegee Pond,2,1,2,2,0,,0.000
+Lac Dufresne,0,1,1,4,0,,0.000
+Lac Yelle,2,3,1,1,1,,0.000
+Rossburg Bog,0,2,4,0,0,,0.000
+Lac à Léonard,1,3,0,3,1,,0.000
+Siseebakwet South,0,0,0,3,2,,0.000
+Goldsmith Lake,0,1,0,4,1,,0.000
+Sunfish Lake,0,3,2,1,2,,0.000
+Chism 2,1,5,0,1,0,,0.000
+West Sand Lake Peat Bog,0,5,1,1,1,,0.000
+Lake Allie,0,5,0,2,0,,0.000
+Wells Mastodon Site,2,0,3,0,1,,0.000
+Valhalla Hollow,0,4,0,1,2,,0.000
+Howes Prairie Marsh,1,1,4,0,1,,0.000
+BL-Tombigbee,1,4,3,0,0,,0.000
+George Lake,0,1,0,0,3,,0.000
+Harrie Lake,1,4,0,3,1,,0.000
+McNearny Lake,0,0,1,0,3,,0.000
+Natural Lake,2,3,3,0,0,,0.000
+Wapizagonke,0,4,2,1,2,,0.000
+Neville Marsh,0,2,0,0,3,,0.000
+Hynes Brook Salt Marsh,0,0,5,0,0,,0.000
+Beckman Lake,0,1,5,0,0,,0.000
+Lily Lake (US:Minnesota),0,5,0,0,2,,0.000
+Kitchner Lake,0,6,0,1,1,,0.000
+Lac à la Tortue,0,5,1,1,2,,0.000
+Protection Bog,3,2,2,1,0,,0.000
+Blackhoof Site,0,2,5,0,0,,0.000
+Tourbière de Lanoraie HENRI,1,0,5,0,0,,0.000
+Alexander Lake,1,0,0,5,0,,0.000
+Houghton Bog,2,2,1,4,0,,0.000
+Vallée de l'Albion,0,1,0,5,1,,0.000
+Stone Lake,0,3,1,0,3,,0.000
+Sinkhole Pond,1,2,4,1,2,,0.000
+Fresh Pond,2,3,4,0,0,,0.000
+Lac Pluvieux,1,4,1,3,2,,0.000
+McLaughlan Lake,0,2,2,4,2,,0.000
+Fawn Lake,0,4,1,1,3,,0.000
+Delorme 2,0,3,2,2,3,,0.000
+Rose Lake,2,1,5,0,0,,0.000
+Frenchmens Bay,0,5,3,1,2,,0.000
+Lake Ann,0,4,4,0,2,,0.000
+Parrott's Pond,0,4,5,0,0,,0.000
+Hug Lake,1,5,0,4,1,,0.000
+Tourbière du lac Joncas,0,3,3,1,3,,0.000
+Lake Sixteen,0,7,0,2,0,,0.000
+Rostock Mammoth Site,3,0,4,0,0,,0.000
+Lac Mimi,0,0,6,0,0,,0.000
+Longswamp,0,0,6,0,0,,0.000
+Mayflower Lake,0,0,6,0,0,,0.000
+Pitcher Bog,3,5,1,0,0,,0.000
+Lac Hamard,0,1,6,0,1,,0.000
+Blandin Pond,0,1,0,1,4,,0.000
+Pyle Site,0,4,5,2,1,,0.000
+Lake Lacawac,4,2,1,1,0,,0.000
+Zuehl Farm Site,4,0,2,0,0,,0.000
+Rholl Lake,0,2,0,0,4,,0.000
+Sandy Cove Pond,2,5,4,0,1,,0.000
+Parkhill Creek,1,4,3,1,3,,0.000
+Saint-Calixte,0,1,0,2,4,,0.000
+Duck Pond,4,3,1,0,0,,0.000
+Gould's Bog,3,4,4,0,0,,0.000
+Furnival Lake,0,1,0,3,4,,0.000
+Carbuncle Pond,0,6,1,4,2,,0.000
+Ondris Pond,0,5,5,3,0,,0.000
+L'Anse aux Meadows Road Cut Bog,0,0,7,0,0,,0.000
+Silver Lake (US:Ohio),0,7,2,4,0,,0.000
+Mordsger Lake,0,3,5,1,3,,0.000
+Lac à St-Germain,0,0,0,7,1,,0.000
+Last Lake,0,1,1,4,4,,0.000
+Lac Manitou,0,4,0,5,3,,0.000
+Sud du Lac du Noyer,0,4,1,3,4,,0.000
+Bear Bog,0,0,0,7,2,,0.000
+"Lake Ontario, Rochester Basin",1,9,1,1,1,,0.000
+Mohawk Pond,2,8,1,1,2,,0.000
+Lake LB1,1,6,1,6,0,,0.000
+Ryerse Lake,0,4,1,7,1,,0.000
+Lake Rachel,0,8,2,4,1,,0.000
+Lac à Magie,0,0,8,0,0,,0.000
+Donut Pond Bog,0,1,8,0,1,,0.000
+Rhule Fen,0,1,8,0,1,,0.000
+Lac aux Quenouilles,0,4,1,6,3,,0.000
+Pleasant Lake (US:Minnesota),0,6,0,6,2,,0.000
+Lake Louise,2,5,3,6,0,,0.000
+Heart Lake,0,6,1,6,2,,0.000
+Scott Lake,0,4,1,7,2,,0.000
+Little Pine Lake,0,3,0,2,5,,0.000
+Stone Lake Tamarack Swamp,1,5,7,1,1,,0.000
+Union Lake,0,10,1,1,1,,0.000
+Saint-Jean Ile d'Orléans,1,3,8,0,1,,0.000
+Grand Rapids,1,4,8,0,0,,0.000
+Nelson Pond,0,7,7,1,0,,0.000
+Williams Street Bog,2,5,6,1,3,,0.000
+Gause Bog,3,5,7,0,0,,0.000
+Mud Lake (US:Florida),6,2,0,0,0,,0.000
+Crider's Pond,1,3,9,0,0,,0.000
+Ruby Lake,0,3,0,5,5,,0.000
+Devils Lake (US:Wisconsin),3,3,8,0,0,,0.000
+Indian Lake,1,4,3,8,2,,0.000
+Dark Lake,0,3,2,7,4,,0.000
+French Lake,4,6,1,6,1,,0.000
+Berry Pond,3,9,4,0,2,,0.000
+Creditview Wetland,3,6,7,1,2,,0.000
+Burntside Lake,0,0,0,10,0,,0.000
+Lac des Roches Moutonnées,3,7,6,1,3,,0.000
+Pink Lake,0,5,4,9,1,,0.000
+Oliver Pond,0,7,9,0,1,,0.000
+Baie du Diana,6,7,1,0,0,,0.000
+Axe Lake,0,8,1,8,2,,0.000
+Old Field,7,1,2,0,0,,0.000
+Titicut Swamp,4,8,1,2,4,,0.000
+Vestaburg Bog,1,11,6,2,1,,0.000
+Shagawa Lake,0,1,0,11,0,,0.000
+East Baltic Bog,1,8,9,0,0,,0.000
+Spring Lake (US:Pennsylvania),0,12,3,0,3,,0.000
+Jackson Pond,5,4,8,0,0,,0.000
+Sioux Pond,0,13,1,3,2,,0.000
+Lake 27,3,13,1,0,1,,0.000
+Stotzel-Leis Site,6,6,5,0,2,,0.000
+Horseshoe Lake,1,12,4,5,1,,0.000
+Upper South Branch Pond,0,12,1,6,2,,0.000
+Humber Pond 5,1,12,5,0,3,,0.000
+Green Lake,3,10,7,2,2,,0.000
+Pass Lake,3,12,2,3,3,,0.000
+Stewart's Dark Lake,2,12,6,0,2,,0.000
+Rattle Lake,0,7,3,5,6,,0.000
+Lake BN7,0,7,1,10,3,,0.000
+Weber Lake,0,9,8,6,1,,0.000
+"Chesapeake Bay, Parker Creek",0,10,2,8,3,,0.000
+Little Bass Lake,0,11,2,8,2,,0.000
+Devils Lake (US:North Dakota),1,14,4,3,0,,0.000
+No Bottom Pond,7,4,6,0,0,,0.000
+Blue Mounds Creek,5,4,9,3,1,,0.000
+Lake Mendota,1,13,3,4,3,,0.000
+Chase Pond,2,3,12,0,0,,0.000
+Burden Lake,6,10,2,3,1,,0.000
+Martin Pond,3,9,7,6,2,,0.000
+Silver Lake (CA:Nova Scotia),2,10,8,3,3,,0.000
+East Twin Lake (US:Ohio),5,8,4,6,3,,0.000
+Upper Mallot Lake,0,7,2,9,5,,0.000
+Shaws Bog,0,6,12,0,2,,0.000
+Mont Shefford,0,11,3,2,6,,0.000
+Cupola Pond,4,8,10,0,1,,0.000
+Thompson,1,11,9,4,1,,0.000
+Lake Hope Simpson,0,5,10,8,1,,0.000
+Black Pond,7,6,7,1,0,,0.000
+Lost Lake (US:Michigan),0,3,0,13,2,,0.000
+Monhegan Island Meadow,2,3,13,0,1,,0.000
+Pasacaco Pond,1,7,3,12,1,,0.000
+Mud Creek Site 1,0,6,9,0,6,,0.000
+Wood Lake,0,14,2,6,3,,0.000
+Wylde Lake,2,10,5,3,6,,0.000
+Humber Pond 7,1,2,13,0,3,,0.000
+Marais de Keswick,3,7,12,0,0,,0.000
+Iola Bog,2,16,1,3,2,,0.000
+Waubashene Nippissing Transgression Site,0,15,7,0,0,,0.000
+Lake Onamia,0,0,0,14,0,,0.000
+James Bay,0,2,14,0,0,,0.000
+Lac des Atocas,1,13,5,3,5,,0.000
+Yellow Dog Pond,0,2,2,14,1,,0.000
+Border Beacon,0,7,1,5,8,,0.000
+Baseball Bog,0,2,0,14,2,,0.000
+Rutz Lake,0,8,1,13,2,,0.000
+Spirit Lake (US:Michigan),0,9,2,12,3,,0.000
+Gass Lake,2,14,5,1,5,,0.000
+Cedar Bog Lake,3,9,11,0,4,,0.000
+Dead Frog Pond,10,4,0,0,0,,0.000
+Lake GB1,0,4,1,15,1,,0.000
+Lake Six,2,14,0,10,1,,0.000
+Lac Kénogami,0,12,8,0,6,,0.000
+Upper Gillies Lake,4,9,11,4,3,,0.000
+Radtke Lake,1,17,6,3,2,,0.000
+Pond Mills Pond,4,13,10,0,1,,0.000
+Lac Martyne,0,4,3,9,8,,0.000
+Clear Lake,1,14,5,9,3,,0.000
+Saint-Raymond,0,4,7,3,9,,0.000
+Camp 11 Lake,0,2,0,16,0,,0.000
+Humber Pond 3,0,4,16,0,1,,0.000
+Tourbière de Lanoraie STJEAN,0,6,14,4,4,,0.000
+Porqui Pond,2,11,1,0,9,,0.000
+Volo Bog,2,15,5,9,3,,0.000
+North Pond,5,7,9,6,6,,0.000
+Little Lake (CA:New Brunswick),0,4,8,10,7,,0.000
+Wolf Creek,4,14,5,10,0,,0.000
+Willow River Pond,5,14,2,10,0,,0.000
+Lac Colin,0,9,4,15,1,,0.000
+Wintergreen Lake,3,11,6,7,7,,0.000
+Muscotah Marsh,7,6,13,0,0,,0.000
+Adeline Lake,0,4,0,17,1,,0.000
+Tonawa Lake,0,17,3,7,5,,0.000
+Mashapaug Pond,0,6,2,17,0,,0.000
+Lac à Sam,0,8,0,10,9,,0.000
+Ely Lake,1,16,9,1,6,,0.000
+Lac Castor,1,6,1,14,7,,0.000
+McCarston's Lake,2,19,9,0,2,,0.000
+Bog D,0,15,13,0,3,,0.000
+Aino Pond,5,21,3,3,3,,0.000
+Barchampe Lake,0,6,1,28,0,,0.000
+Barry Lake,2,14,4,11,6,,0.000
+Basin Pond,3,7,10,15,0,,0.000
+Basswood Road Lake/Splan Pond,2,3,20,0,0,,0.000
+Billy's Lake,2,32,10,6,5,,0.000
+Boriack Bog,3,5,31,0,0,,0.000
+Boundary Lake,2,9,6,22,7,,0.000
+Boundary Pond,1,12,4,25,3,,0.000
+Brandreth Bog,1,19,10,6,6,,0.000
+Cahaba Pond,11,11,19,0,0,,0.000
+Camel Lake,10,8,9,2,0,,0.000
+Canyon Lake,0,5,0,24,7,,0.000
+Caribou Hill,1,9,1,15,7,,0.000
+Chatsworth Bog,13,26,9,2,1,,0.000
+"Chesapeake Bay, Patuxent River (2-P-5)",0,21,0,18,9,,0.000
+"Chesapeake Bay, Potomac River",2,13,0,37,12,,0.000
+"Chesapeake Bay, Rhode River",4,14,3,45,9,,0.000
+Chippewa Bog,11,25,15,1,1,,0.000
+Clear Lake (US:Iowa),6,20,5,3,1,,0.000
+Clear Pond (US:New York),2,19,4,13,2,,0.000
+Clear Pond (US:South Carolina),8,13,4,29,2,,0.000
+Compass Pond,15,17,8,3,5,,0.000
+Conroy Lake,8,21,7,6,0,,0.000
+Cranberry Lake,4,37,11,8,17,,0.000
+Crates Lake,15,17,11,1,1,,0.000
+Crawford Lake,13,22,48,0,0,,0.000
+Cub Lake,6,20,4,12,5,,0.000
+Cummins Pond,1,5,13,8,7,,0.000
+Decoy Lake,3,17,10,42,9,,0.000
+Demont Lake,6,13,36,2,3,,0.000
+Disterhaft Farm Bog,13,38,8,7,9,,0.000
+E Lake,15,7,3,0,1,,0.000
+Edward Lake,5,25,17,5,7,,0.000
+Ferndale Bog,8,13,40,0,0,,0.000
+Found Lake,0,19,4,15,8,,0.000
+Fudger Lake,4,15,8,9,3,,0.000
+"Georgian Bay, Lake Huron (2)",9,13,12,12,1,,0.000
+Gould Pond,3,13,7,12,12,,0.000
+Graham Lake,0,55,8,116,25,,0.000
+Gravel Ridge,0,4,2,21,6,,0.000
+Grenadier Pond,5,27,24,3,5,,0.000
+Hams Lake,11,31,10,16,10,,0.000
+Hayes Lake,1,10,1,29,1,,0.000
+Hell's Kitchen Lake,1,15,1,35,4,,0.000
+Hemlock Hollow,13,20,9,3,2,,0.000
+High Lake,54,69,7,48,3,,0.000
+Hudson Lake,3,16,10,18,6,,0.000
+Irvin Lake,1,7,9,7,9,,0.000
+Irwin Smith Bog,48,49,46,17,7,,0.000
+Jack Lake,0,12,0,16,3,,0.000
+Jacobson Lake,0,23,5,40,7,,0.000
+Joes Pond,11,11,8,0,0,,0.000
+Jones Lake [Glenboro site],12,19,25,2,3,,0.000
+Kellners Lake,5,18,8,4,1,,0.000
+Kellys Hollow,0,7,15,2,10,,0.000
+Kimble Pond,17,100,77,15,8,,0.000
+Kirchner Marsh,13,39,25,18,9,,0.000
+Kotiranta Lake,1,15,10,18,5,,0.000
+L'Anse aux Meadows Site,0,8,57,0,1,,0.000
+Lac Bastien,0,17,2,31,14,,0.000
+Lac Geai,0,10,3,2,19,,0.000
+Lac Louis,0,15,4,21,11,,0.000
+Lac Patricia,0,6,0,24,3,,0.000
+Ladd Lake,3,20,6,3,5,,0.000
+Lake Annie,22,7,6,6,0,,0.000
+Lake BI2,26,10,4,0,0,,0.000
+Lake Carlson,4,11,23,10,11,,0.000
+Lake CH2,48,18,12,3,0,,0.000
+Lake EC1,0,4,0,18,4,,0.000
+Lake EC2,5,15,1,9,5,,0.000
+Lake GB2,0,5,2,41,6,,0.000
+Lake Minnie,3,26,2,24,4,,0.000
+Lake of the Clouds (US:Minnesota),0,4,4,41,2,,0.000
+Lake Tulane,28,20,15,5,2,,0.000
+Lake West Okoboji,1,20,15,0,1,,0.000
+LD Lake,11,15,2,2,3,,0.000
+Loon Pond,1,4,14,4,10,,0.000
+Main-à-Dieu,5,8,16,0,0,,0.000
+Mansell Pond,6,18,8,40,14,,0.000
+Maplehurst Lake,3,18,9,6,5,,0.000
+Medicine Lake,0,13,35,1,3,,0.000
+Moon Lake,10,70,49,10,6,,0.000
+Myrtle Lake,4,13,2,16,5,,0.000
+Nichols Brook Site,5,19,12,7,2,,0.000
+Nina Lake,0,12,5,31,2,,0.000
+Northwest River Pond,14,6,2,1,0,,0.000
+Nutt Lake,0,22,2,39,13,,0.000
+Peggy Lake,0,10,0,17,1,,0.000
+Perch Lake,1,22,0,26,6,,0.000
+Pickerel Lake (US:South Dakota),10,29,19,1,0,,0.000
+Pogonia Bog Pond,4,16,9,6,14,,0.000
+Point Escuminac,6,10,82,0,2,,0.000
+Poland Spring Pond,0,26,8,1,2,,0.000
+Portage Bog,11,17,30,4,1,,0.000
+Portage Lake,3,17,9,12,9,,0.000
+Pretty Lake,3,18,6,11,5,,0.000
+R Lake,16,13,2,1,0,,0.000
+Ramsay Lake,0,16,18,14,13,,0.000
+Rice Lake,9,15,6,8,2,,0.000
+Robinson's Pond,9,10,10,0,0,,0.000
+Rogers Lake,13,24,11,10,5,,0.000
+Ross Pond,8,19,3,6,3,,0.000
+Saint-Gabriel,0,13,3,11,10,,0.000
+Sarnia Elk Site Section,3,5,20,0,0,,0.000
+Second Lake,2,23,12,1,1,,0.000
+Seidel,2,29,23,4,10,,0.000
+Sewell Lake,15,26,29,0,0,,0.000
+Sharkey Lake,13,69,35,25,2,,0.000
+Shouldice Lake,4,26,7,4,8,,0.000
+South Soefje Bog,3,5,29,0,0,,0.000
+Spiritwood Lake,4,41,15,2,6,,0.000
+Spruce Pond,4,34,8,95,6,,0.000
+Sutherland Pond,10,45,19,67,9,,0.000
+Tamarack Creek,14,3,11,0,0,,0.000
+Tannersville Bog,2,38,10,10,10,,0.000
+Terhell Pond,7,25,10,1,2,,0.000
+Third Lake,10,13,27,9,2,,0.000
+Three Pines Bog,1,9,0,15,6,,0.000
+Tom Swamp,1,8,10,0,11,,0.000
+Unknown Pond,0,5,1,21,1,,0.000
+Van Nostrand Lake,5,22,9,3,4,,0.000
+Weslemkoon Lake,1,8,4,27,2,,0.000
+West Olaf Lake,2,45,14,2,9,,0.000
+Wolsfeld Lake,1,16,7,10,9,,0.000
+Wolverine Lake,0,1,1,21,2,,0.000
+Wylde Bog,1,11,26,0,4,,0.000
+,0.101916213,0.342194251,0.229381927,0.228818336,0.097689273,,

@@ -1,3 +1,14 @@
+---
+title: "No analogue paper"
+author: "Simon Goring *et al*."
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+pdf_document:
+pandoc_args: "-H margins.sty"
+bibliography: non_anlogue.bib
+csl: harvard1.csl
+---
+
 No-Analogues in North American Pollen Space
 ========================================================
 
