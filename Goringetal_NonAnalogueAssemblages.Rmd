@@ -45,15 +45,15 @@ ggplot(data, aes(x = x, y = y)) +
   theme_bw() + 
   geom_abline(intercept = 0, slope = 1, alpha = 0.4) +
   scale_x_continuous(expand = c(0,0), limits = c(0,1)) +
-  scale_y_continuous(expand=c(0,0), limits = c(0,1)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,1)) +
   annotate('text', x = 0.15, y = 0.1, label = 'Community\nPersistence', 
-           family = 'serif', size = 6, face = 'bold') +
+           family = 'serif', size = 6, fontface = 'bold') +
   annotate('text', x = 0.85, y = 0.9, label = 'Ecological\nNovelty', 
-           family = 'serif', size = 6, face = 'bold') +
+           family = 'serif', size = 6, fontface = 'bold') +
   annotate('text', x = 0.15, y = 0.9, label = 'Transient\nRefugium',
-           family = 'serif', size = 6, face = 'bold') +
+           family = 'serif', size = 6, fontface = 'bold') +
   annotate('text', x = 0.85, y = 0.1, label = 'Community\nMigration', 
-           family = 'serif', size = 6, face = 'bold') +
+           family = 'serif', size = 6, fontface = 'bold') +
   xlab('Site Turnover') + ylab('Landscape Turnover') +
   theme(axis.title.x = element_text(family = 'serif', 
                                     face = 'bold.italic', size = 18),
@@ -99,14 +99,14 @@ source('R/load_datasets.R')
 
 p <- function(x) {
   x <- round(x, -floor(log(x, 10)) + 2)
-  prettyNum(x=x, big.mark=',')
+  prettyNum(x = x, big.mark = ',')
 }
 
-create_date <- file.info('data//compiled.pollen.RData')$mtime  
+create_date <- file.info('data//compiled_pollen.rds')$mtime  
 
 ```
 
-Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled.pollen$sitename))` sites from across eastern North America (east of 100^o W; Figure 1a), with `r nrow(compiled.pollen)` samples younger than 21kyr cal. BP (Figure 1b).
+Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` using the `neotoma` pacakge for R (Goring, 2013; `http://www.github.com/ropensci/neotoma`).  The dataset includes `r length(unique(compiled_pollen$sitename))` sites from across eastern North America (east of 100^o W; Figure 1a), with `r nrow(compiled_pollen)` samples younger than 21kyr cal. BP (Figure 1b).
 
 ```{r Figure1Plots, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=3, results='hide'}
 
@@ -115,18 +115,18 @@ Pollen data from Neotoma was accessed on `r format(create_date, "%b %d, %Y")` us
 
 source('R/load_spatial.R')
 
-points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group=group), color='black') +
-  geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha=0.5) +
-  coord_map(xlim=c(-100, -45), ylim=c(21, 65)) + theme_bw() + scale_x_continuous(expand = c(0,0))
+points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group = group), color = 'black') +
+  geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha = 0.5) +
+  coord_map(xlim = c(-100, -45), ylim = c(21, 65)) + theme_bw() + scale_x_continuous(expand = c(0,0))
 
-bins <- ggplot(compiled.pollen) + 
-          geom_bar(aes(x = age), 
+bins <- ggplot(compiled_pollen) + 
+          geom_histogram(aes(x = age),
                    breaks = seq(-100, 22000, by = 500), 
-                   fill='gray', color='black') +
-          scale_x_continuous(expand=c(0, 0), limits=c(-100, 21000)) +
-          scale_y_sqrt(expand=c(0, 0), limits=c(0, 4000)) + theme_bw()
+                   fill = 'gray', color = 'black') +
+          scale_x_continuous(expand = c(0, 0), limits = c(-100, 21000)) +
+          scale_y_sqrt(expand = c(0, 0), limits = c(0, 4000)) + theme_bw()
 
-grid.arrange(points, bins, ncol=2)
+grid.arrange(points, bins, ncol = 2)
 
 rm(points, bins, map)
 ```
@@ -139,15 +139,15 @@ To determine dissimilarity ofver time we estimate dissimilarity from the data us
 
 ```{r bootstrapAnalogues, echo=FALSE, message=FALSE, warning=FALSE}
 
-if('pollen.frame.RData' %in% list.files('data/output')){
-  load('data/output/pollen.frame.RData')
+if ('pollen_frame.rds' %in% list.files('data/output')) {
+  pollen_frame <- readRDS('data/output/pollen_frame.rds')
 }
 
-if('climate.frame.RData' %in% list.files('data/output')){
-  load('data/output/climate.frame.RData')
+if ('climate_frame.rds' %in% list.files('data/output')) {
+  climate_frame <- readRDS('data/output/climate_frame.rds')
 }
 
-if(!'pollen.frame.RData' %in% list.files('data/output')){
+if (!'pollen.frame.RData' %in% list.files('data/output')) {
   source('R/calculate_turnover.R')
 }
 
@@ -157,20 +157,22 @@ Results
 -------------------------
 
 ### Pollen samples:
-Of the `r length(unique(compiled.pollen$sitename))` pollen sites obtained from Neotoma for this analysis, `r length(unique(compiled.pollen$sitename[!is.na(pollen.frame$min)]))` sites had assemblages that met our criteria.  For these sites there were 18850 unique assemblages spanning the last 21kyr, approximately 90% of the total assemblages for the sites that met our criteria.  Samples excluded from analysis occur throughout the record.
+Of the `r length(unique(compiled_pollen$site.name))` pollen sites obtained from Neotoma for this analysis, `r length(unique(compiled_pollen$site.name[!is.na(pollen_frame$min)]))` sites had assemblages that met our criteria.  For these sites there were 18850 unique assemblages spanning the last 21kyr, approximately 90% of the total assemblages for the sites that met our criteria.  Samples excluded from analysis occur throughout the record.
 
 ### Self and Landscape Dissimilarity:
 
 ```{r test, warning= FALSE, echo=FALSE, message=FALSE, fig.height=5, fig.width=7}
 
-cross.plot <- dcast(pollen.frame, 
+# Trying to get 
+cross.plot <- dcast(pollen_frame, 
+                    list(.(site, age, direction), .(self)),
+                    value.var = 'min',
+                    fun.aggregate = function(x)mean(x, na.rm = TRUE))
+
+clim.plot <- dcast(climate_frame, 
                     list(.(site, age, direction), .(self)),
                     value.var = 'min', 
-                    fun.aggregate = function(x)mean(x, na.rm=TRUE))
-clim.plot <- dcast(climate.frame, 
-                    list(.(site, age, direction), .(self)),
-                    value.var = 'min', 
-                    fun.aggregate = function(x)mean(x, na.rm=TRUE))
+                    fun.aggregate = function(x)mean(x, na.rm = TRUE))
 
 colnames(cross.plot)[4:5] <- c('self', 'land')
 colnames(clim.plot)[4:5] <- c('self', 'land')
@@ -186,10 +188,10 @@ source('R/ChangingClasses.R')
 
 ggplot(full.data, aes(y = land, x = self, color = quad)) + 
   geom_point(alpha = 0.6) +
-  scale_x_sqrt(expand=c(0,0))+#, limits = c(0.01, 1)) + 
-  scale_y_sqrt(expand=c(0,0))+#, limits = c(0.01, 1)) + 
+  scale_x_sqrt(expand = c(0,0)) +#, limits = c(0.01, 1)) + 
+  scale_y_continuous(expand = c(0,0)) +#, limits = c(0.01, 1)) + 
   geom_abline() + 
-  coord_fixed(ratio=1) +
+  coord_fixed(ratio = 1) +
   ylab('Landscape Dissimilarity') +
   xlab('Site Turnover') +
   theme_bw() +
@@ -203,7 +205,7 @@ pol.mod <- lm(self ~ land,
 clim.mod <- lm(self ~ land, 
                 data = na.omit(subset(full.plot, value == 'Climate')))
 
-save('data/output/pollen.site.table.csv')
+saveRDS(full.data, 'data/output/pollen.site.table.rds')
 
 ```
 
@@ -213,12 +215,13 @@ Turnover within the core (change within the core from one time period to another
 
 ```{r TurnoverClassesInTime, message=FALSE, warning=FALSE, echo=FALSE, fig.width = 10, fig.height=9}
 
-grid.arrange(pol.data[[2]], clim.data[[2]], ncol=1)
+grid.arrange(pol.data[[2]], clim.data[[2]], ncol = 1)
 
 pol.pct <- pol.data[[1]][,-1] / rowSums(pol.data[[1]][,-1])
 clm.pct <- clim.data[[1]][,-1] / rowSums(clim.data[[1]][,-1])
 
 ```
+
 **Figure X**. *Proportion of sites within each time window showing turnover rates representing novelty, mighration, persistence or refugium.*
 
 When we examine the relative proportions of sites that appear to show migration, novelty, persistence and refugium we see that both climate and vegetation turnover are fairly well correlated ($r_{mantel}$ =  `r p(mantel(dist(pol.pct), dist(clm.pct))$statistic)`, p = 0.001), but differences between the records are clear (Figure X).  
