@@ -1,7 +1,7 @@
 
 set_frame <- function(x){
-  data.frame(site        = rep(x$sitename, 4),
-             dataset     = rep(x$sitename, 4),
+  data.frame(site        = rep(x$site.name, 4),
+             dataset     = rep(x$site.name, 4),
              age         = rep(x$age, 4),
              index       = rep(1:nrow(x), 4),
              self        = rep(c(TRUE, FALSE), each = nrow(x)*2),
@@ -11,11 +11,12 @@ set_frame <- function(x){
              delta.age   = rep(NA, nrow(x)*4),
              mean.delt   = rep(NA, nrow(x)*4),
              direction   = rep(rep(c('past', 'futu'), nrow(x)), 2),
-             uniqueID    = 1:(nrow(x)*4))
+             uniqueID    = 1:(nrow(x)*4),
+             stringsAsFactors = FALSE)
 }
 
 
-find_analogues <- function(x, compiled.data, plot.out = FALSE){
+find_analogues <- function(x, compiled.data, drop.cols, plot.out = FALSE){
   #  To parallelize we need to pass in the rows of 'output.frame' one by one.
   
   #  For each sample in the dataset:
@@ -25,11 +26,9 @@ find_analogues <- function(x, compiled.data, plot.out = FALSE){
   #  
   #  has any samples that are between 250 and 750 years older than it.
   
-  right.site <- compiled.data$sitename == x$site
+  right.site <- compiled.data$site.name == x$site
   site.ages <-  compiled.data$age[right.site]
-  
 
-  
   mult <- ifelse(x$direction == 'past',  1, -1)
   
   right.age <- findInterval(compiled.data$age,
@@ -40,13 +39,15 @@ find_analogues <- function(x, compiled.data, plot.out = FALSE){
   #  have an NAs.
   
   good.samp <- rowSums(is.na(compiled.data)) == 0 &
-    sum(right.site & right.age, na.rm=TRUE) > 0
+    sum(right.site & right.age, na.rm = TRUE) > 0
   
   threshold <- c(5, 1)[x$self + 1]
   
-  if(sum(right.age & !xor(right.site, x$self) & good.samp) > threshold){
+  if (sum(right.age & !xor(right.site, x$self) & good.samp) > threshold) {
     
-    drop.cols <- !colnames(compiled.data) %in% c('sitename', 'depth', 'age', 'lat', 'long', 'dataset', 'uIDs', 'date.type')
+    drop.cols <- !colnames(compiled.data) %in% c('site.name', 'depth', 'age', 'lat', 'long', 
+                                                 'dataset', 'uIDs', 'date.type',
+                                                 '.id', 'age.old', 'age.young', drop.cols)
     
     #  This is the assemblage/climate we're interested in.
     arrow <- as.matrix(compiled.data[x$index, drop.cols])
@@ -55,9 +56,9 @@ find_analogues <- function(x, compiled.data, plot.out = FALSE){
     #  These are all the samples we're comparing it to.
     calib.samples <- compiled.data[right.age & !xor(right.site, x$self) & good.samp, ]
     
-    calib.minus <- apply(calib.samples[, drop.cols], 1, function(x) (arrow - x)^2)
+    calib.minus <- apply(calib.samples[, drop.cols], 1, function(x) (arrow - x) ^ 2)
     
-    calib.vals <- sqrt(colSums(calib.minus, na.rm=TRUE))
+    calib.vals <- sqrt(colSums(calib.minus, na.rm = TRUE))
     
     min.pt     <- uIDs[which.min(calib.vals)]
     sample.size <- sum(right.age & !xor(right.site, x$self))
@@ -65,19 +66,19 @@ find_analogues <- function(x, compiled.data, plot.out = FALSE){
     delta.age <- calib.samples$age[which.min(calib.vals)] - x$age
     mean.delt <- mean(calib.samples$age - x$age)
     
-    if(plot.out){
+    if (plot.out) {
       filename <- paste0('data/output/New folder/', x$site, x$age, x$self, x$direction, '.png')
       
-      if(!filename %in% list.files(recursive=TRUE)){
+      if (!filename %in% list.files(recursive = TRUE)) {
         model.data <- rbind(arrow, calib.samples[,drop.cols])
         
-        model.data <- model.data[,colSums(model.data)>0]
+        model.data <- model.data[,colSums(model.data) > 0]
         
         require(vegan)
         
         aa <- (metaMDS(sqrt(model.data)))
         aa.points <- as.data.frame(aa$points)
-        aa.points$site <- c('red', rep('black', nrow(aa$points)-1))
+        aa.points$site <- c('red', rep('black', nrow(aa$points) - 1))
         
         aa.spec <- as.data.frame(aa$species)
         aa.spec$label <- tolower(rownames(aa.spec))
@@ -91,7 +92,7 @@ find_analogues <- function(x, compiled.data, plot.out = FALSE){
         
         filename <- paste0('data/output/New folder/', x$site, x$age, x$self, x$direction, '.png')
         
-        try(ggsave(plot = plotit, filename=filename))
+        try(ggsave(plot = plotit, filename = filename))
       }
     }
     
@@ -104,5 +105,6 @@ find_analogues <- function(x, compiled.data, plot.out = FALSE){
     mean.delt <- NA
   }
   
-  data.frame(min.pt, min, sample.size, delta.age, mean.delt)
+  data.frame(min.pt, min, sample.size, delta.age, mean.delt, 
+             stringsAsFactors = FALSE)
 }
