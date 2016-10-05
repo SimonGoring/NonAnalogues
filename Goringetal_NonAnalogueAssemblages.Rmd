@@ -2,11 +2,11 @@
 title: "No analogue paper"
 author: "Simon Goring *et al*."
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
+output: word_document
 pdf_document:
 pandoc_args: "-H margins.sty"
-bibliography: non_anlogue.bib
-csl: harvard1.csl
+bibliography: non_analogue.bib
+#csl: harvard1.csl
 ---
 
 No-Analogues in North American Pollen Space
@@ -119,8 +119,8 @@ points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group =
   geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha = 0.5) +
   coord_map(xlim = c(-100, -45), ylim = c(21, 65)) + theme_bw() + scale_x_continuous(expand = c(0,0))
 
-bins <- ggplot(compiled_pollen) + 
-          geom_histogram(aes(x = age),
+bins <- ggplot(compiled.pollen) + 
+          geom_histogram(aes(x = age), 
                    breaks = seq(-100, 22000, by = 500), 
                    fill = 'gray', color = 'black') +
           scale_x_continuous(expand = c(0, 0), limits = c(-100, 21000)) +
