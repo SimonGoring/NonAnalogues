@@ -38,10 +38,9 @@ load_datasets <- function() {
                                    type = TRUE, cf = TRUE)
     
     # Just check to see what we need to add to the "Other" list.
-    other_list <- do.call(rbind, lapply(compiled_sites, 
-                                        function(x) { 
-                                          subset(x$taxon.list, compressed == "Other")[,c("taxon.name", "compressed")] }))
-    write.csv(table(other_list), 'data/output/other_list.csv')
+    other_list <- dplyr::bind_rows(lapply(compiled_sites, function(x) { 
+                                          subset(x$taxon.list, compressed == "Other") }))
+    write.csv(other_list[!duplicated(other_list), ], 'data/output/other_list.csv')
     
     #  Pull in age models from Blois et al.
     blois.models <- list.files('data/input/Neotoma2/')
@@ -117,5 +116,5 @@ load_datasets <- function() {
 load_datasets()
 
 all_sites <- readRDS('data/output/all_sites.rds')
-compiled_pollen <- readDRS('data/output/compiled_pollen.rds')
+compiled_pollen <- readRDS('data/output/compiled_pollen.rds')
 compiled_sites <- readRDS('data/output/compiled_sites.rds')
