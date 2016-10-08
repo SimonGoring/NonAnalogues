@@ -2,10 +2,14 @@
 title: "No analogue paper"
 author: "Simon Goring *et al*."
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: word_document
-pdf_document:
-pandoc_args: "-H margins.sty"
-bibliography: non_analogue.bib
+output:
+  word_document: 
+    reference_docx: word_template.docx  
+  pdf_document:
+    pandoc_args: -V geometry:vmargin=1in -V geometry:hmargin=1in
+  md_document:
+    variant: markdown_github
+bibliography: neotoma_bib.bib
 #csl: harvard1.csl
 ---
 
@@ -83,9 +87,9 @@ Landscape turnover has not been previously used as a metric of dissimilarity.  I
 
 We examine pollen records from the Neotoma Database, searching through the past, from the late-glacial to the modern to examine in which cases pollen assemblages appear to be non-analogue from the previous time period.  The conceptual framework suggests that we were looking at landscape level turnover, not site turnover.  While site-level turnover is a commonly used metric in paleoecological analysis, it is hampered by its sensitivity to stochastic effects.  Large scale changes in vegetation at a single site might not reflect the kinds of broad scale community change we expect to see under conditions of future climate change.  As such, comparing dissimilarity at a site to changes at a number of sites across the continent provides a better metric of landscape-scale dissimilarity.
 
-![Alt text](/HandMadeFigures/ConceptualPlot.png)
+![](HandMadeFigures/both_turnovers.png)
 
-**Figure 2**. *Turnover estimates for time t_i are measured as the minimum within site dissimilarity from the prior timestep (d_si) or the minimum dissimilarity from the landscape of pollen assemblages at the earlier timestep (d_li).  In all cases the earlier timestep is defined as a time preiod between 250 and 750 years prior to the sample of interest.  These two values then form a continuum of possibilities.  High ds and low dl indicate disturbance events within a stable, heterogeneous landscape, high dl & high ds indicate broad-scale, rapid landscape turnover, high dl, low ds is relatively infrequent, but may indicate local refugia within a shifting landscape*
+**Figure 2**. *Turnover estimates for time t_i are measured as the minimum within site dissimilarity from the prior timestep ($d_{s}$) or the minimum dissimilarity from the landscape of pollen assemblages at the earlier timestep ($d_{l}$).  In all cases the earlier timestep is defined as a time preiod between 250 and 750 years prior to the sample of interest.  These two values then form a continuum of possibilities.*
 
 We expect that ecosystems will show patterns of change that can be explained through the multivariate use of these dissimilarity measures.  For example, rapid species migration during the late-Pleistocene/eraly-Holocene transition should be apparent as high local turnover partnered with relatively low landscape change if entire communities are migrating northward.  Strongly individualistic species responses would be visible as paired high site and landscape turnovers.  Modern successional changes should be visible as sets of high self, low landscape changes.  Low landscape and low self changes should be static ecosystems.
 
@@ -119,7 +123,7 @@ points <- ggplot(data = data.frame(map), aes(long, lat)) + geom_path(aes(group =
   geom_point(data = indiv.sites, aes(x = long, y = lat, size = samples), alpha = 0.5) +
   coord_map(xlim = c(-100, -45), ylim = c(21, 65)) + theme_bw() + scale_x_continuous(expand = c(0,0))
 
-bins <- ggplot(compiled.pollen) + 
+bins <- ggplot(compiled_pollen) + 
           geom_histogram(aes(x = age), 
                    breaks = seq(-100, 22000, by = 500), 
                    fill = 'gray', color = 'black') +
