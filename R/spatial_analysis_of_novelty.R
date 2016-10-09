@@ -1,10 +1,10 @@
 #  Analyzing spatial patterns:
 
-unique.sites <- compiled.pollen[!duplicated(compiled.pollen$sitename), ]
+unique.sites <- compiled_pollen[!duplicated(compiled_pollen$site.name), ]
 
 full.data <- data.frame(full.data,
-                        long = unique.sites$long[match(full.data$site, unique.sites$site)],
-                        lat = unique.sites$lat[match(full.data$site, unique.sites$site)])
+                        long = unique.sites$long[match(full.data$site, unique.sites$site.name)],
+                        lat = unique.sites$lat[match(full.data$site, unique.sites$site.name)])
 
 #  Within each time bin, see if the distribution of sites (latitudinally?) is significantly
 #  different from the undelying distribution:
@@ -15,8 +15,8 @@ return.diff.p <- function(j){
   pollen.p <- matrix(nrow = 150, ncol = length(classes))
   pollen.diff <- matrix(nrow = 150, ncol = length(classes))
 
-  for(i in 1:150){
-    for(k in classes){
+  for (i in 1:150) {
+    for (k in classes) {
       
       age.range <- findInterval(full.data$age, c(i*100, i*100 + 500)) == 1
       

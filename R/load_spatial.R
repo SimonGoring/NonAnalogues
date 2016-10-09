@@ -5,11 +5,12 @@ ecoregions <- spTransform(readOGR('data/Ecoregions_NA/na_regns.shp', 'na_regns')
 
 ecoregions <- ecoregions[!ecoregions@data$DIVISION == 'Lake',]
 
-indiv.sites <- data.frame(site = unique(compiled.pollen$sitename),
-                          compiled.pollen[!duplicated(compiled.pollen$sitename), c('lat', 'long')],
-                          samples = as.vector(table(compiled.pollen$sitename)))
+indiv.sites <- data.frame(site = unique(compiled_pollen$site.name),
+                          compiled_pollen[!duplicated(compiled_pollen$site.name), c('lat', 'long')],
+                          samples = as.vector(table(compiled_pollen$site.name)))
 
-extract.eco <- over(SpatialPoints(indiv.sites[,3:2], proj4string=CRS(proj4string(ecoregions))), ecoregions)
+extract.eco <- over(SpatialPoints(indiv.sites[,3:2], 
+                                  proj4string = CRS(proj4string(ecoregions))), ecoregions)
 
 indiv.sites$domain <- as.character(extract.eco$DOMAIN)
 indiv.sites$division <- as.character(extract.eco$DIVISION)
