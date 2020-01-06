@@ -1,3 +1,7 @@
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+
+**This project is no longer being developed.**
+
 Community dissassembly: Looking for rapid regional turnover in the pollen record and the development of non-analogue vegetation.
 ========
 
